@@ -61,6 +61,24 @@
             ...............
             <section id="main-content">
                 <section class="wrapper site-min-height">
+                <div class="col-lg-12">
+                            <div class="form-panel" style="border-radius: 10px; height: 120px;" >
+                                <h4 class="mb"><i class="fa fa-angle-right"></i> Search Parcel Record</h4>
+                                <form class="form-inline" role="form" action="searchParcelDate" method="get">
+                                    <div class="form-group">
+                                        &nbsp;&nbsp;&nbsp;Date Start: 
+                                        <input type="date" class="form-control" id="exampleInputEmail2" name="dateStart" required>
+                                    </div>
+                                    <div class="form-group">
+                                        &nbsp;&nbsp;&nbsp;Date End: 
+                                        <input type="date" class="form-control" id="exampleInputEmail2" name="dateEnd" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-theme">Search</button>
+                                </form>
+                            </div><!-- /form-panel -->
+                        </div><!-- /col-lg-12 -->
+                        <h3>${message}</h3>
+                        <br>
                     <div class="row mt">
                         <h3 class="mb">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>View All Parcel</b></h3>
                         <br>

@@ -17,9 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Joe
+ * @author Joe's
  */
-public class admParcelMgn extends HttpServlet {
+public class searchParcelDate extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,10 +33,25 @@ public class admParcelMgn extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        List<parcel> par = parcel.searchParcelByDate(new java.sql.Date(new Date().getTime()).toString());
-        if(par!=null){
+        List<parcel> par = null;
+        String start = request.getParameter("dateStart");
+        String end = request.getParameter("dateEnd");
+        String message = null;
+        if (start.equals("") == true && end.equals("") == true) {
+            message = "Please select at least one of each condition to search!";
+            } else if(start.equals("") == false || end.equals("") == false){
+            if(start.equals("") == false && end.equals("") == false){
+               par = parcel.searchParcelInRange(start, end);
+            }else if(start.equals("") == true && end.equals("") == false){
+                String current = new java.sql.Date(new Date().getTime()).toString();
+               par = parcel.searchParcelInRange(current, end); 
+            }else if(start.equals("") == false && end.equals("") == true){
+                String current = new java.sql.Date(new Date().getTime()).toString();
+               par = parcel.searchParcelInRange(start, current); 
+            }
             request.setAttribute("parcel", par);
         }
+        request.setAttribute("message", message);
         getServletContext().getRequestDispatcher("/admParcelMgn.jsp").forward(request, response);
     }
 

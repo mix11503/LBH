@@ -188,6 +188,10 @@
         <servlet-name>userParcel</servlet-name>
         <servlet-class>Controller.parcel.userParcel</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>searchParcelDate</servlet-name>
+        <servlet-class>Controller.parcel.searchParcelDate</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
         <url-pattern>/MTNSearchRoom</url-pattern>
@@ -375,6 +379,10 @@
     <servlet-mapping>
         <servlet-name>userParcel</servlet-name>
         <url-pattern>/userParcel</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>searchParcelDate</servlet-name>
+        <url-pattern>/searchParcelDate</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

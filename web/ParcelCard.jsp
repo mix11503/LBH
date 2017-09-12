@@ -20,7 +20,8 @@
                 <%if(i%2==0){%></tr><tr><%}%>
                 <%if(i%8==0){%></table><br><br><br><br><br><br><table border="1" style="width: 720px; height: 950px;"><%}%>    
             <%i++;}%>
-            <%String blankCard = "<td><h3>Parcel Pick up Ticket</h3><h4 style='float:right'>DATE:_ _/_ _/_ _ _ _</h4><h4>Room No:_ _ _</h4><h4>Dear:_______________</h4><h4>Parcel ID:_______________</h4><h6>Please contact at condo's office from 08:00 - 17:00 everyday, Tel 02 123 4567<br>Please note that your parcel will be kept for 30 days</h6></td>";%>
+            <%--String blankCard = "<td><h3>Parcel Pick up Ticket</h3><h4 style='float:right;>DATE:_ _/_ _/_ _ _ _</h4><h4>Room No:_ _ _</h4><h4>Dear:_______________</h4><h4>Parcel ID:_______________</h4><h6>Please contact at condo's office from 08:00 - 17:00 everyday, Tel 02 123 4567<br>Please note that your parcel will be kept for 30 days</h6></td>"--%>
+            <%String blankCard = "<td><h3 style='color: white;'>.</h3><h4 style='float:right; color: white;'>.</h4><h4 style='color: white;'>.</h4><h4 style='color: white;'>.</h4><h4 style='color: white;'>.</h4><h6 style='color: white;'>.</h6></td>";%>
             <%--Generate pair for odd card--%>
             <%if((i-1)%2!=0){%>
             <%=blankCard%>    

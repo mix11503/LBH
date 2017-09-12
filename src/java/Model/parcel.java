@@ -169,6 +169,28 @@ public class parcel {
         return parcel;
     }
     
+    public static List<parcel> searchParcelInRange(String start, String end) {
+        List<parcel> parcel = new ArrayList<parcel>();
+        try {
+            Connection conn = ConnectionBuilder.getConnection();
+            parcel p = null;
+            String sqlCmd = "SELECT * FROM Parcel where Parcel_Date >= ? and Parcel_Date <= ?";
+            PreparedStatement pstm = conn.prepareStatement(sqlCmd);
+            pstm.setString(1, start);
+            pstm.setString(2, end);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                p = new parcel();
+                orm(rs, p);
+                parcel.add(p);
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            System.err.println("Parcel, searchParcelInRange: " + ex);
+        }
+        return parcel;
+    }
+    
     public static parcel searchByBarcode(String barcode) {
         parcel p = null;
         try {
@@ -234,7 +256,7 @@ public class parcel {
         p.addParcel(201);
 */
 /*
-    List<parcel> p = parcel.getParcelByRoomId(202);
+    List<parcel> p = parcel.searchParcelInRange("2017-09-04", "2017-09-05");
     for(parcel pp : p){
         System.out.println(pp.toString());
     }
