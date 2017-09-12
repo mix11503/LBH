@@ -3,9 +3,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 public class parcel {
     private int id;
     private String name;
@@ -13,6 +16,7 @@ public class parcel {
     private Boolean status;
     private Date date;
     private int roomId;
+    private String pickStamp;
 
     public int getId() {
         return id;
@@ -64,7 +68,7 @@ public class parcel {
 
     @Override
     public String toString() {
-        return "parcel{" + "id=" + id + ", name=" + name + ", barcode=" + barcode + ", status=" + status + ", date=" + date + ", roomId=" + roomId + '}';
+        return "parcel{" + "id=" + id + ", name=" + name + ", barcode=" + barcode + ", status=" + status + ", date=" + date + ", roomId=" + roomId + ", pickStamp=" + pickStamp + '}';
     }
     
     public boolean addParcel(int roomId) {
@@ -227,11 +231,13 @@ public class parcel {
     
     public static boolean pickStatus(int id) {
         int x = 0;
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", new Locale("en","TH"));
         try {
             Connection conn = ConnectionBuilder.getConnection();
-            String sqlCmd = "Update Parcel set Parcel_Status = ? where Parcel_ID = " + id;
+            String sqlCmd = "Update Parcel set Parcel_Status = ?, pick_DateTime = ? where Parcel_ID = " + id;
             PreparedStatement pstm = conn.prepareStatement(sqlCmd);
             pstm.setBoolean(1, true);
+            pstm.setString(2, sdf.format(new Date()));
             x = pstm.executeUpdate();
             conn.close();
         } catch (SQLException ex) {
@@ -247,6 +253,7 @@ public class parcel {
         p.setStatus(rs.getBoolean("Parcel_Status"));
         p.setRoomId(rs.getInt("Room_ID"));
         p.setDate(rs.getDate("Parcel_Date"));
+        p.setPickStamp(rs.getString("pick_DateTime"));
     }
     
     public static void main(String[] args) {
@@ -262,12 +269,25 @@ public class parcel {
     }
   */
 /*
+parcel p = parcel.searchByBarcode("AB12345TH");
+        System.out.println(p.getPickStamp());
+*/
+/*
     parcel.deleteParcel(2);
         System.out.println("success");
 */
 /*
-        parcel.pickStatus(1);
+        parcel.pickStatus(7);
         System.out.println("success");
 */
+
+    }
+
+    public String getPickStamp() {
+        return pickStamp;
+    }
+
+    public void setPickStamp(String pickStamp) {
+        this.pickStamp = pickStamp;
     }
 }

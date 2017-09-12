@@ -112,7 +112,7 @@
                 <td><%=pp.getBarcode()%></td>
                 <td><%=pp.getName()%></td>
                 <td><%=pp.getDate()%></td>
-                <td><%if(pp.getStatus()==false){%>Exist<%}else{%>Picked<%}%></td>
+                <td><%if(pp.getStatus()==false){%>Exist<%}else{%>Picked: <b><%=pp.getPickStamp().substring(0, 19)%></b><%}%></td>
                 <td><form action="pickMgn" method="get" onclick="return confirm('Picked <%=pp.getBarcode()%>?')">
                         <input type="text" value="<%=pp.getId()%>" name="id" hidden><input type="submit" value="Picked" <%if(pp.getStatus()==true){%>disabled<%}%>/>
                     </form></td>

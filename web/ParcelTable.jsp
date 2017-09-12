@@ -8,7 +8,7 @@
     </head>
     <body>
         <h3>::Parcel Data Sheets::</h3>
-        <table border="1" width="100%">
+        <table border="1" width="100%" style="border-collapse: collapse;">
             <tr>
                 <td>Barcode ID</td>
                 <td>Receiver Name</td>
@@ -22,7 +22,7 @@
             if(p!=null){
                 for(parcel pp : p){
             %>
-            <tr>
+            <tr height="30">
                 <td><%=pp.getBarcode()%></td>
                 <td><%=pp.getName()%></td>
                 <td><%=pp.getDate()%></td>
