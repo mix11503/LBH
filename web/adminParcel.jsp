@@ -58,7 +58,7 @@
                                     </div>
                                     <div class="form-group">
                                         &nbsp;&nbsp;&nbsp;Room No: 
-                                        <input type="text" class="form-control" id="exampleInputEmail2" name="room" min="201" max="832" required>
+                                        <input type="number" class="form-control" id="exampleInputEmail2" name="room" min="201" max="832" required>
                                     </div>
                                     <button type="submit" class="btn btn-theme">ADD</button>
                                 </form>
