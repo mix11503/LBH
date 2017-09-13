@@ -138,7 +138,7 @@
                 <td><form action="ApproveDec" method="get" onclick="return confirm('Approve Decoration Request?')">
                         <input type="text" value="<%=dec.getId()%>" name="id" hidden><input type="submit" value="Approve" <%if(dec.getStatus()==true){%>disabled<%}%>/>
                     </form></td>
-                <td><form action="" method="get"  target="_blank">
+                <td><form action="printDecSheet" method="get"  target="_blank">
                         <input type="text" value="<%=dec.getId()%>" name="id" hidden><input type="submit" value="Print"/>
                     </form></td>
                 </tr>

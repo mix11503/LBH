@@ -204,6 +204,24 @@ public class Decoration {
         }
         return dec;
     }
+    public static Decoration findById(int id) {
+        Decoration d = null;
+        try {
+            Connection conn = ConnectionBuilder.getConnection();
+            String sqlCmd = "SELECT * FROM DecorateRequest where DEC_ID = ?";
+            PreparedStatement pstm = conn.prepareStatement(sqlCmd);
+            pstm.setInt(1, id);
+            ResultSet rs = pstm.executeQuery();
+            if(rs.next()) {
+                d = new Decoration();
+                orm(rs, d);
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            System.err.println("DEC, FindById: " + ex);
+        }
+        return d;
+    }
     public static void main(String[] args) {
         /*
         Decoration d = new Decoration();
@@ -219,7 +237,8 @@ public class Decoration {
        for(Decoration d : dec){
            System.out.println(d.toString());
        }
-*/
+       */
+        //System.out.println(Decoration.findById(2).toString());
 }
 
     public Date getReqDate() {

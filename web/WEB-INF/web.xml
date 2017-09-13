@@ -208,6 +208,10 @@
         <servlet-name>SearchFilter</servlet-name>
         <servlet-class>Controller.Decoration.SearchFilter</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>printDecSheet</servlet-name>
+        <servlet-class>Controller.Decoration.printDecSheet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
         <url-pattern>/MTNSearchRoom</url-pattern>
@@ -415,6 +419,10 @@
     <servlet-mapping>
         <servlet-name>SearchFilter</servlet-name>
         <url-pattern>/SearchFilter</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>printDecSheet</servlet-name>
+        <url-pattern>/printDecSheet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
