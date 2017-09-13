@@ -13,7 +13,7 @@
     </head>
     <body>
         <form action="" method="get">
-            <textarea name="desc" placeholder="Decoration Description here.." maxlength="500" rows="10" cols="50" required></textarea>
+            <textarea name="desc" placeholder="Decoration Description here.." maxlength="180" rows="10" cols="50" required></textarea>
             <input type="date" name="start" required>
             <input type="date" name="end" required>
             <input type="submit" value="Request">
