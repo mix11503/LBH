@@ -64,7 +64,7 @@
                 <div class="col-lg-12">
                             <div class="form-panel" style="border-radius: 10px; height: 120px;" >
                                 <h4 class="mb"><i class="fa fa-angle-right"></i> Search Decoration Request</h4>
-                                <form class="form-inline" role="form" action="SearchDecRange" method="get">
+                                <form class="form-inline" role="form" action="SearchDecRange" method="get" style="float: left;">
                                     <div class="form-group">
                                         &nbsp;&nbsp;&nbsp;Date Start: 
                                         <input type="date" class="form-control" id="exampleInputEmail2" name="dateStart" required>
@@ -72,6 +72,18 @@
                                     <div class="form-group">
                                         &nbsp;&nbsp;&nbsp;Date End: 
                                         <input type="date" class="form-control" id="exampleInputEmail2" name="dateEnd" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-theme">Search</button>
+                                </form>
+                                
+                                <form class="form-inline" role="form" action="SearchFilter" method="get" style="float: right;">
+                                    <div class="form-group">
+                                        Filter :
+                                        <select class="form-control"  name="filter">
+                                            <option disabled selected></option>
+                                            <option value="New">New Request</option>
+                                            <option value="Old">All Request</option>
+                                        </select>
                                     </div>
                                     <button type="submit" class="btn btn-theme">Search</button>
                                 </form>
@@ -102,7 +114,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <th>Room No</th>
+                <th>Room</th>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -118,7 +130,7 @@
                 <td><%=dec.getId()%></td>
                 <td><%=dec.getReqDate()%></td>
                 <td>{Resident Name}</td>
-                <td><%=dec.getDesc()%></td>
+                <td><%if(dec.getDesc().length()>30){%><%=dec.getDesc().substring(0, 30)%>...<%}else{%><%=dec.getDesc()%><%}%></td>
                 <td><%=dec.getStart()%></td>
                 <td><%=dec.getEnd()%></td>
                 <td><%=dec.getRoomId()%></td>
