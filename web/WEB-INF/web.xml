@@ -196,6 +196,14 @@
         <servlet-name>getAllReq</servlet-name>
         <servlet-class>Controller.Decoration.getAllReq</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ApproveDec</servlet-name>
+        <servlet-class>Controller.Decoration.ApproveDec</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchDecRange</servlet-name>
+        <servlet-class>Controller.Decoration.SearchDecRange</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
         <url-pattern>/MTNSearchRoom</url-pattern>
@@ -391,6 +399,14 @@
     <servlet-mapping>
         <servlet-name>getAllReq</servlet-name>
         <url-pattern>/getAllReq</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApproveDec</servlet-name>
+        <url-pattern>/ApproveDec</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchDecRange</servlet-name>
+        <url-pattern>/SearchDecRange</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

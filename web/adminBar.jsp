@@ -79,7 +79,15 @@ MAIN SIDEBAR MENU
                     <li><a  href="printParcel.jsp">Print Parcel Label</a></li>
                 </ul>
             </li>
-
+            <li class="sub-menu">
+                <a href="javascript:;" >
+                    <i class="fa fa-gavel"></i>
+                    <span>Decoration Request</span>  
+                </a>
+                <ul class="sub">
+                    <li><a  href="getAllReq">Manage Request</a></li>
+                </ul>
+            </li>
 
             <!-- sidebar menu end-->
     </div>

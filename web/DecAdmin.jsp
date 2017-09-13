@@ -64,7 +64,7 @@
                 <div class="col-lg-12">
                             <div class="form-panel" style="border-radius: 10px; height: 120px;" >
                                 <h4 class="mb"><i class="fa fa-angle-right"></i> Search Decoration Request</h4>
-                                <form class="form-inline" role="form" action="" method="get">
+                                <form class="form-inline" role="form" action="SearchDecRange" method="get">
                                     <div class="form-group">
                                         &nbsp;&nbsp;&nbsp;Date Start: 
                                         <input type="date" class="form-control" id="exampleInputEmail2" name="dateStart" required>
@@ -85,6 +85,7 @@
                         <table id="example" class="display" cellspacing="0" width="95%">
             <thead><tr>
                 <th>Decoration ID</th>
+                <th>Request Date</th>
                 <th>Resident Name</th>
                 <th>Description</th>
                 <th>Start Date</th>
@@ -92,10 +93,11 @@
                 <th>Room No</th>
                 <th>Status</th>
                 <th>Approve</th>
-                <th>Print Request<th>
+                <th>Print Request</th>
             </tr></thead>
             <tfoot><tr>
                 <th>ID</th>
+                <th>Date</th>
                 <th>Name</th>
                 <td></td>
                 <td></td>
@@ -114,13 +116,14 @@
             %>
             <tr>
                 <td><%=dec.getId()%></td>
-                <td>Dummy Name</td>
+                <td><%=dec.getReqDate()%></td>
+                <td>{Resident Name}</td>
                 <td><%=dec.getDesc()%></td>
                 <td><%=dec.getStart()%></td>
                 <td><%=dec.getEnd()%></td>
                 <td><%=dec.getRoomId()%></td>
                 <td><%=dec.getStatus()%></td>
-                <td><form action="" method="get" onclick="return confirm('Approve Decoration Request?')">
+                <td><form action="ApproveDec" method="get" onclick="return confirm('Approve Decoration Request?')">
                         <input type="text" value="<%=dec.getId()%>" name="id" hidden><input type="submit" value="Approve" <%if(dec.getStatus()==true){%>disabled<%}%>/>
                     </form></td>
                 <td><form action="" method="get"  target="_blank">

@@ -15,6 +15,7 @@ public class Decoration {
     private String end;
     private Boolean status;
     private int roomId;
+    private Date reqDate;
 
     public int getId() {
         return id;
@@ -66,9 +67,9 @@ public class Decoration {
 
     @Override
     public String toString() {
-        return "Decoration{" + "id=" + id + ", desc=" + desc + ", start=" + start + ", end=" + end + ", status=" + status + ", roomId=" + roomId + '}';
+        return "Decoration{" + "id=" + id + ", desc=" + desc + ", start=" + start + ", end=" + end + ", status=" + status + ", roomId=" + roomId + ", reqDate=" + reqDate + '}';
     }
-    
+   
     private static void orm(ResultSet rs, Decoration d) throws SQLException {
         d.setId(rs.getInt("DEC_ID"));
         d.setDesc(rs.getString("DEC_Desc"));
@@ -76,6 +77,7 @@ public class Decoration {
         d.setEnd(rs.getString("DEC_End"));
         d.setStatus(rs.getBoolean("DEC_status"));
         d.setRoomId(rs.getInt("Room_ID"));
+        d.setReqDate(rs.getDate("DEC_ReqDate"));
     }
     
     public boolean createRequest(int roomId) {
@@ -83,13 +85,14 @@ public class Decoration {
         try {
             Connection conn = ConnectionBuilder.getConnection();
             String sqlCmd = null;
-            sqlCmd = "INSERT INTO DecorateRequest(DEC_Desc, DEC_Start, DEC_End, DEC_Status, Room_ID) VALUES (?,?,?,?,?)";
+            sqlCmd = "INSERT INTO DecorateRequest(DEC_Desc, DEC_Start, DEC_End, DEC_Status, Room_ID, DEC_ReqDate) VALUES (?,?,?,?,?,?)";
             PreparedStatement pstm = conn.prepareStatement(sqlCmd);
             pstm.setString(1, this.desc);
             pstm.setString(2, this.start);
             pstm.setString(3, this.end);
             pstm.setBoolean(4, false);
             pstm.setInt(5, roomId);
+            pstm.setDate(6, new java.sql.Date(new Date().getTime()));
             x = pstm.executeUpdate();
             conn.close();
         } catch (SQLException ex) {
@@ -180,13 +183,34 @@ public class Decoration {
         }
         return dec;
     }
+    public static List<Decoration> searchDecInRange(String start, String end) {
+        List<Decoration> dec = new ArrayList<Decoration>();
+        try {
+            Connection conn = ConnectionBuilder.getConnection();
+            Decoration d = null;
+            String sqlCmd = "SELECT * FROM DecorateRequest where DEC_ReqDate >= ? and DEC_ReqDate <= ?";
+            PreparedStatement pstm = conn.prepareStatement(sqlCmd);
+            pstm.setString(1, start);
+            pstm.setString(2, end);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                d = new Decoration();
+                orm(rs, d);
+                dec.add(d);
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            System.err.println("Dec, searchInRange: " + ex);
+        }
+        return dec;
+    }
     public static void main(String[] args) {
         /*
         Decoration d = new Decoration();
-        d.setDesc("Bedroom2");
+        d.setDesc("Bedroom");
         d.setStart("2017-09-12");
         d.setEnd("2017-09-15");
-        d.editRequest(202);
+        d.createRequest(202);
         System.out.println("success");
 */
        // Decoration.deleteRequest(1);
@@ -197,6 +221,14 @@ public class Decoration {
        }
 */
 }
+
+    public Date getReqDate() {
+        return reqDate;
+    }
+
+    public void setReqDate(Date reqDate) {
+        this.reqDate = reqDate;
+    }
 
           
 }
