@@ -21,7 +21,7 @@
             <tr><td height='50'><div style='padding-left: 10em;'>มีความประสงค์ขอเข้าตกแต่งห้องชุดเลขที่ <b>2/<%=d.getRoomId()%></b>   โดยมีรายละเอียดดังนี้</div></td></tr>
             <tr><td height='50'><div style='padding-left: 5em;'>
                 <%if(d.getDesc().length()>120){%><%=d.getDesc().substring(0,120)%><br><%=d.getDesc().substring(120,d.getDesc().length()-1)%>
-                    <%}else{%><%=d.getDesc()%><%}%></div></td></tr>
+                    <%}else{%><%=d.getDesc()%>,<%for(int i=d.getDesc().length();i<=110;i++){%>_<%}}%></div></td></tr>
             <tr><td height='50'><div style='padding-left: 10em;'>ตั้งแต่วันที่: <b><%=d.getStart()%></b> ถึงวันที่: <b><%=d.getEnd()%></b> โดยมีรายชื่อพนักงานดังนี้</div></td></tr>
             <tr><td height='50'><div style='padding-left: 15em;'>ผู้รับเหมาชื่อ ( นาย, นาง, นางสาว, บริษัทฯ )_____________________________________________อายุ__________ปี</div></td></tr>
             <tr><td height='50'><div style='padding-left: 5em;'>ที่อยู่ที่สามารถติดต่อได้เลขที่____________________หมู่ที่____________________ซอย____________________ถนน____________________</div></td></tr>
