@@ -98,32 +98,32 @@
           		<div class="col-lg-12">
           			<div class="form-panel">
                   	  <h4 class="mb"><i class="fa fa-angle-right"></i>Complete the form to request the service</h4>
-                          <form class="form-horizontal tasi-form" action="" method="get">
+                          <form class="form-horizontal tasi-form" action="createRequest" method="get">
                               <input type="text" name="roomId" value="201" hidden/>
                               
                               <div class="form-group has-success">
                                   <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Description</label>
                                   <div class="col-lg-10">
-                                      <textarea class="form-control" style="width: 99%; height: 100px;" name="desc" required></textarea>
+                                      <textarea class="form-control" style="width: 99%; height: 100px;" name="desc" placeholder="Decoration Description here.." maxlength="180" required></textarea>
                                   </div>
                               </div>
                               <div class="form-group has-success">
                                   <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Start Date</label>
                                   <div class="col-lg-10">
-                                  <input type="text" class="form-control" id="inputStart" name="startdate" required>
+                                  <input type="text" class="form-control" id="inputStart" name="start" required>
                                   </div>
                                   <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">End Date</label>
                                   <div class="col-lg-10">
-                                  <br><input type="text" class="form-control" id="inputEnd" name="enddate" required>    
+                                  <br><input type="text" class="form-control" id="inputEnd" name="end" required>    
                                   </div>
                               </div>
 
-                              <input type="submit" style="margin-left: 225px; width: 80px; height: 40px;" class="btn btn-success" value="Submit"/>
+                              <input type="submit" style="margin-left: 225px; width: 80px; height: 40px;" class="btn btn-success" value="Request"/>
                           </form>
           			</div><!-- /form-panel -->
           		</div><!-- /col-lg-12 -->
           	</div><!-- /row -->
-        <h3 ><span style="color:#FF0000">${message}</h3>
+        <h3><span style="color:#FF0000">${message}</h3>
       <!-- **********************************************************************************************************************************************************
       RIGHT SIDEBAR CONTENT
       *********************************************************************************************************************************************************** -->                  

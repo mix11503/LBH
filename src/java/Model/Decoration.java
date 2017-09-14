@@ -222,6 +222,25 @@ public class Decoration {
         }
         return d;
     }
+    public static List<Decoration> getRequestByRoomNo(int RoomId) {
+        List<Decoration> dec = new ArrayList<Decoration>();
+        try {
+            Connection conn = ConnectionBuilder.getConnection();
+            Decoration d = null;
+            String sqlCmd = "SELECT * FROM DecorateRequest where Room_ID = "+RoomId+" ORDER BY DEC_ID DESC";
+            PreparedStatement pstm = conn.prepareStatement(sqlCmd);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                d = new Decoration();
+                orm(rs, d);
+                dec.add(d);
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            System.err.println("Dec, getByRoomId: " + ex);
+        }
+        return dec;
+    }
     public static void main(String[] args) {
         /*
         Decoration d = new Decoration();

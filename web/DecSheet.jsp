@@ -17,6 +17,7 @@
             Decoration d = (Decoration) request.getAttribute("decPrint");
             if(d!=null){ 
             %>
+            <tr><td height='50'><div style='padding-left: 66em;'></div></td></tr>
             <tr><td height='50'><div style='float: right'>วันที่ส่งคำร้อง: <%=d.getReqDate()%></div></td></tr>
             <tr><td height='50'><div style='padding-left: 10em;'>มีความประสงค์ขอเข้าตกแต่งห้องชุดเลขที่ <b>2/<%=d.getRoomId()%></b>   โดยมีรายละเอียดดังนี้</div></td></tr>
             <tr><td height='50'><div style='padding-left: 5em;'>

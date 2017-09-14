@@ -212,6 +212,14 @@
         <servlet-name>printDecSheet</servlet-name>
         <servlet-class>Controller.Decoration.printDecSheet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>createRequest</servlet-name>
+        <servlet-class>Controller.Decoration.createRequest</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>userViewHistory</servlet-name>
+        <servlet-class>Controller.Decoration.userViewHistory</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
         <url-pattern>/MTNSearchRoom</url-pattern>
@@ -423,6 +431,14 @@
     <servlet-mapping>
         <servlet-name>printDecSheet</servlet-name>
         <url-pattern>/printDecSheet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>createRequest</servlet-name>
+        <url-pattern>/createRequest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>userViewHistory</servlet-name>
+        <url-pattern>/userViewHistory</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

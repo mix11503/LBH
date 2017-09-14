@@ -98,8 +98,8 @@ MAIN SIDEBAR MENU
                     <span>General</span>
                 </a>
                 <ul class="sub">
-                    <li><a  href="user_report_maintenance.html">Report Problem</a></li>
-                    <li><a  href="user_maintenance_his.html">History</a></li>
+                    <li><a  href="">Report Problem</a></li>
+                    <li><a  href="">History</a></li>
                 </ul>
             </li>
             <!-- เเว้นนนนนนนนนนนนนนนนน -->
@@ -132,7 +132,7 @@ MAIN SIDEBAR MENU
                 </a>
                 <ul class="sub">
                     <li><a  href="userDecReq.jsp">Request for decoration</a></li>
-                    <li><a  href="">Request History</a></li>
+                    <li><a  href="userViewHistory?roomNo=201">Request History</a></li>
                 </ul>
             </li>
 
