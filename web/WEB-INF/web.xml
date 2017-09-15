@@ -232,6 +232,30 @@
         <servlet-name>decConfirmEdit</servlet-name>
         <servlet-class>Controller.Decoration.decConfirmEdit</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>getCurrentReport</servlet-name>
+        <servlet-class>Controller.Problem.getCurrentReport</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>searchFilter</servlet-name>
+        <servlet-class>Controller.Problem.searchFilter</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>searchPbmRange</servlet-name>
+        <servlet-class>Controller.Problem.searchPbmRange</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>createReport</servlet-name>
+        <servlet-class>Controller.Problem.createReport</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>reportHistory</servlet-name>
+        <servlet-class>Controller.Problem.reportHistory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Acknowledge</servlet-name>
+        <servlet-class>Controller.Problem.Acknowledge</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
         <url-pattern>/MTNSearchRoom</url-pattern>
@@ -463,6 +487,30 @@
     <servlet-mapping>
         <servlet-name>decConfirmEdit</servlet-name>
         <url-pattern>/decConfirmEdit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getCurrentReport</servlet-name>
+        <url-pattern>/getCurrentReport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>searchFilter</servlet-name>
+        <url-pattern>/searchFilter</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>searchPbmRange</servlet-name>
+        <url-pattern>/searchPbmRange</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>createReport</servlet-name>
+        <url-pattern>/createReport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>reportHistory</servlet-name>
+        <url-pattern>/reportHistory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Acknowledge</servlet-name>
+        <url-pattern>/Acknowledge</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

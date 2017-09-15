@@ -94,12 +94,12 @@ MAIN SIDEBAR MENU
             <!-- เเว้นนนนนนนนนนนนนนนนน -->
             <li class="sub-menu">
                 <a href="javascript:;" >
-                    <i class="fa fa-keyboard-o" style="size: 38px;"></i>
-                    <span>General</span>
+                    <i class="fa fa-comment" style="size: 38px;"></i>
+                    <span>Report Problem</span>
                 </a>
                 <ul class="sub">
-                    <li><a  href="">Report Problem</a></li>
-                    <li><a  href="">History</a></li>
+                    <li><a  href="problemReportForm.jsp">Report Problem</a></li>
+                    <li><a  href="reportHistory?roomNo=201">History</a></li>
                 </ul>
             </li>
             <!-- เเว้นนนนนนนนนนนนนนนนน -->

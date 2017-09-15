@@ -1,4 +1,4 @@
-<%@page import="Model.Decoration"%>
+<%@page import="Model.Problem"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -63,8 +63,8 @@
                 <section class="wrapper site-min-height">
                 <div class="col-lg-12">
                             <div class="form-panel" style="border-radius: 10px; height: 120px;" >
-                                <h4 class="mb"><i class="fa fa-angle-right"></i> Search Decoration Request</h4>
-                                <form class="form-inline" role="form" action="SearchDecRange" method="get" style="float: left;">
+                                <h4 class="mb"><i class="fa fa-angle-right"></i> Search Report</h4>
+                                <form class="form-inline" role="form" action="searchPbmRange" method="get" style="float: left;">
                                     <div class="form-group">
                                         &nbsp;&nbsp;&nbsp;Date Start: 
                                         <input type="date" class="form-control" id="exampleInputEmail2" name="dateStart" required>
@@ -76,13 +76,13 @@
                                     <button type="submit" class="btn btn-theme">Search</button>
                                 </form>
                                 
-                                <form class="form-inline" role="form" action="SearchFilter" method="get" style="float: right;">
+                                <form class="form-inline" role="form" action="searchFilter" method="get" style="float: right;">
                                     <div class="form-group">
                                         Filter :
                                         <select class="form-control"  name="filter">
                                             <option disabled selected></option>
-                                            <option value="New">New Request</option>
-                                            <option value="Old">All Request</option>
+                                            <option value="New">New Report</option>
+                                            <option value="Old">All Report</option>
                                         </select>
                                     </div>
                                     <button type="submit" class="btn btn-theme">Search</button>
@@ -92,54 +92,48 @@
                         <h3>${message}</h3>
                         <br>
                     <div class="row mt">
-                        <h3 class="mb">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Request Board</b></h3>
+                        <h3 class="mb">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Report Board</b></h3>
                         <br>
                         <table id="example" class="display" cellspacing="0" width="95%">
             <thead><tr>
-                <th>Decoration ID</th>
-                <th>Request Date</th>
+                <th>Report ID</th>
+                <th>Report Date</th>
                 <th>Resident Name</th>
-                <th>Description</th>
-                <th>Start Date</th>
-                <th>End Date</th>
+                <th>Problem Topic</th>
+                <th>Problem Description</th>
                 <th>Room No</th>
                 <th>Status</th>
-                <th>Approve</th>
-                <th>Print Request</th>
+                <th>Acknowledge</th>
             </tr></thead>
             <tfoot><tr>
                 <th>ID</th>
                 <th>Date</th>
-                <th>Name</th>
                 <td></td>
-                <td></td>
+                <th>Topic</th>
                 <td></td>
                 <th>Room</th>
                 <td></td>
                 <td></td>
-                <td></td>
-            </tr></tfoot>
+                </tr></tfoot>
             <tbody>
                 
             <%
-            List<Decoration> d = (List) request.getAttribute("dec");
-            if(d!=null){
-                for(Decoration dec : d){
+            List<Problem> pbm = (List) request.getAttribute("pbm");
+            if(pbm!=null){
+                for(Problem p : pbm){
             %>
             <tr>
-                <td><%=dec.getId()%></td>
-                <td><%=dec.getReqDate()%></td>
+                <td><%=p.getId()%></td>
+                <td><%=p.getReqDate()%></td>
                 <td>{Resident Name}</td>
-                <td><%if(dec.getDesc().length()>30){%><%=dec.getDesc().substring(0, 30)%>...<%}else{%><%=dec.getDesc()%><%}%></td>
-                <td><%=dec.getStart()%></td>
-                <td><%=dec.getEnd()%></td>
-                <td><%=dec.getRoomId()%></td>
-                <td><%=dec.getStatus()%></td>
-                <td><form action="ApproveDec" method="get" onclick="return confirm('Approve Decoration Request?')">
-                        <input type="text" value="<%=dec.getId()%>" name="id" hidden><input type="submit" value="Approve" <%if(dec.getStatus()==true){%>disabled<%}%>/>
-                    </form></td>
-                <td><form action="printDecSheet" method="get"  target="_blank">
-                        <input type="text" value="<%=dec.getId()%>" name="id" hidden><input type="submit" value="Print"/>
+                <td><%=p.getTopic()%></td>
+                <td><%if(p.getDesc().length()>30){%><%=p.getDesc().substring(0, 30)%>...<%}else{%><%=p.getDesc()%><%}%></td>
+                <td><%=p.getRoomId()%></td>
+                <td><%if(p.isStatus()==true){%><div style="color: green"><i class="fa fa-check"></i> Acknowledged</div><%}else{%>
+                    <div style="color: red"><i class="fa fa-spinner"></i> New Report</div><%}%></td>
+                <td><form action="Acknowledge" method="get" onclick="return confirm('Acknowledge a problem?')">
+                        <input type="text" value="<%=p.getId()%>" name="id" hidden>
+                        <input type="submit" value="Acknowledge" <%if(p.isStatus()==true){%>disabled<%}%>/>
                     </form></td>
                 </tr>
             <%}}%>
