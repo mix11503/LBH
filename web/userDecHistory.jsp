@@ -71,6 +71,8 @@
                                   <th><i class="fa fa-comments"></i> Description</th>
                                   <th>Period Start</th>
                                   <th>End</th>
+                                  <th><i class="fa fa-edit"></i> EDIT</th>
+                                  <th><i class="fa fa-times"></i> DELETE</th>
                               </tr>
                               </thead>
                               <tbody>
@@ -81,9 +83,16 @@
                                   <td><h5>{Username}</h5></td>
                                   <td><h5><%if(d.getStatus()==true){%>APPROVED<%}else{%>IN PROCESS<%}%></h5></td>
                                   <td><h5></h5><%=d.getReqDate()%></td>
-                                  <td><h5><%if(d.getDesc().length()>30){%><%=d.getDesc().substring(0, 30)%>...<%}else{%><%=d.getDesc()%><%}%></h5></td>
+                                  <%--<%if(d.getDesc().length()>30){%><%=d.getDesc().substring(0, 30)%>...<%}else{%><%=d.getDesc()%><%}%>--%>
+                                  <td width="300"><h5><%if(d.getDesc().length()>30){%><marquee><%=d.getDesc()%></marquee><%}else{%><%=d.getDesc()%><%}%></h5></td>
                                   <td><h5><%=d.getStart()%></h5></td>
                                   <td><h5><%=d.getEnd()%></h5></td>
+                                  <td><form action="editRequest" method="get"><input type="text" value="<%=d.getId()%>" name="id" hidden>
+                                          <input type="submit" value="EDIT" <%if(d.getStatus()==true){%>disabled<%}%>/>
+                                      </form></td>
+                                  <td><form action="deleteRequest" method="get" onclick="return confirm('DELETE REQUEST?')"><input type="text" value="<%=d.getId()%>" name="id" hidden>
+                                      <input type="text" value="<%=d.getRoomId()%>" name="room" hidden><input type="submit" value="DELETE" <%if(d.getStatus()==true){%>disabled<%}%>/>
+                                      </form></td>
                             <%}%>
                              <%}%>
                               </tbody>

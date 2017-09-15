@@ -100,12 +100,12 @@ public class Decoration {
         }
         return x > 0;
     }
-    public boolean editRequest(int roomId) {
+    public boolean editRequest(int id) {
         int x = 0;
         try {
             Connection conn = ConnectionBuilder.getConnection();
             String sqlCmd = null;
-            sqlCmd = "Update DecorateRequest set DEC_Desc = ?, DEC_Start = ?, DEC_End = ? where Room_ID = " + roomId;
+            sqlCmd = "Update DecorateRequest set DEC_Desc = ?, DEC_Start = ?, DEC_End = ? where DEC_ID = " + id;
             PreparedStatement pstm = conn.prepareStatement(sqlCmd);
             pstm.setString(1, this.desc);
             pstm.setString(2, this.start);

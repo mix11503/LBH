@@ -220,6 +220,18 @@
         <servlet-name>userViewHistory</servlet-name>
         <servlet-class>Controller.Decoration.userViewHistory</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>deleteRequest</servlet-name>
+        <servlet-class>Controller.Decoration.deleteRequest</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>editRequest</servlet-name>
+        <servlet-class>Controller.Decoration.editRequest</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>decConfirmEdit</servlet-name>
+        <servlet-class>Controller.Decoration.decConfirmEdit</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
         <url-pattern>/MTNSearchRoom</url-pattern>
@@ -439,6 +451,18 @@
     <servlet-mapping>
         <servlet-name>userViewHistory</servlet-name>
         <url-pattern>/userViewHistory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteRequest</servlet-name>
+        <url-pattern>/deleteRequest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editRequest</servlet-name>
+        <url-pattern>/editRequest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>decConfirmEdit</servlet-name>
+        <url-pattern>/decConfirmEdit</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
