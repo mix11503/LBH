@@ -135,7 +135,15 @@ MAIN SIDEBAR MENU
                     <li><a  href="userViewHistory?roomNo=201">Request History</a></li>
                 </ul>
             </li>
-
+            <li class="sub-menu">
+                <a href="javascript:;" >
+                    <i class="fa fa-book"></i>
+                    <span>Contact Staff</span>  
+                </a>
+                <ul class="sub">
+                    <li><a  href="userViewStaff">Open Phonebook</a></li>
+                </ul>
+            </li>
             <!-- sidebar menu end-->
     </div>
 </aside>

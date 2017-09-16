@@ -92,7 +92,7 @@
                                     <td><%=s.getName()%></td>
                                     <td><%=s.getLastname()%></td>
                                     <td><%=s.getNickname()%></td>
-                                    <td>0<%=s.getTel()%></td>
+                                    <td><a href="tel:+<%=s.getTel()%>">0<%=s.getTel()%></a></td>
                                     <td><%=s.getDivision()%></td>
                                     <td><%=s.getStart()%></td>
                                     <td><%=s.getEnd()%></td>
