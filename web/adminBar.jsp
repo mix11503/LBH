@@ -97,6 +97,15 @@ MAIN SIDEBAR MENU
                     <li><a  href="getCurrentReport">Manage Report</a></li>
                 </ul>
             </li>
+            <li class="sub-menu">
+                <a href="javascript:;" >
+                    <i class="fa fa-book"></i>
+                    <span>Staff PhoneBook</span>  
+                </a>
+                <ul class="sub">
+                    <li><a  href="getStaff">ADD / MANAGE</a></li>
+                </ul>
+            </li>
             <!-- sidebar menu end-->
     </div>
 </aside>

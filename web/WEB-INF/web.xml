@@ -256,6 +256,18 @@
         <servlet-name>Acknowledge</servlet-name>
         <servlet-class>Controller.Problem.Acknowledge</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>addStaff</servlet-name>
+        <servlet-class>Controller.Staff.addStaff</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>getStaff</servlet-name>
+        <servlet-class>Controller.Staff.getStaff</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deleteStaff</servlet-name>
+        <servlet-class>Controller.Staff.deleteStaff</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
         <url-pattern>/MTNSearchRoom</url-pattern>
@@ -511,6 +523,18 @@
     <servlet-mapping>
         <servlet-name>Acknowledge</servlet-name>
         <url-pattern>/Acknowledge</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addStaff</servlet-name>
+        <url-pattern>/addStaff</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getStaff</servlet-name>
+        <url-pattern>/getStaff</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteStaff</servlet-name>
+        <url-pattern>/deleteStaff</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
