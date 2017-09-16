@@ -121,7 +121,7 @@ MAIN SIDEBAR MENU
                     <span class="badge bg-theme">${parcelExistAmount}</span>
                 </a>
                 <ul class="sub">
-                    <li><a  href="userParcel">View Inbox</a></li>                                
+                    <li><a  href="userParcel?room=201">View Inbox</a></li>                                
                 </ul>
             </li>
 

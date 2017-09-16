@@ -65,22 +65,26 @@
 					  		
                   		</div>
                       </a>
+                      <a  href="adminParcel">                  
                   		<div class="col-md-2 col-sm-2 box0">
                   			<div class="box1">
 					  			<i class="fa fa-envelope-o" style="font-size:71px"></i>
                   <h5>Parcel</h5>
-					  			<h3>{value}</h3>
+			<h3 style="color:#FF0000">${parAmt} <sup><i class="fa fa-bell-o"></i></sup></h3>
                   			</div>
 					  			
                   		</div>
+                                        </a>
+                     <a  href="getCurrentReport">
                   		<div class="col-md-2 col-sm-2 box0">
                   			<div class="box1">
 					  			<i class="fa fa-comment-o" style="font-size:71px"></i>
                   <h5>Problem Report</h5>
-					  			<h3>{value}</h3>
+			<h3 style="color:#FF0000">${pbmAmt} <sup><i class="fa fa-bell-o"></i></sup></h3>
                   			</div>
 					  			
                   		</div>
+                    </a>
                   		<div class="col-md-2 col-sm-2 box0">
                   			<div class="box1">
 					  			<i class="fa fa-car" style="font-size:71px"></i>

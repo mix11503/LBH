@@ -56,7 +56,7 @@
                              String status = null;
                              for(parcel p : par){
                                  if(p.getStatus()==false){
-                                     status = "Exist";
+                                     status = "Avaliable";
                                  }else{
                                      status = "Picked";
                                  }
@@ -82,7 +82,9 @@
                                 <h6 align="center" style="color: #a94442"><b>Your parcel will be kept for 30 days in responsibility.</b></h6>
                                 </div>
                               <div class="white-panel pn white-header" style="height: 45px;">
-                                  <h5 align="center" style="color: #FCB322"><b>status: <%=status%></b></h5>
+                                  <h5 align="center"><b><%if(p.getStatus()==true){%>
+                                          <div style="color:#FF0000"><%=status%>, <%=p.getPickStamp().substring(0,p.getPickStamp().length()-2)%></div><%}else{%>
+                                          <div style="color:#26AE5C"><%=status%></div><%}%></b></h5>
                               </div>
                             </div>
                           </div><! --/grey-panel -->

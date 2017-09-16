@@ -32,7 +32,8 @@ public class userParcel extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        List<parcel> par = parcel.getParcelByRoomId(201);
+        String room = request.getParameter("room");
+        List<parcel> par = parcel.getParcelByRoomId(Integer.parseInt(room));
         if(par!=null){
             int i = 0;
             for(parcel p : par){

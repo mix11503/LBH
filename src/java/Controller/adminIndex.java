@@ -6,6 +6,8 @@
 package Controller;
 
 import Model.Maintanance;
+import Model.Problem;
+import Model.parcel;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -33,6 +35,10 @@ public class adminIndex extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         int amt = Maintanance.getReqAmountByStatus("New");
         request.setAttribute("newAmt", amt);
+        int pbm = Problem.getNewRequest().size();
+        request.setAttribute("pbmAmt", pbm);
+        int par = parcel.getExistParcel().size();
+        request.setAttribute("parAmt", par);
         getServletContext().getRequestDispatcher("/admin_panel.jsp").forward(request, response);
     }
 

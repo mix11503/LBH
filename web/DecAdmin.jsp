@@ -134,7 +134,8 @@
                 <td><%=dec.getStart()%></td>
                 <td><%=dec.getEnd()%></td>
                 <td><%=dec.getRoomId()%></td>
-                <td><%=dec.getStatus()%></td>
+                <td><%if(dec.getStatus()==true){%><div style="color: green"><i class="fa fa-check"></i> APPROVE</div>
+                    <%}else{%><div style="color: red"><i class="fa fa-spinner"></i> REQUEST</div><%}%></td>
                 <td><form action="ApproveDec" method="get" onclick="return confirm('Approve Decoration Request?')">
                         <input type="text" value="<%=dec.getId()%>" name="id" hidden><input type="submit" value="Approve" <%if(dec.getStatus()==true){%>disabled<%}%>/>
                     </form></td>
