@@ -269,6 +269,10 @@
         <servlet-class>Controller.Staff.deleteStaff</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ListApprovedBluetoothReqByRoom</servlet-name>
+        <servlet-class>Controller.UserBluetooth.ListApprovedBluetoothReqByRoom</servlet-class>
+	</servlet>
+    <servlet>
         <servlet-name>userViewStaff</servlet-name>
         <servlet-class>Controller.Staff.userViewStaff</servlet-class>
     </servlet>
@@ -540,6 +544,10 @@
         <servlet-name>deleteStaff</servlet-name>
         <url-pattern>/deleteStaff</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListApprovedBluetoothReqByRoom</servlet-name>
+        <url-pattern>/ListApprovedBluetoothReqByRoom</url-pattern>
+	</servlet-mapping>
     <servlet-mapping>
         <servlet-name>userViewStaff</servlet-name>
         <url-pattern>/userViewStaff</url-pattern>

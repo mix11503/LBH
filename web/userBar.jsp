@@ -112,6 +112,16 @@ MAIN SIDEBAR MENU
                     <li><a  href="SearchKeycardByRoom">Request Keycard</a></li>                                
                 </ul>
             </li>
+            
+            <li class="sub-menu">
+                <a href="javascript:;" >
+                    <i class="fa fa-key"></i>
+                    <span>Bluetooth</span>
+                </a>
+                <ul class="sub">
+                    <li><a  href="ListApprovedBluetoothReqByRoom">Bluetooth Request</a></li>                                
+                </ul>
+            </li>
 
             <!-- เเว้นนนนนนนนนนนนนนนนน -->
             <li class="sub-menu">
