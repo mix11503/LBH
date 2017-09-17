@@ -90,6 +90,15 @@ MAIN SIDEBAR MENU
             </li>
             <li class="sub-menu">
                 <a href="javascript:;" >
+                    <i class="fa fa-truck"></i>
+                    <span>Moving Stuff Request</span>  
+                </a>
+                <ul class="sub">
+                    <li><a href="">Manage Request</a></li>
+                </ul>
+            </li>
+            <li class="sub-menu">
+                <a href="javascript:;" >
                     <i class="fa fa-comment-o"></i>
                     <span>Problem Report</span>  
                 </a>
