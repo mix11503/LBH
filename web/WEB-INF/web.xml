@@ -271,10 +271,14 @@
     <servlet>
         <servlet-name>ListApprovedBluetoothReqByRoom</servlet-name>
         <servlet-class>Controller.UserBluetooth.ListApprovedBluetoothReqByRoom</servlet-class>
-	</servlet>
+    </servlet>
     <servlet>
         <servlet-name>userViewStaff</servlet-name>
         <servlet-class>Controller.Staff.userViewStaff</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateEvent</servlet-name>
+        <servlet-class>Controller.CreateEvent</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
@@ -547,10 +551,14 @@
     <servlet-mapping>
         <servlet-name>ListApprovedBluetoothReqByRoom</servlet-name>
         <url-pattern>/ListApprovedBluetoothReqByRoom</url-pattern>
-	</servlet-mapping>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>userViewStaff</servlet-name>
         <url-pattern>/userViewStaff</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateEvent</servlet-name>
+        <url-pattern>/CreateEvent</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

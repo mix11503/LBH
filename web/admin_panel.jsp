@@ -26,13 +26,12 @@
         <link href="assets/js/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="assets/css/zabuto_calendar.css">
         <link rel="stylesheet" type="text/css" href="assets/js/gritter/css/jquery.gritter.css" />
-        <link rel="stylesheet" type="text/css" href="assets/lineicons/style.css">    
-
+        <link rel="stylesheet" type="text/css" href="assets/lineicons/style.css">   
+        
         <!-- Custom styles for this template -->
         <link href="assets/css/style.css" rel="stylesheet">
         <link href="assets/css/style-responsive.css" rel="stylesheet">
-
-        <script src="assets/js/chart-master/Chart.js"></script>
+        
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -112,6 +111,19 @@
                                         <div class="panel-body">
                                             <div id="calendar" class="has-toolbar fc">
                                             </div>
+                                        </div>
+                                    </section>
+                                </div>	
+                            </aside>
+                            
+                            <aside class="col-lg-12 mt">
+                                <div class="row mtbox">
+                                    <section class="panel">
+                                        <div class="panel-body">
+                                            <form action="CreateEvent" method="GET">
+                                                <input type="date" class="form-control" name="date">
+                                                <input type="submit" value="submit">
+                                            </form>
                                         </div>
                                     </section>
                                 </div>	
@@ -302,12 +314,14 @@
         <!-- js placed at the end of the document so the pages load faster -->
         <script src="assets/js/jquery.js"></script>
         <script src="assets/js/jquery-1.8.3.min.js"></script>
+        <script src="assets/js/jquery-ui-1.9.2.custom.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/fullcalendar/fullcalendar.min.js"></script>  
         <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
         <script src="assets/js/jquery.scrollTo.min.js"></script>
         <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
         <script src="assets/js/jquery.sparkline.js"></script>
+        <script src="assets/js/chart-master/Chart.js"></script>
 
 
         <!--common script for all pages-->
@@ -334,69 +348,43 @@
                     navLinks: true, // can click day/week names to navigate views
                     editable: true,
                     eventLimit: true, // allow "more" link when too many events
-                    events: [
+                    editable: true,
+                    events: [  
                                 {
-                                    title: 'All Day Event',
-                                    start: '2017-09-01'
+                                     title: "Test1",
+                                     start: "2017-09-18",
+                                     end: "2017-09-18",
+                                     detail: "detail....."
                                 },
                                 {
-                                    title: 'Long Event',
-                                    start: '2017-09-07',
-                                    end: '2017-09-10'
+                                     title: "Test2",
+                                     start: "2017-09-18",
+                                     end: "2017-09-18"
                                 },
                                 {
-                                    id: 999,
-                                    title: 'Repeating Event',
-                                    start: '2017-09-09T16:00:00'
+                                     title: "Test3",
+                                     start: "2017-09-18",
+                                     end: "2017-09-18"
                                 },
                                 {
-                                    id: 999,
-                                    title: 'Repeating Event',
-                                    start: '2017-09-16T16:00:00'
+                                     title: "Test4",
+                                     start: "2017-09-18",
+                                     end: "2017-09-18"
                                 },
                                 {
-                                    title: 'Conference',
-                                    start: '2017-09-11',
-                                    end: '2017-09-13'
+                                     title: "Test5",
+                                     start: "2017-09-18",
+                                     end: "2017-09-18"
                                 },
                                 {
-                                    title: 'Meeting',
-                                    start: '2017-09-12T10:30:00',
-                                    end: '2017-09-12T12:30:00'
-                                },
-                                {
-                                    title: 'Lunch',
-                                    start: '2017-09-12T12:00:00'
-                                },
-                                {
-                                    title: 'Meeting',
-                                    start: '2017-09-12T14:30:00'
-                                },
-                                {
-                                    title: 'Happy Hour',
-                                    start: '2017-09-12T17:30:00'
-                                },
-                                {
-                                    title: 'Dinner',
-                                    start: '2017-09-12T20:00:00'
-                                },
-                                {
-                                    title: 'Birthday Party',
-                                    start: '2017-09-13T07:00:00'
-                                },
-                                {
-                                    title: 'Click for Google',
-                                    url: 'http://google.com/',
-                                    start: '2017-09-28'
+                                     title: "Test6",
+                                     start: "2017-09-18",
+                                     end: "2017-09-18",
+                                     color: "red"
                                 }
+                                
                             ]
 		});
-                
-                $("#date-popover").popover({html: true, trigger: "manual"});
-                $("#date-popover").hide();
-                $("#date-popover").click(function (e) {
-                    $(this).hide();
-                });
 
                 $("#my-calendar").zabuto_calendar({
                     action: function () {
