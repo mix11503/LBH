@@ -121,7 +121,18 @@
                                     <section class="panel">
                                         <div class="panel-body">
                                             <form action="CreateEvent" method="GET">
-                                                <input type="date" class="form-control" name="date">
+                                                <label>Title</label>
+                                                <input type="text" class="form-control" name="title">
+                                                <label>Detail</label>
+                                                <textarea class="form-control" name="detail"></textarea>
+                                                <label>Start Date</label>
+                                                <input type="date" class="form-control" name="start">
+                                                <label>End Date</label>
+                                                <input type="date" class="form-control" name="end">
+                                                <label>URL</label>
+                                                <input type="text" class="form-control" name="url">
+                                                <label>Color</label>
+                                                <input type="text" class="form-control" name="color">
                                                 <input type="submit" value="submit">
                                             </form>
                                         </div>

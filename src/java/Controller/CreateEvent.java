@@ -5,8 +5,12 @@
  */
 package Controller;
 
+import Model.WorkCalendarEvent;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,20 +32,26 @@ public class CreateEvent extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CreateEvent</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet CreateEvent at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            throws ServletException, IOException{
+        String title = request.getParameter("title");
+        String detail = request.getParameter("detail");
+        String url = request.getParameter("url");
+        String color = request.getParameter("color");
+        String textStartDate = request.getParameter("start");
+        String textEndDate = request.getParameter("end");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date startDate = null;
+        Date endDate  = null;
+        try {
+            java.util.Date utilDate = sdf.parse(textStartDate);
+            startDate = new java.sql.Date(utilDate.getTime());
+            utilDate = sdf.parse(textEndDate);
+            endDate = new java.sql.Date(utilDate.getTime());
+        } catch (ParseException e) {
+            System.out.println("CreateEvent: "+e);;
         }
+
+        WorkCalendarEvent.createNewEvent(title, detail, startDate, endDate, url, color);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

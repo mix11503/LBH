@@ -5,7 +5,9 @@
  */
 package Model;
 
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -99,5 +101,24 @@ public class WorkCalendarEvent {
         this.detail = rs.getString("Event_Detail");
         this.url = rs.getString("Event_Url");
         this.color = rs.getString("Event_Color");
+    }
+    
+    public static void createNewEvent(String title, String detail, Date start, Date end, String url, String color){
+        try{
+            Connection conn = ConnectionBuilder.getConnection();
+            String sql = "INSERT INTO Work_Calendar_Event(Event_Title, Event_Detail, Event_Start, Event_End, Event_Url, Event_Color) "
+                    + "VALUE( ?, ?, ?, ?, ?, ?)";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setString(1, title);
+            pstm.setString(2, detail);
+            pstm.setDate(3, start);
+            pstm.setDate(4, end);
+            pstm.setString(5, url);
+            pstm.setString(6, color);
+            pstm.executeUpdate();
+            conn.close();
+        }catch(SQLException ex){
+            System.err.println("KeycardReq,insertLostRequest: "+ex);
+        }
     }
 }
