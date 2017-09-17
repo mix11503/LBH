@@ -94,7 +94,7 @@ MAIN SIDEBAR MENU
                     <span>Moving Stuff Request</span>  
                 </a>
                 <ul class="sub">
-                    <li><a href="">Manage Request</a></li>
+                    <li><a href="admMgnReq">Manage Request</a></li>
                 </ul>
             </li>
             <li class="sub-menu">

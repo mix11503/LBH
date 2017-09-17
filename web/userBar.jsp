@@ -151,8 +151,8 @@ MAIN SIDEBAR MENU
                     <span>Moving Stuff Request</span>  
                 </a>
                 <ul class="sub">
-                    <li><a  href="">Request for Moving</a></li>
-                    <li><a  href="">Request History</a></li>
+                    <li><a  href="userMovReq.jsp">Request for Moving</a></li>
+                    <li><a  href="userMovHistory?roomNo=201">Request History</a></li>
                 </ul>
             </li>
             <li class="sub-menu">
