@@ -6,8 +6,10 @@
 package Controller.Moving;
 
 import Model.Moving;
+import Model.stuff;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +35,9 @@ public class movSheet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String id = request.getParameter("id");
         Moving m = Moving.findById(Integer.parseInt(id));
+        List<stuff> s = stuff.getListByReqNo(m.getId());
         request.setAttribute("movPrint", m);
+        request.setAttribute("stuff", s);
         getServletContext().getRequestDispatcher("/MovSheet.jsp").forward(request, response);
     }
 
