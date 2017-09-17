@@ -147,6 +147,16 @@ MAIN SIDEBAR MENU
             </li>
             <li class="sub-menu">
                 <a href="javascript:;" >
+                    <i class="fa fa-truck"></i>
+                    <span>Moving Stuff Request</span>  
+                </a>
+                <ul class="sub">
+                    <li><a  href="userMovReq.jsp">Request for Moving</a></li>
+                    <li><a  href="userMovHistory?roomNo=201">Request History</a></li>
+                </ul>
+            </li>
+            <li class="sub-menu">
+                <a href="javascript:;" >
                     <i class="fa fa-book"></i>
                     <span>Contact Staff</span>  
                 </a>

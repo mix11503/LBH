@@ -279,6 +279,34 @@
     <servlet>
         <servlet-name>CreateEvent</servlet-name>
         <servlet-class>Controller.CreateEvent</servlet-class>
+	</servlet>
+    <servlet>
+        <servlet-name>admMgnReq</servlet-name>
+        <servlet-class>Controller.Moving.admMgnReq</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>searchStatus</servlet-name>
+        <servlet-class>Controller.Moving.searchStatus</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>searchInRange</servlet-name>
+        <servlet-class>Controller.Moving.searchInRange</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ApproveMove</servlet-name>
+        <servlet-class>Controller.Moving.ApproveMove</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>userMovHistory</servlet-name>
+        <servlet-class>Controller.Moving.userMovHistory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deleteMove</servlet-name>
+        <servlet-class>Controller.Moving.deleteMove</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>movSheet</servlet-name>
+        <servlet-class>Controller.Moving.movSheet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
@@ -559,6 +587,34 @@
     <servlet-mapping>
         <servlet-name>CreateEvent</servlet-name>
         <url-pattern>/CreateEvent</url-pattern>
+	</servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>admMgnReq</servlet-name>
+        <url-pattern>/admMgnReq</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>searchStatus</servlet-name>
+        <url-pattern>/searchStatus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>searchInRange</servlet-name>
+        <url-pattern>/searchInRange</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApproveMove</servlet-name>
+        <url-pattern>/ApproveMove</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>userMovHistory</servlet-name>
+        <url-pattern>/userMovHistory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteMove</servlet-name>
+        <url-pattern>/deleteMove</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>movSheet</servlet-name>
+        <url-pattern>/movSheet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
