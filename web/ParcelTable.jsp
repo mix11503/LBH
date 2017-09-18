@@ -4,45 +4,52 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Parcel Management Table</title>
+        <title>.</title>
+        <style type="text/css" media="print">
+            .dontprint
+            { display: none; }
+        </style>
     </head>
     <body>
-        <h3>::Parcel Data Sheets::</h3>
+        <h2>::Parcel Data Sheets::</h2>
+        <h3>Date of Delivery: ${date}</h3>
         <table border="1" width="100%" style="border-collapse: collapse;">
             <tr>
                 <td>Barcode ID</td>
                 <td>Receiver Name</td>
-                <td>Parcel Date</td>
                 <td>status</td>
                 <td>Room</td>
                 <td>Signature</td>
+                <td>Pick Up Date</td>
             </tr>
             <%
-            List<parcel> p = (List) request.getAttribute("parcel");
-            if(p!=null){
-                for(parcel pp : p){
+                List<parcel> p = (List) request.getAttribute("parcel");
+                if (p != null) {
+                    for (parcel pp : p) {
             %>
             <tr height="30">
                 <td><%=pp.getBarcode()%></td>
                 <td><%=pp.getName()%></td>
-                <td><%=pp.getDate()%></td>
-                <td><%if(pp.getStatus()==false){%>Exist<%}else{%>Picked<%}%></td>
+                <td><%if (pp.getStatus() == false) {%>Exist<%} else {%>Picked<%}%></td>
                 <td><%=pp.getRoomId()%></td>
                 <td></td>
-                </tr>
-            <%}}%>  
-            </table>
-            <br>
-            <button onclick="printout()">Print this page</button><br><br>
-            <form action="cardPrint" method="get" target="_blank">
-                <input type="text" name="date" value="${date}" hidden>
-                <input type="submit" value="Print Card">
-            </form>
-            
-<script>
-function printout() {
-    window.print();
-}
-</script>
+                <td></td>
+            </tr>
+            <%}
+                }%>  
+        </table>
+        <br>
+        <div class="dontprint">
+        <button onclick="printout()">Print this page</button><br><br>
+        <form action="cardPrint" method="get" target="_blank">
+            <input type="text" name="date" value="${date}" hidden>
+            <input type="submit" value="Print Card">
+        </form>
+        </div>
+        <script>
+            function printout() {
+                window.print();
+            }
+        </script>
     </body>
 </html>
