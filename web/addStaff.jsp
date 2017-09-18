@@ -65,8 +65,37 @@
                                     </div>
                                     &nbsp;&nbsp;<button type="submit" class="btn btn-theme">ADD</button>
                                 </form>
+                                
                             </div><!-- /form-panel -->
                         </div><!-- /col-lg-12 -->
+                        <%Staff es = (Staff) request.getAttribute("es"); 
+                                if(es!=null){
+                                %>
+                                <br><br>
+                                <div class="col-lg-12">
+                            <div class="form-panel" style="border-radius: 10px; height: 120px;" >
+                                <form class="form-inline" role="form" action="confirmEditStaff" method="get">
+                                    <div class="form-group">
+                                        &nbsp;<input type="text" class="form-control" id="exampleInputEmail2" name="name" value="<%=es.getName()%>" required/>
+                                        &nbsp;&nbsp;<input type="text" class="form-control" id="exampleInputEmail2" name="last" value="<%=es.getLastname()%>"/>
+                                        &nbsp;&nbsp;<input type="text" class="form-control" id="exampleInputEmail2" name="nickname" value="<%=es.getNickname()%>"/>
+                                        &nbsp;&nbsp;<input type="number" class="form-control" id="exampleInputEmail2" name="tel" value="<%=es.getTel()%>" min="20000001" max="999999999" required/>
+                                        &nbsp;&nbsp;<select name="division" class="form-control" required>
+                                            <option value="Security" <%if(es.getDivision().equals("Security")){%>selected<%}%>>Security</option>
+                                            <option value="Admin" <%if(es.getDivision().equals("Admin")){%>selected<%}%>>Admin</option>
+                                            <option value="Technician" <%if(es.getDivision().equals("Technician")){%>selected<%}%>>Technician</option>
+                                            <option value="Janitor" <%if(es.getDivision().equals("Janitor")){%>selected<%}%>>Janitor</option>
+                                            <option value="Other" <%if(es.getDivision().equals("Other")){%>selected<%}%>>Other</option>
+                                        </select>
+                                        &nbsp;&nbsp;&nbsp;Period: <input type="time" class="form-control" id="exampleInputEmail2" name="start" value="<%=es.getStart()%>" required/>
+                                        &nbsp;End: <input type="time" class="form-control" id="exampleInputEmail2" name="end" value="<%=es.getEnd()%>" required/>
+                                    <input type="text" value="<%=es.getId()%>" name="id" hidden>
+                                    </div>
+                                    &nbsp;&nbsp;<button type="submit" class="btn btn-theme">EDIT</button>
+                                </form>
+                                    </div><!-- /form-panel -->
+                        </div><!-- /col-lg-12 -->
+                                <%}%>
                         <h3>${message}</h3>
                         <br><br>
                         <h3 class="mb">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Staff Phonebook</h3>
@@ -96,11 +125,11 @@
                                     <td><%=s.getDivision()%></td>
                                     <td><%=s.getStart()%></td>
                                     <td><%=s.getEnd()%></td>
-                                    <td><form action="" method="get">
-                                            <input type="text" value="" name="id" hidden><input type="submit" value="EDIT"/>
+                                    <td><form action="editStaff" method="get">
+                                            <input type="text" value="<%=s.getId()%>" name="id" hidden><input type="submit" value="EDIT" class="btn btn-warning"/>
                                         </form></td>
                                     <td><form  action="deleteStaff" method="get" onclick="return confirm('Delete <%=s.getName()%>?')">
-                                            <input type="text" value="<%=s.getId()%>" name="id" hidden><input type="submit" value="DELETE"/>
+                                            <input type="text" value="<%=s.getId()%>" name="id" hidden><input type="submit" value="DELETE"  class="btn btn-danger"/>
                                         </form></td>
                                 </tr>
                                 <%}

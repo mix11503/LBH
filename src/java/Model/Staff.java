@@ -119,6 +119,28 @@ public class Staff {
         return x > 0;
     }
     
+    public boolean editStaff(int id) {
+        int x = 0;
+        try {
+            Connection conn = ConnectionBuilder.getConnection();
+            String sqlCmd = null;
+            sqlCmd = "Update Staff set Staff_Name = ?, Staff_Lastname = ?, Staff_Nickname = ?, Staff_Tel = ?, Staff_Division = ?, Time_Start = ?, Time_End = ? where Staff_ID = "+id;
+            PreparedStatement pstm = conn.prepareStatement(sqlCmd);
+            pstm.setString(1, this.name);
+            pstm.setString(2, this.lastname);
+            pstm.setString(3, this.nickname);
+            pstm.setInt(4, this.tel);
+            pstm.setString(5, this.Division);
+            pstm.setString(6, this.start);
+            pstm.setString(7, this.end);
+            x = pstm.executeUpdate();
+            conn.close();
+        } catch (SQLException ex) {
+            System.err.println("Staff, Edit: " + ex);
+        }
+        return x > 0;
+    }
+    
     public static boolean deleteStaff(int id) {
         int x = 0;
         try {
@@ -151,5 +173,23 @@ public class Staff {
             System.err.println("Staff, getAll: " + ex);
         }
         return st;
+    }
+    public static Staff findById(int id) {
+        Staff s = null;
+        try {
+            Connection conn = ConnectionBuilder.getConnection();
+            String sqlCmd = "SELECT * FROM Staff where Staff_ID = ?";
+            PreparedStatement pstm = conn.prepareStatement(sqlCmd);
+            pstm.setInt(1, id);
+            ResultSet rs = pstm.executeQuery();
+            if(rs.next()) {
+                s = new Staff();
+                orm(rs, s);
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            System.err.println("Staff, FindById: " + ex);
+        }
+        return s;
     }
 }

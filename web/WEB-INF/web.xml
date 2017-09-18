@@ -279,7 +279,7 @@
     <servlet>
         <servlet-name>CreateEvent</servlet-name>
         <servlet-class>Controller.CreateEvent</servlet-class>
-	</servlet>
+    </servlet>
     <servlet>
         <servlet-name>admMgnReq</servlet-name>
         <servlet-class>Controller.Moving.admMgnReq</servlet-class>
@@ -307,6 +307,14 @@
     <servlet>
         <servlet-name>movSheet</servlet-name>
         <servlet-class>Controller.Moving.movSheet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>editStaff</servlet-name>
+        <servlet-class>Controller.Staff.editStaff</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>confirmEditStaff</servlet-name>
+        <servlet-class>Controller.Staff.confirmEditStaff</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
@@ -587,7 +595,7 @@
     <servlet-mapping>
         <servlet-name>CreateEvent</servlet-name>
         <url-pattern>/CreateEvent</url-pattern>
-	</servlet-mapping>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>admMgnReq</servlet-name>
         <url-pattern>/admMgnReq</url-pattern>
@@ -615,6 +623,14 @@
     <servlet-mapping>
         <servlet-name>movSheet</servlet-name>
         <url-pattern>/movSheet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editStaff</servlet-name>
+        <url-pattern>/editStaff</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>confirmEditStaff</servlet-name>
+        <url-pattern>/confirmEditStaff</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
