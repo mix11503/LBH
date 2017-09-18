@@ -96,26 +96,22 @@
                         <br>
                         <table id="example" class="display" cellspacing="0" width="95%">
             <thead><tr>
-                <th>Request ID</th>
-                <th>Request Date</th>
                 <th>Resident Name</th>
+                <th>Request Date</th>
                 <th>Description</th>
                 <th>Type</th>
                 <th>Move Date</th>
                 <th>Room No</th>
                 <th>Status</th>
-                <th>Approve</th>
                 <th>Detail/Print</th>
             </tr></thead>
             <tfoot><tr>
-                <th>ID</th>
-                <th>Date</th>
                 <th>Name</th>
+                <th>Date</th>
                 <td></td>
                 <td></td>
                 <td></td>
                 <th>Room</th>
-                <td></td>
                 <td></td>
                 <td></td>
             </tr></tfoot>
@@ -127,20 +123,18 @@
                 for(Moving m : mv){
             %>
             <tr>
-                <td><%=m.getId()%></td>
-                <td><%=m.getReqDate()%></td>
                 <td>{Resident Name}</td>
+                <td><%=m.getReqDate()%></td>
                 <td><%=m.getRemark()%></td>
                 <td><%if(m.isInOrOut()==true){%>Move In<%}else{%>Move Out<%}%></td>
                 <td><%=m.getDateMove().substring(0,m.getDateMove().length()-5)%></td>
                 <td><%=m.getRoomId()%></td>
-                <td><%if(m.isStatus()==true){%><div style="color: green"><i class="fa fa-check"></i> APPROVE</div>
-                    <%}else{%><div style="color: red"><i class="fa fa-spinner"></i> REQUEST</div><%}%></td>
-                <td><form action="ApproveMove" method="get" onclick="return confirm('Approve Moving Request?')">
-                        <input type="text" value="<%=m.getId()%>" name="id" hidden><input type="submit" value="Approve" <%if(m.isStatus()==true){%>disabled<%}%>/>
-                    </form></td>
+                <td><%if(m.isStatus()==true){%><div style="color: green"><i class="fa fa-check"></i> APPROVED</div>
+                    <%}else{%><form action="ApproveMove" method="get" onclick="return confirm('Approve Moving Request?')">
+                        <input type="text" value="<%=m.getId()%>" name="id" hidden><input type="submit" value="Approve" class="btn btn-warning" <%if(m.isStatus()==true){%>disabled<%}%>/>
+                    </form><%}%></td>
                 <td><form action="movSheet" method="get"  target="_blank">
-                        <input type="text" value="<%=m.getId()%>" name="id" hidden><input type="submit" value="Detail/Print"/>
+                        <input type="text" value="<%=m.getId()%>" name="id" hidden><input type="submit" value="Detail/Print"  class="btn btn-primary"/>
                     </form></td>
                 </tr>
             <%}}%>

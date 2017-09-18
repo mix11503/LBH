@@ -72,9 +72,8 @@
                 <td>Barcode ID</td>
                 <td>Receiver Name</td>
                 <td>Parcel Date</td>
-                <td>status</td>
-                <td>Pick Up</td>
                 <td>Room</td>
+                <td>Pick Up</td>
                 <td>Delete</td>
             </tr></thead>
             <tbody>
@@ -84,16 +83,15 @@
                 for(parcel pp : p){
             %>
             <tr>
-                <td><%=pp.getBarcode()%></td>
+                <td><b><%=pp.getBarcode()%></b></td>
                 <td><%=pp.getName()%></td>
                 <td><%=pp.getDate()%></td>
-                <td><%if(pp.getStatus()==false){%>Exist<%}else{%>Picked<%}%></td>
-                <td><form action="pickParcel" method="get" onclick="return confirm('Picked <%=pp.getBarcode()%>?')">
-                        <input type="text" value="<%=pp.getId()%>" name="id" hidden><input type="submit" value="Picked" <%if(pp.getStatus()==true){%>disabled<%}%>/>
-                    </form></td>
                 <td><%=pp.getRoomId()%></td>
+                <td><%if(pp.getStatus()==false){%><form action="pickParcel" method="get" onclick="return confirm('Picked <%=pp.getBarcode()%>?')">
+                        <input type="text" value="<%=pp.getId()%>" name="id" hidden><b><input type="submit" value="Pick Up" class="btn btn-success"/></b>
+                    </form><%}else{%><div style="color: green;">Picked: <b><%=pp.getPickStamp().substring(0, 19)%></b></div><%}%></td>
                 <td><form  action="deleteParcel" method="get" onclick="return confirm('Delete <%=pp.getBarcode()%>?')">
-                        <input type="text" value="<%=pp.getId()%>" name="id" hidden><input type="submit" value="Delete"/>
+                        <input type="text" value="<%=pp.getId()%>" name="id" hidden><b><input type="submit" value="Delete" class="btn btn-danger"/></b>
                     </form></td>
                 </tr>
             <%}}%>

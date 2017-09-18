@@ -86,19 +86,17 @@
             <thead><tr>
                 <th>Barcode ID</th>
                 <th>Receiver Name</th>
-                <th>Parcel Date</th>
-                <th>status</th>
-                <th>Pick Up</th>
+                <th>Delivery Date</th>
                 <th>Room</th>
+                <th>status</th>
                 <th>Delete</th>
             </tr></thead>
             <tfoot><tr>
                 <th>Barcode</th>
                 <th>Name</th>
                 <th>Date</th>
-                <td></td>
-                <td></td>
                 <th>Room</th>
+                <td></td>
                 <td></td>
             </tr></tfoot>
             <tbody>
@@ -112,13 +110,12 @@
                 <td><%=pp.getBarcode()%></td>
                 <td><%=pp.getName()%></td>
                 <td><%=pp.getDate()%></td>
-                <td><%if(pp.getStatus()==false){%>Exist<%}else{%>Picked: <b><%=pp.getPickStamp().substring(0, 19)%></b><%}%></td>
-                <td><form action="pickMgn" method="get" onclick="return confirm('Picked <%=pp.getBarcode()%>?')">
-                        <input type="text" value="<%=pp.getId()%>" name="id" hidden><input type="submit" value="Picked" <%if(pp.getStatus()==true){%>disabled<%}%>/>
-                    </form></td>
                 <td><%=pp.getRoomId()%></td>
+                <td><%if(pp.getStatus()==false){%><form action="pickMgn" method="get" onclick="return confirm('Picked <%=pp.getBarcode()%>?')">
+                        <input type="text" value="<%=pp.getId()%>" name="id" hidden><b><input type="submit" value="Pick Up" class="btn btn-success"/></b>
+                    </form><%}else{%><div style="color: green;">Picked: <b><%=pp.getPickStamp().substring(0, 19)%></b></div><%}%></td>
                 <td><form  action="deleteMgn" method="get" onclick="return confirm('Delete <%=pp.getBarcode()%>?')">
-                        <input type="text" value="<%=pp.getId()%>" name="id" hidden><input type="submit" value="Delete"/>
+                        <input type="text" value="<%=pp.getId()%>" name="id" hidden><input type="submit" value="Delete" class="btn btn-danger"/>
                     </form></td>
                 </tr>
             <%}}%>

@@ -96,26 +96,22 @@
                         <br>
                         <table id="example" class="display" cellspacing="0" width="95%">
             <thead><tr>
-                <th>Decoration ID</th>
-                <th>Request Date</th>
                 <th>Resident Name</th>
+                <th>Request Date</th>
                 <th>Description</th>
                 <th>Start Date</th>
                 <th>End Date</th>
                 <th>Room No</th>
                 <th>Status</th>
-                <th>Approve</th>
                 <th>Print Request</th>
             </tr></thead>
             <tfoot><tr>
-                <th>ID</th>
-                <th>Date</th>
                 <th>Name</th>
+                <th>Date</th>
                 <td></td>
                 <td></td>
                 <td></td>
                 <th>Room</th>
-                <td></td>
                 <td></td>
                 <td></td>
             </tr></tfoot>
@@ -127,21 +123,19 @@
                 for(Decoration dec : d){
             %>
             <tr>
-                <td><%=dec.getId()%></td>
-                <td><%=dec.getReqDate()%></td>
                 <td>{Resident Name}</td>
+                <td><%=dec.getReqDate()%></td>
                 <td><%if(dec.getDesc().length()>30){%><%=dec.getDesc().substring(0, 30)%>...<%}else{%><%=dec.getDesc()%><%}%></td>
                 <td><%=dec.getStart()%></td>
                 <td><%=dec.getEnd()%></td>
                 <td><%=dec.getRoomId()%></td>
-                <td><%if(dec.getStatus()==true){%><div style="color: green"><i class="fa fa-check"></i> APPROVE</div>
-                    <%}else{%><div style="color: red"><i class="fa fa-spinner"></i> REQUEST</div><%}%></td>
-                <td><form action="ApproveDec" method="get" onclick="return confirm('Approve Decoration Request?')">
-                        <input type="text" value="<%=dec.getId()%>" name="id" hidden><input type="submit" value="Approve" <%if(dec.getStatus()==true){%>disabled<%}%>/>
-                    </form></td>
-                <td><form action="printDecSheet" method="get"  target="_blank">
-                        <input type="text" value="<%=dec.getId()%>" name="id" hidden><input type="submit" value="Print"/>
-                    </form></td>
+                <td><%if(dec.getStatus()==true){%><div style="color: green"><i class="fa fa-check"></i> APPROVED</div>
+                    <%}else{%><form action="ApproveDec" method="get" onclick="return confirm('Approve Decoration Request?')">
+                        <input type="text" value="<%=dec.getId()%>" name="id" hidden><input type="submit" value="Approve" class="btn btn-warning" <%if(dec.getStatus()==true){%>disabled<%}%>/>
+                    </form><%}%></td>
+                <td><center><form action="printDecSheet" method="get"  target="_blank">
+                        <input type="text" value="<%=dec.getId()%>" name="id" hidden><input type="submit" value="Print" class="btn btn-primary"/>
+                    </form></center></td>
                 </tr>
             <%}}%>
             

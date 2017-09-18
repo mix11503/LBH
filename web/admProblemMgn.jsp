@@ -96,23 +96,19 @@
                         <br>
                         <table id="example" class="display" cellspacing="0" width="95%">
             <thead><tr>
-                <th>Report ID</th>
-                <th>Report Date</th>
                 <th>Resident Name</th>
+                <th>Report Date</th>
                 <th>Problem Topic</th>
                 <th>Problem Description</th>
                 <th>Room No</th>
                 <th>Status</th>
-                <th>Acknowledge</th>
             </tr></thead>
             <tfoot><tr>
-                <th>ID</th>
-                <th>Date</th>
                 <td></td>
+                <th>Date</th>
                 <th>Topic</th>
                 <td></td>
                 <th>Room</th>
-                <td></td>
                 <td></td>
                 </tr></tfoot>
             <tbody>
@@ -123,18 +119,16 @@
                 for(Problem p : pbm){
             %>
             <tr>
-                <td><%=p.getId()%></td>
-                <td><%=p.getReqDate()%></td>
                 <td>{Resident Name}</td>
+                <td><%=p.getReqDate()%></td>
                 <td><%=p.getTopic()%></td>
                 <td><%if(p.getDesc().length()>30){%><%=p.getDesc().substring(0, 30)%>...<%}else{%><%=p.getDesc()%><%}%></td>
                 <td><%=p.getRoomId()%></td>
                 <td><%if(p.isStatus()==true){%><div style="color: green"><i class="fa fa-check"></i> Acknowledged</div><%}else{%>
-                    <div style="color: red"><i class="fa fa-spinner"></i> New Report</div><%}%></td>
-                <td><form action="Acknowledge" method="get" onclick="return confirm('Acknowledge a problem?')">
+                    <form action="Acknowledge" method="get" onclick="return confirm('Acknowledge a problem?')">
                         <input type="text" value="<%=p.getId()%>" name="id" hidden>
-                        <input type="submit" value="Acknowledge" <%if(p.isStatus()==true){%>disabled<%}%>/>
-                    </form></td>
+                        <input type="submit" value="Acknowledge" class="btn btn-warning" <%if(p.isStatus()==true){%>disabled<%}%>/>
+                    </form><%}%></td>
                 </tr>
             <%}}%>
             
