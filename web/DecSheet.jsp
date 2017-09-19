@@ -3,9 +3,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Library Houze Condominium</title>
+        <title>ฺ</title>
+         <style type="text/css" media="print">
+            .dontprint
+            { display: none; }
+        </style>
     </head>
-    <button onclick="printout()">Print this page</button>
+    <div class="dontprint"><button onclick="printout()">Print this page</button></div>
     <br>
     <center><img src='gen.jpg' style="width: 150px"/>
         <h3>นิติบุคคลอาคารชุด Library Houze Condo</h3>

@@ -89,10 +89,10 @@
                                   <td><h5><%=d.getStart()%></h5></td>
                                   <td><h5><%=d.getEnd()%></h5></td>
                                   <td><form action="editRequest" method="get"><input type="text" value="<%=d.getId()%>" name="id" hidden>
-                                          <input type="submit" value="EDIT" <%if(d.getStatus()==true){%>disabled<%}%>/>
+                                          <input type="submit" value="EDIT" class="btn btn-warning" <%if(d.getStatus()==true){%>disabled<%}%>/>
                                       </form></td>
                                   <td><form action="deleteRequest" method="get" onclick="return confirm('DELETE REQUEST?')"><input type="text" value="<%=d.getId()%>" name="id" hidden>
-                                      <input type="text" value="<%=d.getRoomId()%>" name="room" hidden><input type="submit" value="DELETE" <%if(d.getStatus()==true){%>disabled<%}%>/>
+                                      <input type="text" value="<%=d.getRoomId()%>" name="room" hidden><input type="submit" value="DELETE" class="btn btn-danger" <%if(d.getStatus()==true){%>disabled<%}%>/>
                                       </form></td>
                             <%}%>
                              <%}%>

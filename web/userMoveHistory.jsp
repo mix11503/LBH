@@ -83,10 +83,10 @@
                                   <td><h5><%if(m.isInOrOut()==true){%>Move In<%}else{%>Move Out<%}%></h5></td>
                                   <td><h5><%=m.getDateMove().substring(0,m.getDateMove().length()-5)%></h5></td>
                                   <td><form action="" method="get"><input type="text" value="<%=m.getId()%>" name="id" hidden>
-                                          <input type="submit" value="EDIT" <%if(m.isStatus()==true){%>disabled<%}%>/>
+                                          <input type="submit" value="EDIT" class="btn btn-warning" <%if(m.isStatus()==true){%>disabled<%}%>/>
                                       </form></td>
                                   <td><form action="deleteMove" method="get" onclick="return confirm('DELETE REQUEST?')"><input type="text" value="<%=m.getId()%>" name="id" hidden>
-                                      <input type="text" value="<%=m.getRoomId()%>" name="room" hidden><input type="submit" value="DELETE" <%if(m.isStatus()==true){%>disabled<%}%>/>
+                                      <input type="text" value="<%=m.getRoomId()%>" name="room" hidden><input type="submit" value="DELETE"  class="btn btn-danger" <%if(m.isStatus()==true){%>disabled<%}%>/>
                                       </form></td>
                             <%}%>
                              <%}%>
