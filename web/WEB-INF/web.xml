@@ -316,6 +316,10 @@
         <servlet-name>confirmEditStaff</servlet-name>
         <servlet-class>Controller.Staff.confirmEditStaff</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>markedPrint</servlet-name>
+        <servlet-class>Controller.parcel.markedPrint</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
         <url-pattern>/MTNSearchRoom</url-pattern>
@@ -631,6 +635,10 @@
     <servlet-mapping>
         <servlet-name>confirmEditStaff</servlet-name>
         <url-pattern>/confirmEditStaff</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>markedPrint</servlet-name>
+        <url-pattern>/markedPrint</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

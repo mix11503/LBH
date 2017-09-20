@@ -45,6 +45,10 @@
             <input type="text" name="date" value="${date}" hidden>
             <input type="submit" value="Print Card">
         </form>
+            <%--<form action="markedPrint" method="get" target="_blank">
+            <input type="text" name="date" value="${date}" hidden>
+            <input type="submit" value="Mark as Print">
+        </form>--%>   
         </div>
         <script>
             function printout() {

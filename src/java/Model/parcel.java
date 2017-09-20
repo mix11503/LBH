@@ -17,6 +17,7 @@ public class parcel {
     private Date date;
     private int roomId;
     private String pickStamp;
+    private boolean isPrint;
 
     public int getId() {
         return id;
@@ -68,7 +69,7 @@ public class parcel {
 
     @Override
     public String toString() {
-        return "parcel{" + "id=" + id + ", name=" + name + ", barcode=" + barcode + ", status=" + status + ", date=" + date + ", roomId=" + roomId + ", pickStamp=" + pickStamp + '}';
+        return "parcel{" + "id=" + id + ", name=" + name + ", barcode=" + barcode + ", status=" + status + ", date=" + date + ", roomId=" + roomId + ", pickStamp=" + pickStamp + ", isPrint=" + isPrint + '}';
     }
     
     public boolean addParcel(int roomId) {
@@ -246,6 +247,22 @@ public class parcel {
         return x > 0;
     }
     
+    public static boolean markPrinted(String dd) {
+        int x = 0;
+        try {
+            Connection conn = ConnectionBuilder.getConnection();
+            String sqlCmd = "Update Parcel set isPrint = ? where Parcel_Date = ?";
+            PreparedStatement pstm = conn.prepareStatement(sqlCmd);
+            pstm.setBoolean(1, true);
+            pstm.setString(2, dd);
+            x = pstm.executeUpdate();
+            conn.close();
+        } catch (SQLException ex) {
+            System.err.println("Parcel, mark: " + ex);
+        }
+        return x > 0;
+    }
+    
     private static void orm(ResultSet rs, parcel p) throws SQLException {
         p.setId(rs.getInt("Parcel_ID"));
         p.setBarcode(rs.getString("Parcel_Barcode"));
@@ -254,6 +271,7 @@ public class parcel {
         p.setRoomId(rs.getInt("Room_ID"));
         p.setDate(rs.getDate("Parcel_Date"));
         p.setPickStamp(rs.getString("pick_DateTime"));
+        p.setIsPrint(rs.getBoolean("isPrint"));
     }
     
     public static void main(String[] args) {
@@ -276,11 +294,7 @@ parcel p = parcel.searchByBarcode("AB12345TH");
     parcel.deleteParcel(2);
         System.out.println("success");
 */
-/*
-        parcel.pickStatus(7);
-        System.out.println("success");
-*/
-
+    //parcel.markPrinted("2017-09-16");
     }
 
     public String getPickStamp() {
@@ -289,5 +303,13 @@ parcel p = parcel.searchByBarcode("AB12345TH");
 
     public void setPickStamp(String pickStamp) {
         this.pickStamp = pickStamp;
+    }
+
+    public boolean isIsPrint() {
+        return isPrint;
+    }
+
+    public void setIsPrint(boolean isPrint) {
+        this.isPrint = isPrint;
     }
 }

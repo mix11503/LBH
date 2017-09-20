@@ -53,8 +53,10 @@
           		<div class="col-lg-12">
           			<div class="form-panel">
                   	  <h4 class="mb"><i class="fa fa-angle-right"></i>Complete the form to request the service</h4>
-                            //Form Here
-          			</div><!-- /form-panel -->
+                            <br><br><br><br><br><br><br><br><br><br><br>
+          			<center><h1 style="color:#F1C500"><i class="fa fa-spinner"></i> UNDER CONSTRUCTION</h1></center>
+                                <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                                </div><!-- /form-panel -->
           		</div><!-- /col-lg-12 -->
           	</div><!-- /row -->
         <h3><span style="color:#FF0000">${message}</h3>
