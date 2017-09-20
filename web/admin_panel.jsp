@@ -60,7 +60,7 @@
                   			<div class="box1">
 					  			<i class="fa fa-wrench" aria-hidden="true" style="font-size:71px"></i>
 					  			<h5>Maintenances</h5>
-                  <h3 style="color:#FF0000">${newAmt} <sup><i class="fa fa-bell-o"></i></sup></h3>
+                  <h2 style="color:#FF0000">${newAmt} <sup><i class="fa fa-bell-o"></i></sup></h2>
                   			</div>
 					  		
                   		</div>
@@ -70,7 +70,7 @@
                   			<div class="box1">
 					  			<i class="fa fa-envelope-o" style="font-size:71px"></i>
                   <h5>Parcel</h5>
-			<h3 style="color:#FF0000">${parAmt} <sup><i class="fa fa-bell-o"></i></sup></h3>
+			<h2 style="color:#FF0000">${parAmt} <sup><i class="fa fa-bell-o"></i></sup></h2>
                   			</div>
 					  			
                   		</div>
@@ -80,7 +80,7 @@
                   			<div class="box1">
 					  			<i class="fa fa-comment-o" style="font-size:71px"></i>
                   <h5>Problem Report</h5>
-			<h3 style="color:#FF0000">${pbmAmt} <sup><i class="fa fa-bell-o"></i></sup></h3>
+			<h2 style="color:#FF0000">${pbmAmt} <sup><i class="fa fa-bell-o"></i></sup></h2>
                   			</div>
 					  			
                   		</div>
@@ -89,7 +89,7 @@
                                     <div class="box1">
                                         <i class="fa fa-car" style="font-size:71px"></i>
                                         <h5>Access Permit</h5>
-                                        <h3>{value}</h3>
+                                        <h2 style="color:green">OK!</h2>
                                     </div>
 
                                 </div>
@@ -98,10 +98,11 @@
                                     <div class="box1">
                                         <i class="fa fa-credit-card" style="font-size:71px"></i>
                                         <h5>Keycard</h5>
-                                        <h3>{value}</h3>
+                                        <h2 style="color:green">OK!</h2>
                                     </div>
 
                                 </div>
+                                        
                             </div><!-- /row mt -->	
                             
                             <!-- Calendar API -->
@@ -313,8 +314,8 @@
             <!--footer start-->
             <footer class="site-footer">
                 <div class="text-center">
-                    2014 - Alvarez.is
-                    <a href="index.html#" class="go-top">
+                    SCHOOL PROJECT @SIT #IT20
+                    <a href="" class="go-top">
                         <i class="fa fa-angle-up"></i>
                     </a>
                 </div>
