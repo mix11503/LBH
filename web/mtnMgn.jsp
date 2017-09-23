@@ -128,7 +128,7 @@
                                   </div>
                               </div>                                 
                                 <div class="row mt">  <!-- div แถว -->
-                                    <%for (String path : m.getMtn_pic()) {%>
+                                                <%for (String path : m.getMtn_pic()) {%>
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
                                             <div class="project-wrapper">
                                                 <div class="project">
@@ -141,7 +141,7 @@
                                                 </div>
                                             </div>
                                         </div><!-- col-lg-4 -->
-                                    <%}%>
+                                                <%}%>
 				</div><!-- /row -->
                             
                             <hr>
@@ -265,18 +265,51 @@
                                     <br>
                                     <form action="setAppointment" method="get">
                                       <div class="row">
-                                      <div class="col-sm-3">
-                    <input type="submit" class="btn btn-warning" value="Request for Appointment Info" <%if (m.isAppToken() == true) {%>disabled<%}%> >
-                    <input type="text" name="appToken" value="true" hidden/>
-                    <input type="text" name="id" value="<%= m.getMtn_id()%>" hidden/>
-                    </div>
+                                        <div class="col-sm-3">
+                                           <input type="submit" class="btn btn-warning" value="Request for Appointment Info" <%if (m.isAppToken() == true) {%>disabled<%}%> >
+                                           <input type="text" name="appToken" value="true" hidden/>
+                                           <input type="text" name="id" value="<%= m.getMtn_id()%>" hidden/>
+                                        </div>
                                       </div>
-                </form>
-                              
-                                      <br>
-                              
-                          
-                          </form>
+                                    </form>
+                                    <br>
+                                    <!-- Calendar Create Event -->
+                                    <div>
+                                        <hr>
+                                        <br>
+                                        <h4 style="color: black;">Add Event to WorkCalendar</h4> 
+                                        <form action="CreateEvent" method="POST" id="addEventForm">
+                                            <label>Title</label>
+                                            <input type="text" class="form-control" name="eventTitle" value="MTN Event for Room <%= m.getMtn_room_id() %>" required>
+                                            <label>Detail</label>
+                                            <textarea class="form-control" name="eventDetail"></textarea>
+                                            <br>
+                                            <div class="form-inline">
+                                                <label>Start Date</label>
+                                                <input type="date" class="form-control" name="eventStart" required>
+                                                <label>End Date</label>
+                                                <input type="date" class="form-control" name="eventEnd">
+                                            </div>
+                                            <br>
+                                            <input type="hidden" class="form-control" name="eventUrl" value="SearchMtnReq?id=<%= m.getMtn_id() %>">
+                                            <input type="hidden" class="form-control" name="eventColor" value="red">
+                                            <input type="hidden" class="form-control" name="eventType" value="Maintanance">
+                                            <input type="submit" class="btn btn-primary" value="Add to Calendar">
+                                        </form>
+                                        <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">                               
+                                                    <div class="modal-body">
+                                                        <center><h3 id="messageLog"></h3></center>                               
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" id="closeModalBtn" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--End Calendar Create Event -->
           			</div><!-- panel-->
           		</div><!-- /col-lg-12 -->
           	</div><!-- /row -->
@@ -393,14 +426,38 @@
                                                     break;
                                             }
                             });
-                                    });
-                                    
+                            });
+                            
+                            //Add Event to Calendar By AJAX
+                            $('#addEventForm').submit(function(event) {
+                                event.preventDefault(); // Prevent the form from submitting via the browser
+                                $('#closeModalBtn').prop('disabled', true);
+                                $('#messageLog').css('color', 'black');
+                                $('#messageLog').html('Adding New Event......');
+                                $('#messageModal').modal('toggle');
+                                var form = $(this);
+                                $.ajax({
+                                    type: form.attr('method'),
+                                    url: form.attr('action'),
+                                    data: form.serialize()
+                                }).done(function(data) {
+                                    $('#closeModalBtn').prop('disabled', false);
+                                    $('#messageLog').css('color', 'green');
+                                    $('#messageLog').html('Adding New Event DONE');  
+                                    console.log("DONE: "+data);
+                                }).fail(function(data) {
+                                    $('#closeModalBtn').prop('disabled', false);
+                                    $('#messageLog').css('color', 'red');
+                                    $('#messageLog').html('Adding New Event ');
+                                    console.log("FAIL: "+data);
+                                });
+                            });                                  
                         </script>
                         <script>
-                    function changeChat(message) {
-                        document.getElementById("chattext").value = message;
-                    }
-                            </script>
+                        function changeChat(message) {
+                            document.getElementById("chattext").value = message;
+                        }
+                                    </script>
                         
   
 

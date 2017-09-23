@@ -278,7 +278,7 @@
     </servlet>
     <servlet>
         <servlet-name>CreateEvent</servlet-name>
-        <servlet-class>Controller.CreateEvent</servlet-class>
+        <servlet-class>Controller.AdminCalendarAJAX.CreateEvent</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>admMgnReq</servlet-name>

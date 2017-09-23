@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package Controller.AdminCalendarAJAX;
 
 import Model.WorkCalendarEvent;
 import java.io.IOException;
@@ -33,12 +33,13 @@ public class CreateEvent extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
-        String title = request.getParameter("title");
-        String detail = request.getParameter("detail");
-        String url = request.getParameter("url");
-        String color = request.getParameter("color");
-        String textStartDate = request.getParameter("start");
-        String textEndDate = request.getParameter("end");
+        String title = request.getParameter("eventTitle");
+        String detail = request.getParameter("eventDetail");
+        String url = request.getParameter("eventUrl");
+        String color = request.getParameter("eventColor");
+        String type = request.getParameter("eventType");
+        String textStartDate = request.getParameter("eventStart");
+        String textEndDate = request.getParameter("eventEnd");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date startDate = null;
         Date endDate  = null;
@@ -48,10 +49,10 @@ public class CreateEvent extends HttpServlet {
             utilDate = sdf.parse(textEndDate);
             endDate = new java.sql.Date(utilDate.getTime());
         } catch (ParseException e) {
-            System.out.println("CreateEvent: "+e);;
+            System.out.println("CreateEvent: "+e);
         }
 
-        WorkCalendarEvent.createNewEvent(title, detail, startDate, endDate, url, color);
+        WorkCalendarEvent.createNewEvent(title, detail, startDate, endDate, url, color, type);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

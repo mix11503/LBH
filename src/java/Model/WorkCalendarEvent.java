@@ -23,11 +23,12 @@ public class WorkCalendarEvent {
     private String detail;
     private String url;
     private String color;
+    private String type;
 
     public WorkCalendarEvent() {
     }
 
-    public WorkCalendarEvent(int id, String title, Date start, Date end, String detail, String url, String color) {
+    public WorkCalendarEvent(int id, String title, Date start, Date end, String detail, String url, String color, String type) {
         this.id = id;
         this.title = title;
         this.start = start;
@@ -35,6 +36,7 @@ public class WorkCalendarEvent {
         this.detail = detail;
         this.url = url;
         this.color = color;
+        this.type = type;
     }
 
     public int getId() {
@@ -92,6 +94,15 @@ public class WorkCalendarEvent {
     public void setColor(String color) {
         this.color = color;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+    
     
     private void orm(ResultSet rs) throws SQLException{
         this.id = rs.getInt("Event_ID");
@@ -101,13 +112,14 @@ public class WorkCalendarEvent {
         this.detail = rs.getString("Event_Detail");
         this.url = rs.getString("Event_Url");
         this.color = rs.getString("Event_Color");
+        this.type = rs.getString("Event_Type");
     }
     
-    public static void createNewEvent(String title, String detail, Date start, Date end, String url, String color){
+    public static void createNewEvent(String title, String detail, Date start, Date end, String url, String color, String type){
         try{
             Connection conn = ConnectionBuilder.getConnection();
-            String sql = "INSERT INTO Work_Calendar_Event(Event_Title, Event_Detail, Event_Start, Event_End, Event_Url, Event_Color) "
-                    + "VALUE( ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Work_Calendar_Event(Event_Title, Event_Detail, Event_Start, Event_End, Event_Url, Event_Color, Event_Type) "
+                    + "VALUE( ?, ?, ?, ?, ?, ?, ? )";
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setString(1, title);
             pstm.setString(2, detail);
@@ -115,6 +127,7 @@ public class WorkCalendarEvent {
             pstm.setDate(4, end);
             pstm.setString(5, url);
             pstm.setString(6, color);
+            pstm.setString(7, type);
             pstm.executeUpdate();
             conn.close();
         }catch(SQLException ex){
