@@ -320,6 +320,14 @@
         <servlet-name>markedPrint</servlet-name>
         <servlet-class>Controller.parcel.markedPrint</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadEventCurrentMonth</servlet-name>
+        <servlet-class>Controller.AdminCalendarAJAX.LoadEventCurrentMonth</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadAllEvent</servlet-name>
+        <servlet-class>Controller.AdminCalendarAJAX.LoadAllEvent</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
         <url-pattern>/MTNSearchRoom</url-pattern>
@@ -639,6 +647,14 @@
     <servlet-mapping>
         <servlet-name>markedPrint</servlet-name>
         <url-pattern>/markedPrint</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadEventCurrentMonth</servlet-name>
+        <url-pattern>/LoadEventCurrentMonth</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadAllEvent</servlet-name>
+        <url-pattern>/LoadAllEvent</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

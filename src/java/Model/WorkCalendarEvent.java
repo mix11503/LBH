@@ -10,6 +10,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -21,7 +23,7 @@ public class WorkCalendarEvent {
     private Date start;
     private Date end;
     private String detail;
-    private String url;
+    private String urlPage;
     private String color;
     private String type;
 
@@ -34,7 +36,7 @@ public class WorkCalendarEvent {
         this.start = start;
         this.end = end;
         this.detail = detail;
-        this.url = url;
+        this.urlPage = url;
         this.color = color;
         this.type = type;
     }
@@ -79,12 +81,12 @@ public class WorkCalendarEvent {
         this.detail = detail;
     }
 
-    public String getUrl() {
-        return url;
+    public String getUrlPage() {
+        return urlPage;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setUrlPage(String urlPage) {
+        this.urlPage = urlPage;
     }
 
     public String getColor() {
@@ -110,7 +112,7 @@ public class WorkCalendarEvent {
         this.start = rs.getDate("Event_Start");
         this.end = rs.getDate("Event_End");
         this.detail = rs.getString("Event_Detail");
-        this.url = rs.getString("Event_Url");
+        this.urlPage = rs.getString("Event_Url");
         this.color = rs.getString("Event_Color");
         this.type = rs.getString("Event_Type");
     }
@@ -133,5 +135,49 @@ public class WorkCalendarEvent {
         }catch(SQLException ex){
             System.err.println("KeycardReq,insertLostRequest: "+ex);
         }
+    }
+    
+    public static List<WorkCalendarEvent> findEventByMonthAndYear(int month, int year){
+        List<WorkCalendarEvent> eventList = new LinkedList<>();
+        try{
+            Connection conn = ConnectionBuilder.getConnection();
+            String sql = "SELECT * FROM Work_Calendar_Event "
+                    + "WHERE (MONTH(Event_Start) = ? OR MONTH(Event_End) = ?) "
+                    + "AND (YEAR(Event_Start) = ? OR YEAR(Event_End) = ?) ";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, month);
+            pstm.setInt(2, month);
+            pstm.setInt(3, year);
+            pstm.setInt(4, year);
+            ResultSet rs = pstm.executeQuery();
+            while(rs.next()){
+                WorkCalendarEvent event = new WorkCalendarEvent();
+                event.orm(rs);
+                eventList.add(event);
+            }
+            conn.close();
+        }catch(SQLException ex){
+            System.err.println("KeycardReq,insertLostRequest: "+ex);
+        }
+        return eventList;
+    }
+    
+    public static List<WorkCalendarEvent> findAllEvent(){
+        List<WorkCalendarEvent> eventList = new LinkedList<>();
+        try{
+            Connection conn = ConnectionBuilder.getConnection();
+            String sql = "SELECT * FROM Work_Calendar_Event ";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            ResultSet rs = pstm.executeQuery();
+            while(rs.next()){
+                WorkCalendarEvent event = new WorkCalendarEvent();
+                event.orm(rs);
+                eventList.add(event);
+            }
+            conn.close();
+        }catch(SQLException ex){
+            System.err.println("KeycardReq,insertLostRequest: "+ex);
+        }
+        return eventList;
     }
 }
