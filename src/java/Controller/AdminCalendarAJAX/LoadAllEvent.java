@@ -39,7 +39,6 @@ public class LoadAllEvent extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         List<WorkCalendarEvent> eventList = WorkCalendarEvent.findAllEvent();
         Gson gson = new Gson();
-        System.out.println(gson.toJson(eventList));
         response.getOutputStream().print(gson.toJson(eventList));
     }
 

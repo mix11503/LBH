@@ -6,8 +6,11 @@
 package Controller.Moving;
 
 import Model.Moving;
+import Model.WorkCalendarEvent;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -31,13 +34,31 @@ public class ApproveMove extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
-       String id = request.getParameter("id");
+        response.setCharacterEncoding("UTF-8");
+        String id = request.getParameter("id");
+        String detail = request.getParameter("desc");
+        String url = "movSheet?id="+id;
+        String color = "green";
+        String type = "MovingStuff";
+        String roomId = request.getParameter("roomId");
+        String title = "Room "+roomId+" : MovingStuff";
+        String textStartDate = request.getParameter("start").substring(0, 10);
+        String textEndDate = request.getParameter("end");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date startDate = null;
+        Date endDate  = null;
         try{
-        Moving.Approved(Integer.parseInt(id));
+            Moving.Approved(Integer.parseInt(id));
+            java.util.Date utilDate = sdf.parse(textStartDate);
+            startDate = new java.sql.Date(utilDate.getTime());
+            utilDate = sdf.parse(textEndDate);
+            endDate = new java.sql.Date(utilDate.getTime());
         }catch(Exception e){
             System.err.println("ApproveDec, "+e);
         }
+        WorkCalendarEvent.createNewEvent(title, detail, startDate, endDate, url, color, type);
         List<Moving> mov = Moving.getNewRequest();
         request.setAttribute("mov", mov);
         getServletContext().getRequestDispatcher("/stuffAdmin.jsp").forward(request, response);

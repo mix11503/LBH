@@ -34,7 +34,9 @@ public class ApproveDec extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String id = request.getParameter("id");
         String detail = request.getParameter("desc");
         String url = "printDecSheet?id="+id;
@@ -43,6 +45,7 @@ public class ApproveDec extends HttpServlet {
         String roomId = request.getParameter("roomId");
         String title = "Room "+roomId+" : Decorate";
         String textStartDate = request.getParameter("start");
+        System.out.println(textStartDate);
         String textEndDate = request.getParameter("end");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date startDate = null;

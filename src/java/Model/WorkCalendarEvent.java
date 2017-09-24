@@ -133,7 +133,7 @@ public class WorkCalendarEvent {
             pstm.executeUpdate();
             conn.close();
         }catch(SQLException ex){
-            System.err.println("KeycardReq,insertLostRequest: "+ex);
+            System.err.println("WorkCalendarEvent,createNewEvent: "+ex);
         }
     }
     
