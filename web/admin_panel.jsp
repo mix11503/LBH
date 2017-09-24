@@ -67,7 +67,7 @@
                     <div class="row">
                         <div class="col-lg-9 main-chart">
 
-                            <div class="row mtbox">
+                            <div class="row">
                                 <a  href="searchByStatus?status=New">
                   		<div class="col-md-2 col-sm-2 col-md-offset-1 box0">
                   			<div class="box1">
@@ -121,7 +121,7 @@
                             <!-- Calendar API -->
                             <div>
                                 <aside class="col-lg-12 mt">
-                                    <div class="row mtbox">
+                                    <div class="row">
                                         <section class="panel">
                                             <div class="panel-body">
                                                 <div id="calendar" class="has-toolbar fc">
@@ -132,7 +132,7 @@
                                 </aside>
 
                                 <aside class="col-lg-12 mt">
-                                    <div class="row mtbox">
+                                    <div class="row">
                                         <section class="panel">
                                             <div class="panel-body">
                                                 <form action="CreateEvent" method="GET">
