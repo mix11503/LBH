@@ -6,8 +6,11 @@
 package Controller.Decoration;
 
 import Model.Decoration;
+import Model.WorkCalendarEvent;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,11 +36,27 @@ public class ApproveDec extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String id = request.getParameter("id");
+        String detail = request.getParameter("desc");
+        String url = "printDecSheet?id="+id;
+        String color = "orange";
+        String type = "Decorate";
+        String roomId = request.getParameter("roomId");
+        String title = "Room "+roomId+" : Decorate";
+        String textStartDate = request.getParameter("start");
+        String textEndDate = request.getParameter("end");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date startDate = null;
+        Date endDate  = null;
         try{
-        Decoration.Approved(Integer.parseInt(id));
+            Decoration.Approved(Integer.parseInt(id));
+            java.util.Date utilDate = sdf.parse(textStartDate);
+            startDate = new java.sql.Date(utilDate.getTime());
+            utilDate = sdf.parse(textEndDate);
+            endDate = new java.sql.Date(utilDate.getTime());
         }catch(Exception e){
             System.err.println("ApproveDec, "+e);
         }
+        WorkCalendarEvent.createNewEvent(title, detail, startDate, endDate, url, color, type);
         List<Decoration> dec = Decoration.getAllRequest();
         request.setAttribute("dec", dec);
         getServletContext().getRequestDispatcher("/DecAdmin.jsp").forward(request, response);

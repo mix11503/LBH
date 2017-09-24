@@ -131,7 +131,12 @@
                 <td><%=dec.getRoomId()%></td>
                 <td><%if(dec.getStatus()==true){%><div style="color: green"><i class="fa fa-check"></i> APPROVED</div>
                     <%}else{%><form action="ApproveDec" method="get" onclick="return confirm('Approve Decoration Request?')">
-                        <input type="text" value="<%=dec.getId()%>" name="id" hidden><input type="submit" value="Approve" class="btn btn-warning" <%if(dec.getStatus()==true){%>disabled<%}%>/>
+                        <input type="text" value="<%=dec.getId()%>" name="id" hidden>
+                        <input type="text" value="<%=dec.getDesc()%>" name="desc" hidden>
+                        <input type="text" value="<%=dec.getRoomId()%>" name="roomId" hidden>
+                        <input type="date" value="<%=dec.getStart()%>" name="start" hidden>
+                        <input type="date" value="<%=dec.getEnd()%>" name="end" hidden>
+                        <input type="submit" value="Approve" class="btn btn-warning" <%if(dec.getStatus()==true){%>disabled<%}%>/>
                     </form><%}%></td>
                 <td><center><form action="printDecSheet" method="get"  target="_blank">
                         <input type="text" value="<%=dec.getId()%>" name="id" hidden><input type="submit" value="Print" class="btn btn-primary"/>

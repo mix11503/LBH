@@ -280,7 +280,7 @@
                                         <h4 style="color: black;">Add Event to WorkCalendar</h4> 
                                         <form action="CreateEvent" method="POST" id="addEventForm">
                                             <label>Title</label>
-                                            <input type="text" class="form-control" name="eventTitle" value="MTN Event for Room <%= m.getMtn_room_id() %>" required>
+                                            <input type="text" class="form-control" name="eventTitle" value="Room <%= m.getMtn_room_id() %> : MTN" required>
                                             <label>Detail</label>
                                             <textarea class="form-control" name="eventDetail"></textarea>
                                             <br>

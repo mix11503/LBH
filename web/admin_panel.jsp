@@ -164,20 +164,20 @@
                                         <div class="modal-body">
                                             <div class="form-group">
                                                 <label class="col-sm-4 control-label">Event Title :</label>                               
-                                                <label id="titleText" class="control-label"></label>
+                                                <p id="titleText" class="control-label"></p>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-4 control-label">Event Detail :</label>                               
-                                                <label id="detailText" class="control-label"></label>
+                                                <p id="detailText" class="control-label"></p>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-4 control-label">Event Start :</label>                               
-                                                <label id="startText" class="control-label"></label>
-                                            </div>
-                                                                           
+                                                <p id="startText" class="control-label"></p>
+                                            </div>                                     
                                         </div>
                                         <div class="modal-footer">
-                                            <a href="" id="urlText" target="_blank"><button type="button" class="btn btn-default" >See Request Page</button></a>
+                                            <button type="button" class="btn btn btn-danger" data-dismiss="modal">Delete Event</button>
+                                            <a href="" id="urlText" target="_blank"><button type="button" class="btn btn-info">See Request Page</button></a>
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                         </div>
                                     </div>
