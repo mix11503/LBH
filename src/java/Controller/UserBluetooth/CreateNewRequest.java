@@ -3,25 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller.AdminCalendarAJAX;
+package Controller.UserBluetooth;
 
-import Model.WorkCalendarEvent;
-import com.google.gson.Gson;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author Mix
  */
-public class LoadEventCurrentMonth extends HttpServlet {
+@MultipartConfig
+public class CreateNewRequest extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,20 +34,39 @@ public class LoadEventCurrentMonth extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
-        String start =  request.getParameter("start");
-        int month = Integer.parseInt(start.substring(5,7));
-        int year = Integer.parseInt(start.substring(0,4));
-        //month += 1;
-        System.out.println("MONTH :"+month);
-        System.out.println("YEAR :"+year);
-        List<WorkCalendarEvent> eventList = WorkCalendarEvent.findEventByMonthAndYear(month, year);
-        Gson gson = new Gson();
-        response.getOutputStream().print(gson.toJson(eventList));
+        int roomId = (int) request.getSession().getAttribute("roomId");
+        String carBrand = request.getParameter("carBrand");
+        String carModel = request.getParameter("carModel");
+        String carType = request.getParameter("carType");
+        String carColor = request.getParameter("carColor");
+        String carPlate = request.getParameter("carPlate");
+        
+        Part filePart = request.getPart("file");
+        String root = getServletContext().getRealPath("/");
+        File upload = new File(root + "/bluetooth_doc/" + roomId);
+        if (!upload.exists()) {
+            boolean status = upload.mkdirs();
+        }       
+        String docPlate = "";
+        String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
+        InputStream fileContent = filePart.getInputStream();
+        String tempName = "docPlate";
+
+        long fileVersion = System.currentTimeMillis();
+        String fileType = fileName.substring(fileName.indexOf("."));
+        File fullPath = new File(upload + "/" + tempName + fileVersion + fileType);
+
+        try (InputStream input = fileContent) {
+            Files.copy(input, fullPath.toPath());
+        }
+        docPlate = tempName + fileVersion + fileType;
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -76,35 +76,55 @@
                                 </div><!-- white-panel -->
 
                             </div><!-- col-lg-4 -->
-                        </c:forEach>      
-                    </div><!-- Row mt-->
-                    
-                    <div class="row mt">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 desc">
-                            <div class="white-panel pn donut-chart">
-                                <div class="white-header">
-                                    <h3 style="color:black;">Request History AAAAAAA</h3>
+                        </c:forEach>
+                        <!-- New Request Panel -->
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <div class="showback">
+                                <center><h4>New Access Permit</h4></center>
+                                <center>
+                                    <button onclick="toggleNewRequestModal()" class="btn btn-primary">Request</button>
+                                </center>      				
+                            </div><!-- /showback -->
+                        </div>
+                        <!--New Request Modal-->
+                        <div class="modal fade" id="newRequestModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">New Request Form</h4>
+                                    </div>                                
+                                    <form action="CreateNewRequest" method="POST" id="addEventForm" enctype="multipart/form-data">
+                                        <div class="modal-body">
+                                            <label>Car Brand</label>
+                                            <input type="text" class="form-control" name="carBrand" required>
+                                            <label>Car Modal</label>
+                                            <input type="text" class="form-control" name="carModel" required>
+                                            <label>Car Type</label>
+                                            <input type="text" class="form-control" name="carType" required>
+                                            <label>Car Color</label>
+                                            <input type="text" class="form-control" name="carColor" required>
+                                            <label>Car Plate</label>
+                                            <input type="text" class="form-control" name="carPlate" required>
+                                            <br>
+                                            <div>
+                                                <input type="file" id="docPlate" name="file" class="btn btn-primary btn-lg btn-block" style="display:none"/>
+                                            </div>
+                                            <div>
+                                                <button type="button" onclick="docPlateUploadClick()" class="btn btn-primary btn-lg btn-block">Upload Vehicle registration book</button>
+                                                <center><h3 id="select_docPlate"></h3></center>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <input type="submit" class="btn btn-primary" value="Submit">
+                                        </div>                                
+                                    </form>
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <table class="table table-bordered table-striped table-condensed">
-                                            <thead>
-                                                <tr>
-                                                    <th><center style="color:black;">Key ID</center></th>
-                                                    <th><center style="color:black;">Status</center></th>
-                                                    <th><center style="color:black;">Request Date</center></th>                                                  
-                                                </tr>
-                                            </thead>
-                                            <tbody id="records_table" style="color:black;">
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <canvas id="serverstatus01" height="120" width="120"></canvas>
                             </div>
                         </div>
-                    </div>  
+                    </div><!-- Row mt-->
+                     
 
                     <!-- **********************************************************************************************************************************************************
                     RIGHT SIDEBAR CONTENT
@@ -268,31 +288,7 @@
                                 </form>
                             </div>
                         </div>
-                    </div>
-                    
-                    <!-- Modal Lost Add -->
-                    <div class="modal fade" id="requestLostAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title" id="myModalLabel">Select type of your request</h4>
-                                </div>                                
-                                <div class="modal-body">
-                                    <div>                          
-                                        <button type="button" onclick="selectTypeLost()" class="btn btn-primary btn-lg btn-block">Inform lost keycard and request additional keycard</button>
-                                        <button type="button" onclick="selectTypeAdd()" class="btn btn-primary btn-lg btn-block">request additional keycard</button>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                </div>                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
-                    
+                    </div>                  
                 </section>
             </section>
 
@@ -351,8 +347,6 @@
                     ]
                 });
                 
-                listAllMyRequest();
-                
                 //upload file for lost request
                 $("#requestLostKeycardForm").ajaxForm({
                     success: function() {
@@ -386,6 +380,10 @@
                 });
                 
             });
+            
+            function toggleNewRequestModal(){
+                $('#newRequestModal').modal('toggle');
+            }
 
 
             function myNavFunction(id) {
@@ -425,77 +423,13 @@
                 }, 'json')
             }
             
-            //trigger idcardUpload input
-            function idcardUploadClick(){
-                $('#idcardUpload').trigger('click');
-                $('#idcardUpload').change(function() {
-                    var filename = $('#idcardUpload').val();
-                    $('#select_idcard').html(filename);
+            //trigger file docPlate upload
+            function docPlateUploadClick(){
+                $('#docPlate').trigger('click');
+                $('#docPlate').change(function() {
+                    var filename = $('#docPlate').val();
+                    $('#select_docPlate').html(filename);
                 });
-            }
-                       
-            //trigger leaseUpload input
-            function leaseUploadClick(){
-                $('#leaseUpload').trigger('click');
-                $('#leaseUpload').change(function() {
-                    var filename = $('#leaseUpload').val();
-                    $('#select_lease').html(filename);
-                });
-            } 
-            
-            //trigger noticeDocUpload input
-            function noticeDocUploadClick(){
-                $('#noticeDocUpload').trigger('click');
-                $('#noticeDocUpload').change(function() {
-                    var filename = $('#noticeDocUpload').val();
-                    $('#select_noticeDoc').html(filename);
-                });
-            }
-            
-            //request additional keycard by AJAX
-            function requestAdditionalKeycard(){
-                $.get( "AddKeycardRequest", function(){
-                    $('#messageLog').css('color', 'green');
-                    $('#messageLog').html('Your request complete. Wait for approve.');
-                    $('#requestLostAddModal').modal('toggle');
-                    $('#messageModal').modal('toggle');
-                })
-            }
-            
-            //select modal
-            function selectTypeLost(){
-                $('#requestLostAddModal').modal('toggle');
-                $('#requestLostModal').modal('toggle');
-            }
-            function selectTypeAdd(){
-                requestAdditionalKeycard();
-            }
-            
-            //get all request
-            function listAllMyRequest(){
-                $.post("ListAllMyRequest",function(data){
-                    $.each(data, function(i, keycardReq) {
-                        var statusText = "";
-                        if(keycardReq.key_status_approve == "Approve"){
-                            statusText = "Approve";
-                        }else if(keycardReq.key_status_approve == "Rejected"){
-                            statusText = "Rejected";
-                        }else if(keycardReq.key_status_approve == "WaitingNew"){
-                            statusText = "Wait for Approve";
-                        }else if(keycardReq.key_status_approve == "WaitingLost"){
-                            statusText = "Wait for Approve";
-                        }else if(keycardReq.key_status_approve == "WaitingAdd"){
-                            statusText = "Wait for Approve";
-                        }     
-                        var $tr = $('#records_table').append($('<tr>')
-                            .append(
-                                $('<td>').text(keycardReq.keycard.keyId),
-                                $('<td>').text(statusText),
-                                $('<td>').text(keycardReq.key_date),
-                            )
-                        )
-                    });
-                }, "json")
             }
             
             function printObject(index){

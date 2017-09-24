@@ -427,9 +427,11 @@
                     displayEventTime: false,
                     eventSources: [
                                     {
-                                        url: 'LoadAllEvent',
+                                        url: '${pageContext.request.contextPath}/LoadAllEvent',
                                         type: 'GET',
                                         data: {},
+                                        success: function() {
+                                        },
                                         error: function() {
                                             alert('there was an error while fetching events!');
                                         }
@@ -461,8 +463,19 @@
                         $('#eventDetailModal').modal('toggle');
                     }
 		});
-                console.log($('#calendar').fullCalendar( 'getEventSources' ));
-
+                console.log($('#calendar').fullCalendar( 'getEventSources' ));                
+                
+                $.ajax({
+                    url: "${pageContext.request.contextPath}/LoadAllEvent",
+                    error: function(){
+                        // will fire when timeout is reached
+                    },
+                    success: function(data){
+                        console.log("DATA: "+data);
+                    },
+                    timeout: 30000 // sets timeout to 3 seconds
+                });
+                
                 $("#my-calendar").zabuto_calendar({
                     action: function () {
                         return myDateFunction(this.id, false);
