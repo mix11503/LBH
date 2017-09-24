@@ -180,4 +180,17 @@ public class WorkCalendarEvent {
         }
         return eventList;
     }
+    
+    public static void deleteEvent(int id){
+        try{
+            Connection conn = ConnectionBuilder.getConnection();
+            String sql = "DELETE FROM Work_Calendar_Event WHERE Event_ID = ? ";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, id);
+            pstm.executeUpdate();
+            conn.close();
+        }catch(SQLException ex){
+            System.err.println("KeycardReq,insertLostRequest: "+ex);
+        }
+    }
 }

@@ -171,13 +171,13 @@
                                                 <p id="detailText" class="control-label"></p>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-4 control-label">Event Start :</label>                               
+                                                <label class="col-sm-4 control-label">Event Duration :</label>                               
                                                 <p id="startText" class="control-label"></p>
                                             </div>                                     
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn btn-danger" data-dismiss="modal">Delete Event</button>
-                                            <a href="" id="urlText" target="_blank"><button type="button" class="btn btn-info">See Request Page</button></a>
+                                            <button type="button" id="deleteBtn" class="btn btn btn-danger" data-dismiss="modal">Delete Event</button>
+                                            <a href="" id="urlText" target="_blank"><button type="button" id="urlBtn" class="btn btn-info">See Request Page</button></a>
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                         </div>
                                     </div>
@@ -421,13 +421,24 @@
                                 ],
                     eventClick: function(event) {                       
                         $('#titleText').html(event.title);
-                        $('#detailText').html(event.detail);               
+                        $('#deleteBtn').attr('onclick', 'deleteEvent('+event.id+')');
+                        if(event.detail){
+                            $('#detailText').html(event.detail);     
+                        }else{
+                            $('#detailText').html("-");
+                        }
                         if(event.end){
                             $('#startText').html(moment(event.start).format("DD MMM YYYY")+" - "+moment(event.end).format("DD MMM YYYY"));
                         }else{
                             $('#startText').html(moment(event.start).format("DD MMM YYYY"));
                         }
-                        $('#urlText').prop('href', event.urlPage);
+                        if(event.urlPage){
+                            $('#urlText').prop('href', event.urlPage);
+                            $('#urlBtn').prop('disable', false);
+                        }else{
+                            $('#urlText').prop('href', '');
+                            $('#urlBtn').prop('disable', true);
+                        }
                         $('#eventDetailModal').modal('toggle');
                     }
 		});
@@ -454,17 +465,13 @@
 //                loadEventCurrentMonth();
             });
 
-            // Load Event in Current Month to Calendar
-//            function loadEventCurrentMonth(){
-//                $.get("LoadEventCurrentMonth",function(data){
-//                    console.log(data);
-//                    var events = $.parseJSON(data);
-//                    console.log(events);
-//                    $('#calendar').fullCalendar( 'removeEventSources' );
-//                    $('#calendar').fullCalendar( 'addEventSource', events );
-//                });
-//            }
-
+            function deleteEvent(id){
+                console.log('DETELE :'+id);
+                $.post("DeleteEvent", { "id": id }, function(data){
+                    $('#calendar').fullCalendar( 'refetchEvents' );
+                });    
+            }
+            
             function myNavFunction(id) {
                 $("#date-popover").hide();
                 var nav = $("#" + id).data("navigation");

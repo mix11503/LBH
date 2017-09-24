@@ -328,6 +328,10 @@
         <servlet-name>LoadAllEvent</servlet-name>
         <servlet-class>Controller.AdminCalendarAJAX.LoadAllEvent</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteEvent</servlet-name>
+        <servlet-class>Controller.AdminCalendarAJAX.DeleteEvent</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
         <url-pattern>/MTNSearchRoom</url-pattern>
@@ -655,6 +659,10 @@
     <servlet-mapping>
         <servlet-name>LoadAllEvent</servlet-name>
         <url-pattern>/LoadAllEvent</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteEvent</servlet-name>
+        <url-pattern>/DeleteEvent</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
