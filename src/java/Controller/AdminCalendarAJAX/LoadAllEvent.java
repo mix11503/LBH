@@ -34,9 +34,12 @@ public class LoadAllEvent extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println(new Date(1506643200000l));
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         List<WorkCalendarEvent> eventList = WorkCalendarEvent.findAllEvent();
         Gson gson = new Gson();
+        System.out.println(gson.toJson(eventList));
         response.getOutputStream().print(gson.toJson(eventList));
     }
 

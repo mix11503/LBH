@@ -33,6 +33,9 @@ public class CreateEvent extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
+        request.setCharacterEncoding("UTF-8");
+//        response.setContentType("text/html;charset=UTF-8");
+//        response.setCharacterEncoding("UTF-8");
         String title = request.getParameter("eventTitle");
         String detail = request.getParameter("eventDetail");
         String url = request.getParameter("eventUrl");

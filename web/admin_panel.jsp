@@ -135,20 +135,24 @@
                                     <div class="row">
                                         <section class="panel">
                                             <div class="panel-body">
-                                                <form action="CreateEvent" method="GET">
+                                                <h4 style="color: black;">Add Other Event to WorkCalendar</h4> 
+                                                <form action="CreateEvent" method="POST" id="addEventForm">
                                                     <label>Title</label>
-                                                    <input type="text" class="form-control" name="title">
+                                                    <input type="text" class="form-control" name="eventTitle" required>
                                                     <label>Detail</label>
-                                                    <textarea class="form-control" name="detail"></textarea>
-                                                    <label>Start Date</label>
-                                                    <input type="date" class="form-control" name="start">
-                                                    <label>End Date</label>
-                                                    <input type="date" class="form-control" name="end">
-                                                    <label>URL</label>
-                                                    <input type="text" class="form-control" name="url">
-                                                    <label>Color</label>
-                                                    <input type="text" class="form-control" name="color">
-                                                    <input type="submit" value="submit">
+                                                    <textarea class="form-control" name="eventDetail"></textarea>
+                                                    <br>
+                                                    <div class="form-inline">
+                                                        <label>Start Date</label>
+                                                        <input type="date" class="form-control" name="eventStart" required>
+                                                        <label>End Date</label>
+                                                        <input type="date" class="form-control" name="eventEnd">
+                                                    </div>
+                                                    <br>
+                                                    <input type="hidden" class="form-control" name="eventUrl">
+                                                    <input type="hidden" class="form-control" name="eventColor" value="gray">
+                                                    <input type="hidden" class="form-control" name="eventType" value="Other">
+                                                    <input type="submit" class="btn btn-primary" value="Add to Calendar">
                                                 </form>
                                             </div>
                                         </section>
@@ -179,6 +183,18 @@
                                             <button type="button" id="deleteBtn" class="btn btn btn-danger" data-dismiss="modal">Delete Event</button>
                                             <a href="" id="urlText" target="_blank"><button type="button" id="urlBtn" class="btn btn-info">See Request Page</button></a>
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">                               
+                                        <div class="modal-body">
+                                            <center><h3 id="messageLog"></h3></center>                               
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" id="closeModalBtn" class="btn btn-default" data-dismiss="modal">Close</button>
                                         </div>
                                     </div>
                                 </div>
@@ -395,6 +411,7 @@
 
 
         <script type="application/javascript">
+            
             $(document).ready(function () {
                 $('#calendar').fullCalendar({
                     header: {
@@ -404,9 +421,8 @@
                     },
                     defaultDate: moment().format("YYYY-MM-DD"),
                     navLinks: false, // can click day/week names to navigate views
-                    editable: true,
+                    editable: false,
                     eventLimit: true, // allow "more" link when too many events
-                    editable: true,
                     lazyFetching: true,
                     displayEventTime: false,
                     eventSources: [
@@ -433,11 +449,14 @@
                             $('#startText').html(moment(event.start).format("DD MMM YYYY"));
                         }
                         if(event.urlPage){
+                            console.log('IF CHECK');
+                            $('#urlText').unbind('click', false);
                             $('#urlText').prop('href', event.urlPage);
-                            $('#urlBtn').prop('disable', false);
+                            $('#urlBtn').css('visibility', 'visible');
                         }else{
-                            $('#urlText').prop('href', '');
-                            $('#urlBtn').prop('disable', true);
+                            console.log('ELSE CHECK');
+                            $('#urlText').bind('click', false);
+                            $('#urlBtn').css('visibility', 'hidden');
                         }
                         $('#eventDetailModal').modal('toggle');
                     }
@@ -460,9 +479,6 @@
                         {type: "block", label: "Regular event", }
                     ]
                 });
-                
-//                console.log('ready.');
-//                loadEventCurrentMonth();
             });
 
             function deleteEvent(id){
@@ -478,6 +494,33 @@
                 var to = $("#" + id).data("to");
                 console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
             }
+            
+            //Add Event to Calendar By AJAX
+            $('#addEventForm').submit(function(event) {
+                event.preventDefault(); // Prevent the form from submitting via the browser
+                $('#closeModalBtn').prop('disabled', true);
+                $('#messageLog').css('color', 'black');
+                $('#messageLog').html('Adding New Event......');
+                $('#messageModal').modal('toggle');
+                var form = $(this);
+                $.ajax({
+                    type: form.attr('method'),
+                    url: form.attr('action'),
+                    data: form.serialize()
+                }).done(function(data) {
+                    $('#closeModalBtn').prop('disabled', false);
+                    $('#messageLog').css('color', 'green');
+                    $('#messageLog').html('Adding New Event DONE');  
+                    console.log("DONE: "+data);
+                    $('#calendar').fullCalendar( 'refetchEvents' );
+                }).fail(function(data) {
+                    $('#closeModalBtn').prop('disabled', false);
+                    $('#messageLog').css('color', 'red');
+                    $('#messageLog').html('Adding New Event ');
+                    console.log("FAIL: "+data);
+                    $('#calendar').fullCalendar( 'refetchEvents' );
+                });
+            });
         </script>
 
 
