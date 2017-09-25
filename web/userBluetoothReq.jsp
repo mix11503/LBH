@@ -94,7 +94,7 @@
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                         <h4 class="modal-title" id="myModalLabel">New Request Form</h4>
                                     </div>                                
-                                    <form action="CreateNewRequest" method="POST" id="addEventForm" enctype="multipart/form-data">
+                                    <form action="CreateNewBluetoothRequest" method="POST" id="addEventForm" enctype="multipart/form-data">
                                         <div class="modal-body">
                                             <label>Car Brand</label>
                                             <input type="text" class="form-control" name="carBrand" required>

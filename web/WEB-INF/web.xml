@@ -333,8 +333,8 @@
         <servlet-class>Controller.AdminCalendarAJAX.DeleteEvent</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CreateNewRequest</servlet-name>
-        <servlet-class>Controller.UserBluetooth.CreateNewRequest</servlet-class>
+        <servlet-name>CreateNewBluetoothRequest</servlet-name>
+        <servlet-class>Controller.UserBluetooth.CreateNewBluetoothRequest</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
@@ -669,8 +669,8 @@
         <url-pattern>/DeleteEvent</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CreateNewRequest</servlet-name>
-        <url-pattern>/CreateNewRequest</url-pattern>
+        <servlet-name>CreateNewBluetoothRequest</servlet-name>
+        <url-pattern>/CreateNewBluetoothRequest</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

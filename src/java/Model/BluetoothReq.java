@@ -230,4 +230,24 @@ public class BluetoothReq {
         }
         return btReqList;
     }
+    
+    public static void creteNewRequest(String carBrand, String carModel, String carType, String carColor, String carPlate, String docPlate, int roomId){
+        try{
+            Connection conn = ConnectionBuilder.getConnection();
+            String sql = "INSERT INTO Bluetooth_Request ( BT_Status, BT_Car_Brand, BT_Car_Model, BT_Car_Type, BT_Car_Color, BT_Car_Plate, BT_Doc_Plate, BT_Status_Approve, BT_Fee, BT_Date, Room_ID) "
+                    + "VALUE ('notAvailable', ?, ?, ?, ?, ?, ?, 'Waiting', 0, CURDATE(), ? )";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setString(1, carBrand);
+            pstm.setString(2, carModel);
+            pstm.setString(3, carType);
+            pstm.setString(4, carColor);
+            pstm.setString(5, carPlate);
+            pstm.setString(6, docPlate);
+            pstm.setInt(7, roomId);
+            pstm.executeUpdate();
+            conn.close();
+        }catch(SQLException ex){
+            System.err.println("BluetoothReq, creteNewRequest: "+ex);
+        }
+    }
 }

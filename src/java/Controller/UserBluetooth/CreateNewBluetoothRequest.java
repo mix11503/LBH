@@ -5,6 +5,7 @@
  */
 package Controller.UserBluetooth;
 
+import Model.BluetoothReq;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,7 +24,7 @@ import javax.servlet.http.Part;
  * @author Mix
  */
 @MultipartConfig
-public class CreateNewRequest extends HttpServlet {
+public class CreateNewBluetoothRequest extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,7 +35,6 @@ public class CreateNewRequest extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -66,7 +66,8 @@ public class CreateNewRequest extends HttpServlet {
             Files.copy(input, fullPath.toPath());
         }
         docPlate = tempName + fileVersion + fileType;
-        
+        BluetoothReq.creteNewRequest(carBrand, carModel, carType, carColor, carPlate, docPlate, roomId);
+        getServletContext().getRequestDispatcher("/ListApprovedBluetoothReqByRoom").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
