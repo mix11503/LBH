@@ -74,7 +74,7 @@ MAIN SIDEBAR MENU
             <h5 class="centered">{Username}</h5>
 
             <li class="mt">
-                <a class="active" href="userIndex?roomid=201">
+                <a href="userIndex?roomid=201">
                     <i class="fa fa-dashboard"></i>
                     <span>News Feed</span>
                 </a>
@@ -115,8 +115,8 @@ MAIN SIDEBAR MENU
             
             <li class="sub-menu">
                 <a href="javascript:;" >
-                    <i class="fa fa-key"></i>
-                    <span>Bluetooth</span>
+                    <i class="fa fa-car"></i>
+                    <span>Car Bluetooth</span>
                 </a>
                 <ul class="sub">
                     <li><a  href="ListApprovedBluetoothReqByRoom">Bluetooth Request</a></li>                                
