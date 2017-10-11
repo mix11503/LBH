@@ -336,6 +336,10 @@
         <servlet-name>CreateNewBluetoothRequest</servlet-name>
         <servlet-class>Controller.UserBluetooth.CreateNewBluetoothRequest</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>createMoveReq</servlet-name>
+        <servlet-class>Controller.Moving.createMoveReq</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
         <url-pattern>/MTNSearchRoom</url-pattern>
@@ -671,6 +675,10 @@
     <servlet-mapping>
         <servlet-name>CreateNewBluetoothRequest</servlet-name>
         <url-pattern>/CreateNewBluetoothRequest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>createMoveReq</servlet-name>
+        <url-pattern>/createMoveReq</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

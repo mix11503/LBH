@@ -65,7 +65,7 @@
                                   <th><i class="fa fa-comments"></i> Description</th>
                                   <th><i class="fa fa-sign-in"></i> Type</th>
                                   <th><i class="fa fa-suitcase"></i>To Move Date</th>
-                                  <th><i class="fa fa-edit"></i> EDIT</th>
+                                  <!--th><i class="fa fa-edit"></i> EDIT</th-->
                                   <th><i class="fa fa-times"></i> DELETE</th>
                               </tr>
                               </thead>
@@ -82,9 +82,9 @@
                                   <td><h5><%=m.getRemark()%></h5></td>
                                   <td><h5><%if(m.isInOrOut()==true){%>Move In<%}else{%>Move Out<%}%></h5></td>
                                   <td><h5><%=m.getDateMove().substring(0,m.getDateMove().length()-5)%></h5></td>
-                                  <td><form action="" method="get"><input type="text" value="<%=m.getId()%>" name="id" hidden>
+                                  <!--td><form action="" method="get"><input type="text" value="<%=m.getId()%>" name="id" hidden>
                                           <input type="submit" value="EDIT" class="btn btn-warning" <%if(m.isStatus()==true){%>disabled<%}%>/>
-                                      </form></td>
+                                      </form></td-->
                                   <td><form action="deleteMove" method="get" onclick="return confirm('DELETE REQUEST?')"><input type="text" value="<%=m.getId()%>" name="id" hidden>
                                       <input type="text" value="<%=m.getRoomId()%>" name="room" hidden><input type="submit" value="DELETE"  class="btn btn-danger" <%if(m.isStatus()==true){%>disabled<%}%>/>
                                       </form></td>

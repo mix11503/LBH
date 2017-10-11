@@ -53,16 +53,37 @@
                         <div class="col-lg-12">
                             <div class="form-panel">
                                 <h4 class="mb"><i class="fa fa-angle-right"></i>Complete the form to request the service</h4>
-                                <form action="" method="get">
-                                <div class="field_wrapper">
+                                <form action="createMoveReq" method="get">
+                                <input type="text" name="roomId" value="201" hidden/>  
+                                <div class="form-group has-success">
+                                  <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Date of Move</label>
+                                  <div class="col-lg-10">
+                                  <input type="date" class="form-control" name="date" required>
+                                  </div><br><br><br>
+                                  <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Time</label>
+                                  <div class="col-lg-10">
+                                  <input type="time" class="form-control" name="time" required>
+                                  </div><br><br>
+                              </div>
+                                <div class="form-group has-success">
+                                  <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Reason of moving stuffs</label>
+                                  <div class="col-lg-10">
+                                      <textarea class="form-control" style="width: 100%; height: 100px;" name="desc" placeholder="Why do you want to move these stuffs?.." maxlength="180" required></textarea>
+                                  </div>
+                              </div>    
+                                <div>
+                                    <br><br>
+                                    <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">List your stuffs</label>
+                                    <div class="field_wrapper">
                                     <div>
-                                        <input type="text" name="field_name[]" value=""/>
+                                        <input type="text" name="stuff" value="" required/> &nbsp;&nbsp;
                                         <a href="javascript:void(0);" class="add_button" title="Add field">
-                                            <button type="button" class="btn btn-info">ADD</button>
+                                            <button type="button" class="btn btn-info"> + </button>
                                         </a>
                                     </div>
                                 </div>
-                                     <input type="submit" value="Request">
+                                    </div>
+                                    <input type="submit" style="margin-left: 500px; width: 150px; height: 40px;" class="btn btn-success" value="Create Request"/>
         </form>
                             </div><!-- /form-panel -->
                         </div><!-- /col-lg-12 -->
@@ -101,11 +122,12 @@
                 var addButton = $('.add_button'); //Add button selector
                 var wrapper = $('.field_wrapper'); //Input field wrapper
                 var x = 1; //Initial field counter is 1
-                var removeBut = '<button type="button" class="btn btn-warning">REMOVE</button>';
+                var removeBut = '&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-warning"> - </button>';
                 //var fieldHTML = '<div><input type="text" name="field_name['+x+']" value=""/><a href="javascript:void(0);" class="remove_button" title="Remove field"><img src="remove-icon.png"/></a></div>'; //New input field html 
-                $(addButton).click(function () { //Once add button is clicked
+                var prestyle = '<label class="col-sm-2 control-label col-lg-2" for="inputSuccess">>></label>';
+            $(addButton).click(function () { //Once add button is clicked
                     if (x < maxField) { //Check maximum number of input fields 
-                        $(wrapper).append('<div><input type="text" name="field_name['+x+']" value=""/><a href="javascript:void(0);" class="remove_button" title="Remove field">'+removeBut+'</a></div>'); // Add field html
+                        $(wrapper).append('<div>'+prestyle+'<input type="text" name="stuff'+x+'" required/><a href="javascript:void(0);" class="remove_button" title="Remove field">'+removeBut+'</a></div>'); // Add field html
                     x++; //Increment field counter
         }
                 });

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -92,7 +93,7 @@ public class Moving {
             Connection conn = ConnectionBuilder.getConnection();
             String sqlCmd = null;
             sqlCmd = "INSERT INTO StuffMoving_Request(MV_DateMove, MV_InOrOut, MV_Remark, MV_DateRequest, MV_Status, Room_ID) VALUES (?,?,?,?,?,?)";
-            PreparedStatement pstm = conn.prepareStatement(sqlCmd);
+            PreparedStatement pstm = conn.prepareStatement(sqlCmd, Statement.RETURN_GENERATED_KEYS);
             pstm.setString(1, this.dateMove);
             pstm.setBoolean(2, this.inOrOut);
             pstm.setString(3, this.remark);
@@ -100,6 +101,10 @@ public class Moving {
             pstm.setBoolean(5, false);
             pstm.setInt(6, roomId);
             x = pstm.executeUpdate();
+            ResultSet rs = pstm.getGeneratedKeys();
+            if(rs.next()){
+                this.id = rs.getInt(1);
+            }
             conn.close();
         } catch (SQLException ex) {
             System.err.println("Moving, ADD : " + ex);
