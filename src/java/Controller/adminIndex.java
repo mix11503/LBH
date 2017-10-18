@@ -33,13 +33,27 @@ public class adminIndex extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String id = request.getParameter("id");
+        String password = request.getParameter("password");
+        String message = null;
+        String target = "/loginAdmin.jsp";
+        
+        if(id.equals("admin")&&password.equals("admin")){    
+        //success
         int amt = Maintanance.getReqAmountByStatus("New");
-        request.setAttribute("newAmt", amt);
+        request.getSession().setAttribute("newAmt", amt);
         int pbm = Problem.getNewRequest().size();
-        request.setAttribute("pbmAmt", pbm);
+        request.getSession().setAttribute("pbmAmt", pbm);
         int par = parcel.getExistParcel().size();
-        request.setAttribute("parAmt", par);
-        getServletContext().getRequestDispatcher("/admin_panel.jsp").forward(request, response);
+        request.getSession().setAttribute("parAmt", par);
+        
+        request.getSession().setAttribute("adminAuthen", true);
+        target = "/admin_panel.jsp";
+        }else{
+            message = "Please check your ID or Password";
+        }
+        request.setAttribute("message", message);
+        getServletContext().getRequestDispatcher(target).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

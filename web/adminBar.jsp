@@ -1,3 +1,7 @@
+<%
+                Boolean status = (Boolean) request.getSession().getAttribute("adminAuthen");
+                if(status==true){
+            %>
 <!-- **********************************************************************************************************************************************************
       TOP BAR CONTENT & NOTIFICATIONS
       *********************************************************************************************************************************************************** -->
@@ -7,7 +11,7 @@
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
     </div>
     <!--logo start-->
-    <a href="adminIndex" class="logo"><b>Welcome Admin</b></a>
+    <a href="admin_panel.jsp" class="logo"><b>Welcome Admin</b></a>
     <!--logo end-->
     <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
@@ -119,3 +123,4 @@ MAIN SIDEBAR MENU
     </div>
 </aside>
 <!--sidebar end-->
+<%}%>

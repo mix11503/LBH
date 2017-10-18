@@ -31,6 +31,10 @@
     <body>
 
         <section id="container" >
+                  <%        if(request.getSession().getAttribute("adminAuthen")!=null){
+                Boolean status = (Boolean) request.getSession().getAttribute("adminAuthen");
+                if(status==true){
+            %>
             <jsp:include page="adminBar.jsp"/>
             <!-- **********************************************************************************************************************************************************
             MAIN CONTENT
@@ -99,13 +103,14 @@
             <!--footer start-->
             <footer class="site-footer">
                 <div class="text-center">
-                    2014 - Alvarez.is
-                    <a href="blank.html#" class="go-top">
+                    LBH PROJECT @ SIT KMUTT
+                    <a href="" class="go-top">
                         <i class="fa fa-angle-up"></i>
                     </a>
                 </div>
             </footer>
             <!--footer end-->
+            <%}}%>
         </section>
 
         <!-- js placed at the end of the document so the pages load faster -->

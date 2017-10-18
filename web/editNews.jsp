@@ -118,6 +118,10 @@
     </head>
     <body>
         <section id="container" >
+            <%        if(request.getSession().getAttribute("adminAuthen")!=null){
+                Boolean status = (Boolean) request.getSession().getAttribute("adminAuthen");
+                if(status==true){
+            %>
             <jsp:include page="adminBar.jsp"/>
             <!-- **********************************************************************************************************************************************************
             MAIN CONTENT
@@ -125,7 +129,7 @@
             <!--main content start-->
  <script>
             function goBack() {
-             window.history.back()
+             window.history.back();
               }
             </script>
             <section id="main-content">
@@ -202,7 +206,7 @@
                     <!-- **********************************************************************************************************************************************************
                     RIGHT SIDEBAR CONTENT
                     *********************************************************************************************************************************************************** -->                  
-
+                <%}}%>
 
                 </section>
             </section>

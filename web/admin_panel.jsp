@@ -56,6 +56,10 @@
     <body>
 
         <section id="container" >
+            <%
+                Boolean status = (Boolean) request.getSession().getAttribute("adminAuthen");
+                if(status==true){
+            %>
             <jsp:include page="adminBar.jsp"/>
             <!-- **********************************************************************************************************************************************************
             MAIN CONTENT
@@ -381,6 +385,7 @@
                 </div>
             </footer>
             <!--footer end-->
+            <%}%>
         </section>
 
         <!-- js placed at the end of the document so the pages load faster -->
