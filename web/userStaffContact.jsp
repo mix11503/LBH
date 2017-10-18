@@ -72,7 +72,7 @@
                                 </div>
                                 <br>
                               <div class="white-panel pn white-header" style="height: 45px;">
-                                  <h4 align="center" style="color: #FCB322"><b><a href="tel:+<%=s.getTel()%>">Click Here to Call</a></b></h4>
+                                  <h4 align="center" style="color: #FCB322"><b><a href="tel:+66<%=s.getTel()%>">Click Here to Call</a></b></h4>
                               </div>
                             </div>
                           </div><! --/grey-panel -->

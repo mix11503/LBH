@@ -53,6 +53,10 @@
     </head>
     <body>
         <section id="container" >
+            <%        if(request.getSession().getAttribute("adminAuthen")!=null){
+                Boolean status = (Boolean) request.getSession().getAttribute("adminAuthen");
+                if(status==true){
+            %>
             <jsp:include page="adminBar.jsp"/>
             <!-- **********************************************************************************************************************************************************
             MAIN CONTENT
@@ -138,7 +142,7 @@
                         <input type="date" name="end" hidden>
                         <input type="submit" value="Approve" class="btn btn-warning" <%if(m.isStatus()==true){%>disabled<%}%>/>
                     </form><%}%></td>
-                <td><form action="movSheet" method="get"  target="_blank">
+                <td><form action="movSheet" method="post"  target="_blank">
                         <input type="text" value="<%=m.getId()%>" name="id" hidden><input type="submit" value="Detail/Print"  class="btn btn-primary"/>
                     </form></td>
                 </tr>
@@ -161,7 +165,7 @@
             </footer>
             <!--footer end-->
         </section>
-
+            <%}}else{response.sendRedirect("loginAdmin.jsp");}%>
         <!-- js placed at the end of the document so the pages load faster -->
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/jquery.ui.touch-punch.min.js"></script>

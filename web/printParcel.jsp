@@ -23,6 +23,10 @@
     </head>
     <body>
         <section id="container" >
+            <%        if(request.getSession().getAttribute("adminAuthen")!=null){
+                Boolean status = (Boolean) request.getSession().getAttribute("adminAuthen");
+                if(status==true){
+            %>
             <jsp:include page="adminBar.jsp"/>
             <!-- **********************************************************************************************************************************************************
             MAIN CONTENT
@@ -35,7 +39,7 @@
                     <div class="row mt">
                         <div class="col-lg-12">
                             <div class="form-panel" style="border-radius: 10px; height: 50px;" >
-                            <form class="form-inline" role="form" action="searchDate" method="get" target="_blank">
+                            <form class="form-inline" role="form" action="searchDate" method="post" target="_blank">
                                     <div class="form-group"> 
                                         <b>Select to print by Date: </b> 
                                         <input type="date" class="form-control" id="exampleInputEmail2" name="date" required>
@@ -52,15 +56,15 @@
             <!--footer start-->
             <footer class="site-footer">
                 <div class="text-center">
-                    2014 - Alvarez.is
-                    <a href="blank.html#" class="go-top">
+                    Senior Project @ SIT KMUTT
+                    <a href="" class="go-top">
                         <i class="fa fa-angle-up"></i>
                     </a>
                 </div>
             </footer>
             <!--footer end-->
         </section>
-
+        <%}}else{response.sendRedirect("loginAdmin.jsp");}%>
         <!-- js placed at the end of the document so the pages load faster -->
         <script src="assets/js/jquery.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>

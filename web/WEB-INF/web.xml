@@ -340,6 +340,10 @@
         <servlet-name>createMoveReq</servlet-name>
         <servlet-class>Controller.Moving.createMoveReq</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>logoutAdm</servlet-name>
+        <servlet-class>Controller.logoutAdm</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
         <url-pattern>/MTNSearchRoom</url-pattern>
@@ -679,6 +683,10 @@
     <servlet-mapping>
         <servlet-name>createMoveReq</servlet-name>
         <url-pattern>/createMoveReq</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logoutAdm</servlet-name>
+        <url-pattern>/logoutAdm</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

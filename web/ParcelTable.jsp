@@ -41,7 +41,7 @@
         <br>
         <div class="dontprint">
         <button onclick="printout()">Print this page</button><br><br>
-        <form action="cardPrint" method="get" target="_blank">
+        <form action="cardPrint" method="post" target="_blank">
             <input type="text" name="date" value="${date}" hidden>
             <input type="submit" value="Print Card">
         </form>

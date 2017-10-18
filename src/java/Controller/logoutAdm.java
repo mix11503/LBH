@@ -5,11 +5,6 @@
  */
 package Controller;
 
-import Model.Decoration;
-import Model.Maintanance;
-import Model.Moving;
-import Model.Problem;
-import Model.parcel;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -21,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Joe's
  */
-public class adminIndex extends HttpServlet {
+public class logoutAdm extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,31 +30,10 @@ public class adminIndex extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String id = request.getParameter("id");
-        String password = request.getParameter("password");
-        String message = null;
-        String target = "/loginAdmin.jsp";
-        
-        if(id.equals("admin")&&password.equals("admin")){    
-        //success
-        int amt = Maintanance.getReqAmountByStatus("New");
-        request.getSession().setAttribute("newAmt", amt);
-        int pbm = Problem.getNewRequest().size();
-        request.getSession().setAttribute("pbmAmt", pbm);
-        int par = parcel.getExistParcel().size();
-        request.getSession().setAttribute("parAmt", par);
-        int dec = Decoration.getNewRequest().size();
-        request.getSession().setAttribute("decAmt", dec);
-        int mov = Moving.getNewRequest().size();
-        request.getSession().setAttribute("movAmt", mov);
-        
-        request.getSession().setAttribute("adminAuthen", true);
-        target = "/admin_panel.jsp";
-        }else{
-            message = "Please check your ID or Password";
+        if (request.getSession(false) != null) {
+            request.getSession(false).invalidate();
         }
-        request.setAttribute("message", message);
-        getServletContext().getRequestDispatcher(target).forward(request, response);
+        getServletContext().getRequestDispatcher("/loginAdmin.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

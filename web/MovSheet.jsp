@@ -19,6 +19,7 @@
     <h3>คำขอขนย้ายสำภาระเข้า-ออก</h3>
     </center>
     <body>
+        <%if(request.getSession().getAttribute("adminAuthen")==null){response.sendRedirect("loginAdmin.jsp");}%>
         <table border="0" width="50%" style="border-collapse: collapse;">
             <%
             Moving m = (Moving) request.getAttribute("movPrint");

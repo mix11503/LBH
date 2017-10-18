@@ -57,6 +57,7 @@
 
         <section id="container" >
             <%
+                if(request.getSession().getAttribute("adminAuthen")!=null){
                 Boolean status = (Boolean) request.getSession().getAttribute("adminAuthen");
                 if(status==true){
             %>
@@ -85,7 +86,7 @@
                       <a  href="adminParcel">                  
                   		<div class="col-md-2 col-sm-2 box0">
                   			<div class="box1">
-					  			<i class="fa fa-envelope-o" style="font-size:71px"></i>
+					  			<i class="fa fa-envelope" style="font-size:71px"></i>
                   <h5>Parcel</h5>
 			<h2 style="color:#FF0000">${parAmt} <sup><i class="fa fa-bell-o"></i></sup></h2>
                   			</div>
@@ -95,30 +96,34 @@
                      <a  href="getCurrentReport">
                   		<div class="col-md-2 col-sm-2 box0">
                   			<div class="box1">
-					  			<i class="fa fa-comment-o" style="font-size:71px"></i>
+					  			<i class="fa fa-comment" style="font-size:71px"></i>
                   <h5>Problem Report</h5>
 			<h2 style="color:#FF0000">${pbmAmt} <sup><i class="fa fa-bell-o"></i></sup></h2>
                   			</div>
 					  			
                   		</div>
                     </a>
+                                        <a href="SearchFilter?filter=New">
                                 <div class="col-md-2 col-sm-2 box0">
                                     <div class="box1">
-                                        <i class="fa fa-car" style="font-size:71px"></i>
-                                        <h5>Access Permit</h5>
-                                        <h2 style="color:green">OK!</h2>
+                                        <i class="fa fa-gavel" style="font-size:71px"></i>
+                                        <h5>Decoration</h5>
+                                        <h2 style="color:#FF0000">${decAmt} <sup><i class="fa fa-bell-o"></i></sup></h2>
                                     </div>
 
                                 </div>
-
+                                    </a>
+                                    
+                                    <a href="admMgnReq">
                                 <div class="col-md-2 col-sm-2 box0">
                                     <div class="box1">
-                                        <i class="fa fa-credit-card" style="font-size:71px"></i>
-                                        <h5>Keycard</h5>
-                                        <h2 style="color:green">OK!</h2>
+                                        <i class="fa fa-truck" style="font-size:71px"></i>
+                                        <h5>Move Stuffs</h5>
+                                        <h2 style="color:#FF0000">${movAmt} <sup><i class="fa fa-bell-o"></i></sup></h2>
                                     </div>
 
                                 </div>
+                                    </a>
                                         
                             </div><!-- /row mt -->	
                             
@@ -385,7 +390,7 @@
                 </div>
             </footer>
             <!--footer end-->
-            <%}%>
+            <%}}else{response.sendRedirect("loginAdmin.jsp");}%>
         </section>
 
         <!-- js placed at the end of the document so the pages load faster -->

@@ -16,6 +16,7 @@
     <h3>ใบคำร้องขอเข้าตกแต่งต่อเติมผู้รับเหมา</h3>
     </center>
     <body>
+        <%if(request.getSession().getAttribute("adminAuthen")==null){response.sendRedirect("loginAdmin.jsp");}%>
         <table border="0" width="50%" style="border-collapse: collapse;">
             <%
             Decoration d = (Decoration) request.getAttribute("decPrint");

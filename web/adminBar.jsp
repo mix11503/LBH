@@ -13,10 +13,11 @@
     <!--logo start-->
     <a href="admin_panel.jsp" class="logo"><b>Welcome Admin</b></a>
     <!--logo end-->
-    <div class="nav notify-row" id="top_menu">
-        <!--  notification start -->
-
-
+    <div class="top-menu">
+            	<ul class="nav pull-right top-menu">
+                    <li><a class="logout" href="logoutAdm">Logout</a></li>
+            	</ul>
+            </div>
 </header>
 <!--header end-->
 
@@ -33,7 +34,7 @@ MAIN SIDEBAR MENU
             <h5 class="centered">Admin DuengJai</h5>
                 <!-- Add class="active" at a href to blue hilight-->
             <li class="mt">
-                <a href="adminIndex">
+                <a href="admin_panel.jsp">
                     <i class="fa fa-dashboard"></i>
                     <span>News Feed</span>
                 </a>
@@ -46,9 +47,7 @@ MAIN SIDEBAR MENU
                 </a>
                 <ul class="sub">
                     <li><a  href="searchByStatus?status=New">New Request ${value}</a></li>
-                    <li><a  href="searchByStatus">View By Status</a></li>
                     <li><a  href="SearchByRoomID.jsp">Search By Room No.</a></li>
-                    <li><a  href="mtnMgn.jsp">Search By Form No.</a></li>
                     <li><a  href="SearchByDate.jsp">Search By Date</a></li>
                     <li><a  href="SearchByStuff.jsp">Search By Broken Stuff</a></li>
                 </ul>
@@ -89,7 +88,7 @@ MAIN SIDEBAR MENU
                     <span>Decoration Request</span>  
                 </a>
                 <ul class="sub">
-                    <li><a  href="getAllReq">Manage Request</a></li>
+                    <li><a  href="SearchFilter?filter=New">Manage Request</a></li>
                 </ul>
             </li>
             <li class="sub-menu">

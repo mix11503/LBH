@@ -53,6 +53,10 @@
     </head>
     <body>
         <section id="container" >
+            <%        if(request.getSession().getAttribute("adminAuthen")!=null){
+                Boolean status = (Boolean) request.getSession().getAttribute("adminAuthen");
+                if(status==true){
+            %>
             <jsp:include page="adminBar.jsp"/>
             <!-- **********************************************************************************************************************************************************
             MAIN CONTENT
@@ -149,7 +153,7 @@
             </footer>
             <!--footer end-->
         </section>
-
+            <%}}else{response.sendRedirect("loginAdmin.jsp");}%>
         <!-- js placed at the end of the document so the pages load faster -->
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/jquery.ui.touch-punch.min.js"></script>
