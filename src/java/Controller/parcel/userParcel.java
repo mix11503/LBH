@@ -42,6 +42,7 @@ public class userParcel extends HttpServlet {
                 }
             }
             request.setAttribute("parcel", par);
+            request.setAttribute("rId", room);
             request.setAttribute("parcelExistAmount", i);
         }
         getServletContext().getRequestDispatcher("/userParcel.jsp").forward(request, response);

@@ -14,7 +14,7 @@
     <body>
         <center>
         <h1>::MTN PROGRESS SEARCH::</h1>
-        <form action="mtnProgress" method="get">
+        <form action="" method="get">
         <table>
             <tr><input type="number" name="mtnId"/></tr>
             <tr><input type="submit" value="Submit Form"/></tr>

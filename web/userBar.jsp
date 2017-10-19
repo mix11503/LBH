@@ -14,7 +14,7 @@
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
     </div>
     <!--logo start-->
-    <a href="userIndex?roomid=201" class="logo"><b style="color: black;">Welcome {USERNAME}</b></a>
+    <a href="user_panel.jsp" class="logo"><b style="color: black;">Welcome {USERNAME}</b></a>
     <!--logo end-->
     <div class="nav notify-row" id="top_menu" style="margin-left: 30px;">
         <!--  notification start -->
@@ -56,7 +56,7 @@
     </div>
     <div class="top-menu">
         <ul class="nav pull-right top-menu">
-            <li><a class="logout" href="userIndex?roomid=201">Logout</a></li>
+            <li><a class="logout" href="logout">Logout</a></li>
         </ul>
     </div>
 </header>
@@ -74,7 +74,7 @@ MAIN SIDEBAR MENU
             <h5 class="centered">{Username}</h5>
 
             <li class="mt">
-                <a href="userIndex?roomid=201">
+                <a href="user_panel.jsp">
                     <i class="fa fa-dashboard"></i>
                     <span>News Feed</span>
                 </a>
@@ -87,7 +87,7 @@ MAIN SIDEBAR MENU
                 </a>
                 <ul class="sub">
                     <li><a  href="userMtnReq.jsp">Create a Request</a></li>
-                    <li><a  href="MTNSearchRoom?id=201">Request History</a></li>
+                    <li><a  href="MTNSearchRoom?id=${roomId}">Request History</a></li>
                 </ul>
             </li>
 
@@ -99,7 +99,7 @@ MAIN SIDEBAR MENU
                 </a>
                 <ul class="sub">
                     <li><a  href="problemReportForm.jsp">Report Problem</a></li>
-                    <li><a  href="reportHistory?roomNo=201">History</a></li>
+                    <li><a  href="reportHistory?roomNo=${roomId}">History</a></li>
                 </ul>
             </li>
             <!-- เเว้นนนนนนนนนนนนนนนนน -->
@@ -131,7 +131,7 @@ MAIN SIDEBAR MENU
                     <span class="badge bg-theme">${parcelExistAmount}</span>
                 </a>
                 <ul class="sub">
-                    <li><a  href="userParcel?room=201">View Inbox</a></li>                                
+                    <li><a  href="userParcel?room=${roomId}">View Inbox</a></li>                                
                 </ul>
             </li>
 
@@ -142,7 +142,7 @@ MAIN SIDEBAR MENU
                 </a>
                 <ul class="sub">
                     <li><a  href="userDecReq.jsp">Request for decoration</a></li>
-                    <li><a  href="userViewHistory?roomNo=201">Request History</a></li>
+                    <li><a  href="userViewHistory?roomNo=${roomId}">Request History</a></li>
                 </ul>
             </li>
             <li class="sub-menu">
@@ -152,7 +152,7 @@ MAIN SIDEBAR MENU
                 </a>
                 <ul class="sub">
                     <li><a  href="userMovReq.jsp">Request for Moving</a></li>
-                    <li><a  href="userMovHistory?roomNo=201">Request History</a></li>
+                    <li><a  href="userMovHistory?roomNo=${roomId}">Request History</a></li>
                 </ul>
             </li>
             <li class="sub-menu">

@@ -37,11 +37,9 @@ public class getCurrentNewsByKw extends HttpServlet {
         List<newsUpdate> news = null;
         String keyword = request.getParameter("keyword").trim();
         String message = null;
-        if (keyword.equals("")==true) {
-            message = "Please enter any keyword to search!";
-        } else if (keyword.equals("")==false) {
+        if (keyword!=null) {
             news = newsUpdate.getCurrentNewsByKeyword(keyword);
-            request.setAttribute("newsUser", news);
+            request.getSession().setAttribute("newsUser", news);
         } 
         request.setAttribute("message", message);
         getServletContext().getRequestDispatcher("/user_panel.jsp").forward(request, response);

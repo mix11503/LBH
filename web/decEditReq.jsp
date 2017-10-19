@@ -102,7 +102,7 @@
           		<div class="col-lg-12">
           			<div class="form-panel">
                   	  <h4 class="mb"><i class="fa fa-angle-right"></i>Edit Your Request</h4>
-                          <form class="form-horizontal tasi-form" action="decConfirmEdit" method="get">
+                          <form class="form-horizontal tasi-form" action="decConfirmEdit" method="post">
                               <input type="text" name="roomId" value="<%=d.getRoomId()%>" hidden/>
                               <input type="text" name="id" value="<%=d.getId()%>" hidden/>
                               <div class="form-group has-success">

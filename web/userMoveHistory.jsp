@@ -38,6 +38,11 @@
   <body>
 
   <section id="container" >
+      <%
+                if(request.getSession().getAttribute("roomId")!=null){
+                int roomId = (Integer) request.getSession().getAttribute("roomId");
+                if(request.getAttribute("rId").equals(roomId+"")){
+            %>
       <jsp:include page="userBar.jsp"/>
       <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
@@ -46,7 +51,7 @@
       <section id="main-content">
           <section class="wrapper">   
           	
-              <h2>Room No. 201</h2>
+              <h2>Room No. <%=roomId%></h2>
               <% List<Moving> mov = (List) request.getAttribute("mov");
            if(mov!=null){%>
           			<div class="row">
@@ -85,7 +90,7 @@
                                   <!--td><form action="" method="get"><input type="text" value="<%=m.getId()%>" name="id" hidden>
                                           <input type="submit" value="EDIT" class="btn btn-warning" <%if(m.isStatus()==true){%>disabled<%}%>/>
                                       </form></td-->
-                                  <td><form action="deleteMove" method="get" onclick="return confirm('DELETE REQUEST?')"><input type="text" value="<%=m.getId()%>" name="id" hidden>
+                                  <td><form action="deleteMove" method="post" onclick="return confirm('DELETE REQUEST?')"><input type="text" value="<%=m.getId()%>" name="id" hidden>
                                       <input type="text" value="<%=m.getRoomId()%>" name="room" hidden><input type="submit" value="DELETE"  class="btn btn-danger" <%if(m.isStatus()==true){%>disabled<%}%>/>
                                       </form></td>
                             <%}%>
@@ -110,7 +115,7 @@
 
       <!--footer end-->
   </section>
-
+<%}}else{response.sendRedirect("login.jsp");}%>
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/jquery-1.8.3.min.js"></script>

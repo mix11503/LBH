@@ -35,6 +35,7 @@ public class userMovHistory extends HttpServlet {
         String id = request.getParameter("roomNo");
         List<Moving> mov = Moving.getRequestByRoomNo(Integer.parseInt(id));
         request.setAttribute("mov", mov);
+        request.setAttribute("rId", id);
         getServletContext().getRequestDispatcher("/userMoveHistory.jsp").forward(request, response);
     }
 

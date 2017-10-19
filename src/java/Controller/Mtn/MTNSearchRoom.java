@@ -51,6 +51,7 @@ public class MTNSearchRoom extends HttpServlet {
     }else{
             message = "please enter number!";
         }
+        request.setAttribute("rId", id);
         request.setAttribute("message", message);
         getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
     }

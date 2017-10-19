@@ -41,6 +41,10 @@
   <body>
 
   <section id="container" >
+      <%
+                if(request.getSession().getAttribute("roomId")!=null){
+                int roomId = (Integer) request.getSession().getAttribute("roomId");
+            %>
      <jsp:include page="userBar.jsp"/>
       <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
@@ -49,13 +53,12 @@
       <section id="main-content">
           <section class="wrapper">   
           	<h2>Maintenance Request Form</h2>     
-                <h3 align="right">Demo with Room 201</h3>  
                       <div class="row mt">
           		<div class="col-lg-12">
           			<div class="form-panel">
                   	  <h4 class="mb"><i class="fa fa-angle-right"></i>Complete the form to request the service</h4>
                           <form class="form-horizontal tasi-form" action="mtnReq" method="post" enctype="multipart/form-data">
-                              <input type="text" name="roomId" value="201" hidden/>
+                              <input type="text" name="roomId" value="<%=roomId%>" hidden/>
                               <div class="form-group has-success">
                                   <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Service Area</label>
                                   <div class="col-lg-10">
@@ -136,7 +139,7 @@
 
       <!--footer end-->
   </section>
-
+<%}else{response.sendRedirect("login.jsp");}%>
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/jquery-1.8.3.min.js"></script>
@@ -256,40 +259,3 @@
     </script>
   </body>
 </html>
-
-<%-- THEME --%>
-<%--   
-<head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title> 
-    </head>
-    <body>
-        <center>
-        <h1>::Request Maintenance Form::</h1>
-        <h3> Suppose it's belong to room no 201, will be completed by login system </h3>
-        <form action="mtnReq" method="get">
-        <table>
-            <tr><input type="text" name="roomId" value="201" hidden/></td></tr>
-        <tr><td>Service Area</td><td>
-                <select name="area">
-                    <option value="Balcony">Balcony</option>
-                    <option value="Toliet">Toliet</option>
-                    <option value="Kitchen">Kitchen</option>
-                    <option value="bedroom">bedroom</option>
-                    <option value="living room">living room</option>
-                    <option value="Other zone">Other zone</option>
-                </select>
-    </td></tr>
-            <tr><td>Service Stuff</td><td><select name="stuff"><option value="In Progress">In Progress..</option></select></td></tr>
-            <tr><td>Description<td><input type="text" name="desc" rows="5" style="width:200px; height:50px;"/></td></tr>
-            <tr><td>Upload Pic<td><input type="file" name="image" accept="image/*" /></td></tr>
-            <tr><td><input type="submit" value="Submit Form"/></td><td><input type="button" value="CANCLE" onclick="location.href='userMtnReq.jsp'"/></td></tr>
-        </table>
-            </form>
-        </center>
-        <center> <% if(request.getAttribute("message")!= null){ %>
-        <h3><%=request.getAttribute("message")%><h3>
-                <%}%> </center>
-    </body>
-</html>
---%>

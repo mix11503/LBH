@@ -86,6 +86,10 @@
   <body>
 
   <section id="container" >
+      <%
+                if(request.getSession().getAttribute("roomId")!=null){
+                int roomId = (Integer) request.getSession().getAttribute("roomId");
+            %>
      <jsp:include page="userBar.jsp"/>
       <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
@@ -98,8 +102,8 @@
           		<div class="col-lg-12">
           			<div class="form-panel">
                   	  <h4 class="mb"><i class="fa fa-angle-right"></i>Complete the form to request the service</h4>
-                          <form class="form-horizontal tasi-form" action="createRequest" method="get">
-                              <input type="text" name="roomId" value="201" hidden/>
+                          <form class="form-horizontal tasi-form" action="createRequest" method="post">
+                              <input type="text" name="roomId" value="<%=roomId%>" hidden/>
                               
                               <div class="form-group has-success">
                                   <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Description</label>
@@ -137,6 +141,7 @@
 
       <!--footer end-->
   </section>
+      <%}else{response.sendRedirect("login.jsp");}%>
 <!-- js placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>

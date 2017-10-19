@@ -35,6 +35,7 @@ public class userViewHistory extends HttpServlet {
         String id = request.getParameter("roomNo");
         List<Decoration> dec = Decoration.getRequestByRoomNo(Integer.parseInt(id));
         request.setAttribute("dec", dec);
+        request.setAttribute("rId", id);
         getServletContext().getRequestDispatcher("/userDecHistory.jsp").forward(request, response);
     }
 

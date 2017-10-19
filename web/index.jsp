@@ -44,6 +44,11 @@
   <body>
 
   <section id="container" >
+      <%
+                if(request.getSession().getAttribute("roomId")!=null){
+                int roomId = (Integer) request.getSession().getAttribute("roomId");
+                if(request.getAttribute("rId").equals(roomId+"")){
+            %>
       <jsp:include page="userBar.jsp"/>
       <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
@@ -52,7 +57,7 @@
       <section id="main-content">
           <section class="wrapper">   
           	
-              <h2>Room No. 201</h2>
+              <h2>Room No. <%=roomId%></h2>
               <% List<Maintanance> mtn = (List) request.getAttribute("record");
            if(mtn!=null){%>
           			<div class="row">
@@ -114,7 +119,7 @@
 
       <!--footer end-->
   </section>
-
+<%}}else{response.sendRedirect("login.jsp");}%>
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/jquery-1.8.3.min.js"></script>
@@ -175,76 +180,3 @@
 
   </body>
 </html>
-<%-- THEME --%>
-<%--
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <form action="MTNSearchRoom" method="get">
-             <h3>Search Maintenance by RoomID</h3><input type="text" name="id" required>
-            <input type="submit" value="search">
-            </form>
-        <br><br>
-        
-        <% if(request.getAttribute("message")!= null){ %>
-        <h3><%=request.getAttribute("message")%></h3>
-                <%}%>
-                
-        
-        <% List<Maintanance> mtn = (List) request.getAttribute("record");
-           if(mtn!=null){%>
-           <table border="1">
-                        <tr>
-                            <td align=center colspan="3"><b>Request Details</b></td>
-                            <td align=center colspan="3"><b>Broken Stuff</b></td>
-                            <td align=center colspan="3"><b>Action Taken</b></td>
-                            <td align=center colspan="2"><b>Evaluation Details</b></td>
-                            </tr>
-                        <tr>
-                            <td align=center ><b>Work ID</b></td>
-                            <td align=center ><b>Status</b></td>
-                            <td align=center ><b>Date</b></td>
-                            
-                            <td align=center ><b>Service Area</b></td>
-                            <td align=center ><b>Service Stuff</b></td>
-                            <td align=center ><b>Description</b></td>
-                            
-                            <td align=center ><b>Result</b></td>
-                            <td align=center ><b>Material Used</b></td>
-                            <td align=center ><b>Cost</b></td>
-                            
-                            <td align=center ><b>Evaluated</b></td>
-                            <td align=center ><b>Remark</b></td>
-                        </tr>
-                <%for(Maintanance m: mtn){ %>        
-                        <tr>
-                            <%if (m.getMtn_status().equalsIgnoreCase("done") && m.getMtn_result_eva().equalsIgnoreCase("")){%>
-                            <td><a href ="mtnEva?mtnId=<%=m.getMtn_id()%>"><%=m.getMtn_id()%></a></td>
-                            <%}else{%>
-                            <td><a href ="mtnProgress?mtnId=<%=m.getMtn_id()%>"><%=m.getMtn_id()%></a></td>
-<%}%>                      
-                            <td><b><%= m.getMtn_status() %></b></td>
-                            <td><%= m.getMtn_date() %></td>
-                            
-                            <td><%= m.getMtn_ServiceArea() %></td>
-                            <td><%= m.getMtn_area_stuff() %></td>
-                            <td><%= m.getMtn_desc() %></td>
-
-                            <td><%= m.getMtn_result() %></td>
-                            <td><%= m.getMtn_material() %></td>
-                            <td><%= m.getMtn_cost() %></td>
-                            
-                            <td><%= m.getMtn_result_eva() %></td>
-                            <td><%= m.getMtn_eva_remark() %></td>
-                        </tr>    
-                <%}%>
-                </table>
-                <%}%>
-                
-                
-    </body>
-</html>
---%>

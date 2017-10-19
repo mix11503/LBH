@@ -43,6 +43,10 @@
   <body>
 
   <section id="container" >
+     <%
+                if(request.getSession().getAttribute("roomId")!=null){
+                int roomId = (Integer) request.getSession().getAttribute("roomId");
+            %>
      <jsp:include page="userBar.jsp"/>
       <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
@@ -84,7 +88,7 @@
 
                       <div class="row mt">
                      <%
-                         List<newsUpdate> news = (List) request.getAttribute("newsUser");
+                         List<newsUpdate> news = (List) request.getSession().getAttribute("newsUser");
                          if(news!=null){
                              int i = 1;
                              String headline = null;
@@ -162,7 +166,7 @@
 
       <!--footer end-->
   </section>
-
+  <%}else{response.sendRedirect("login.jsp");}%>
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/jquery-1.8.3.min.js"></script>

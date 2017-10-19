@@ -44,6 +44,11 @@
   <body>
 
   <section id="container" >
+      <%
+                if(request.getSession().getAttribute("roomId")!=null){
+                int roomId = (Integer) request.getSession().getAttribute("roomId");
+                if(request.getAttribute("rId").equals(roomId+"")){
+            %>
       <jsp:include page="userBar.jsp"/>
       <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
@@ -52,7 +57,7 @@
       <section id="main-content">
           <section class="wrapper">   
           	
-              <h2>Room No. 201</h2>
+              <h2>Room No. <%=roomId%></h2>
               <% List<Decoration> dec = (List) request.getAttribute("dec");
            if(dec!=null){%>
           			<div class="row">
@@ -88,10 +93,10 @@
                                   <td width="300"><h5><%if(d.getDesc().length()>30){%><marquee><%=d.getDesc()%></marquee><%}else{%><%=d.getDesc()%><%}%></h5></td>
                                   <td><h5><%=d.getStart()%></h5></td>
                                   <td><h5><%=d.getEnd()%></h5></td>
-                                  <td><form action="editRequest" method="get"><input type="text" value="<%=d.getId()%>" name="id" hidden>
+                                  <td><form action="editRequest" method="post"><input type="text" value="<%=d.getId()%>" name="id" hidden>
                                           <input type="submit" value="EDIT" class="btn btn-warning" <%if(d.getStatus()==true){%>disabled<%}%>/>
                                       </form></td>
-                                  <td><form action="deleteRequest" method="get" onclick="return confirm('DELETE REQUEST?')"><input type="text" value="<%=d.getId()%>" name="id" hidden>
+                                  <td><form action="deleteRequest" method="post" onclick="return confirm('DELETE REQUEST?')"><input type="text" value="<%=d.getId()%>" name="id" hidden>
                                       <input type="text" value="<%=d.getRoomId()%>" name="room" hidden><input type="submit" value="DELETE" class="btn btn-danger" <%if(d.getStatus()==true){%>disabled<%}%>/>
                                       </form></td>
                             <%}%>
@@ -116,7 +121,7 @@
 
       <!--footer end-->
   </section>
-
+<%}}else{response.sendRedirect("login.jsp");}%>
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/jquery-1.8.3.min.js"></script>

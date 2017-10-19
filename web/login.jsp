@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Login into Admin System</title>
+        <title>Welcome, Resident</title>
         <!-- Bootstrap core CSS -->
         <link href="assets/css/bootstrap.css" rel="stylesheet">
         <!--external css-->
@@ -22,8 +22,8 @@
         <div id="login-page">
             <div class="container">
 
-                <form class="form-login" action="adminIndex" method="post">
-                    <h2 class="form-login-heading" style="background:#ffd777"><i class="fa fa-user"></i> ADMIN LOGIN</h2>
+                <form class="form-login" action="userIndex" method="post">
+                    <h2 class="form-login-heading">Resident login</h2>
                     <div class="login-wrap">
                         <input type="text" class="form-control" name="id" placeholder="User ID" autofocus required>
                         <br>
@@ -34,7 +34,7 @@
 
                             </span>
                         </label>
-                        <button class="btn btn-theme btn-block" style="background:#ffd777; border-color: #f9b718;" type="submit"><i class="fa fa-lock"></i> SIGN IN</button>
+                        <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i> SIGN IN</button>
                         
                         <h4 style="color: red;">${message}</h4>
                         <hr>

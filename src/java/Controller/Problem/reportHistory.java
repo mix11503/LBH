@@ -35,6 +35,7 @@ public class reportHistory extends HttpServlet {
         String id = request.getParameter("roomNo");
         List<Problem> pbm = Problem.getRequestByRoomNo(Integer.parseInt(id));
         request.setAttribute("pbm", pbm);
+        request.setAttribute("rId", id);
         getServletContext().getRequestDispatcher("/reportHistory.jsp").forward(request, response);
     }
 
