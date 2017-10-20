@@ -40,7 +40,7 @@ public class mtnEva extends HttpServlet {
         List<MtnChat> m = null;
         String message = null;
         String messageChat = null;
-        String target = "/mtnEvaSearch.jsp";
+        String target = "/user_panel.jsp";
         if(mtnId != null || mtnId.equals("")==false){
             try{
             mtn = Maintanance.findBymtnId(Integer.parseInt(mtnId));
@@ -69,8 +69,7 @@ public class mtnEva extends HttpServlet {
             }else{
                 messageChat = "Check Work Status, no chat currently";
             }
-        }else{
-            message = "Fill in the form!";
+            request.setAttribute("rId", mtn.getMtn_room_id());
         }
         request.setAttribute("message", message);
         request.setAttribute("messageChat", messageChat);

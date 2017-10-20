@@ -45,6 +45,11 @@
     <body>
 
         <section id="container" >
+            <%
+                if(request.getSession().getAttribute("roomId")!=null){
+                int roomId = (Integer) request.getSession().getAttribute("roomId");
+                if(request.getAttribute("rId").equals(roomId)){
+            %>
             <jsp:include page="userBar.jsp"/> 
             <!-- **********************************************************************************************************************************************************
             MAIN CONTENT
@@ -313,7 +318,7 @@
                 <center> <% if (request.getAttribute("messageChat") != null) {%>
                     <h3><%=request.getAttribute("messageChat")%><h3>
                                                 <%}%> </center>
-                           <center> <input type="button" value="Back" onclick="location.href = 'MTNSearchRoom?id=201'"/> </center>
+                           <center> <input type="button" value="Back" onclick="location.href = 'MTNSearchRoom?id=${rId}'"/> </center>
                   
       <!-- **********************************************************************************************************************************************************
       RIGHT SIDEBAR CONTENT
@@ -328,7 +333,8 @@
 
       <!--footer end-->
   </section>
-
+   <%}else{%><h3> [403] ACCESS DENIED</h3><%}
+}else{response.sendRedirect("user_panel.jsp");}%>                        
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/jquery-1.8.3.min.js"></script>
