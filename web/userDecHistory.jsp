@@ -121,7 +121,8 @@
 
       <!--footer end-->
   </section>
-<%}}else{response.sendRedirect("login.jsp");}%>
+   <%}else{%><h3> [403] ACCESS DENIED</h3><%}
+}else{response.sendRedirect("user_panel.jsp");}%>
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/jquery-1.8.3.min.js"></script>
