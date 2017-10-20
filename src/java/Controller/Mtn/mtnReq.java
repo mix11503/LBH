@@ -8,6 +8,7 @@ package Controller.Mtn;
 
 
 import Model.Maintanance;
+import static Model.notifyAdmin.createNoti;
 import com.sun.xml.wss.swa.MimeConstants;
 import java.io.File;
 import java.io.IOException;
@@ -96,6 +97,10 @@ public class mtnReq extends HttpServlet {
                 if (message.equalsIgnoreCase("")) {
                     mtn.writeNewRequest(roomid, paths);
                     target = "/MTNSearchRoom?id=" + roomid;
+                    
+                    //Create Noti
+                    //String app = request.getParameter("area") + ": " + request.getParameter("stuff");
+                    //createNoti("Resident","Maintenance","request "+app, Integer.parseInt(request.getParameter("roomId")));
                 }
             } catch (FileUploadException e) {
                 e.printStackTrace();

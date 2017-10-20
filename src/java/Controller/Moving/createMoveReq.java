@@ -6,6 +6,7 @@
 package Controller.Moving;
 
 import Model.Moving;
+import static Model.notifyAdmin.createNoti;
 import Model.stuff;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,7 +32,10 @@ public class createMoveReq extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        
         String desc = request.getParameter("desc");
         String date = request.getParameter("date");
         String time = request.getParameter("time");
@@ -51,6 +55,10 @@ public class createMoveReq extends HttpServlet {
                 stuff.addStuff(request.getParameter("stuff"+i), 1, m.getId());
             }
         }
+        //Create Noti
+            String app = null;
+            if(desc.length()>10){ app = desc.substring(0,10)+"...";}else{ app = desc;};
+            createNoti("Resident","Moving Request","request "+app, Integer.parseInt(roomId));
         }catch(Exception e){
             System.err.println(e);
         }

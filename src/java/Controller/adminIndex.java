@@ -9,9 +9,11 @@ import Model.Decoration;
 import Model.Maintanance;
 import Model.Moving;
 import Model.Problem;
+import Model.notifyAdmin;
 import Model.parcel;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -52,6 +54,9 @@ public class adminIndex extends HttpServlet {
         request.getSession().setAttribute("decAmt", dec);
         int mov = Moving.getNewRequest().size();
         request.getSession().setAttribute("movAmt", mov);
+        
+        List<notifyAdmin> noti = notifyAdmin.getNotiInfo();
+        request.getSession().setAttribute("notify", noti);
         
         request.getSession().setAttribute("adminAuthen", true);
         target = "/admin_panel.jsp";

@@ -4,6 +4,8 @@
     Author     : Joe's
 --%>
 
+<%@page import="Model.notifyAdmin"%>
+<%@page import="java.util.List"%>
 <%@page import="Model.Maintanance"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -220,141 +222,36 @@
                         <div class="col-lg-3 ds">
                             <!--COMPLETED ACTIONS DONUTS CHART-->
                             <h3>NOTIFICATIONS</h3>
-
-                            <!-- First Action -->
+                            
+                            <% List<notifyAdmin> noti = (List) request.getSession().getAttribute("notify");
+                               if(noti!=null){
+                               for(notifyAdmin n : noti){
+                            %>                            
+                            <!-- Notify Card -->
                             <div class="desc">
                                 <div class="thumb">
                                     <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
                                 </div>
                                 <div class="details">
-                                    <p><muted>2 Minutes Ago</muted><br/>
-                                    <a href="#">James Brown</a> subscribed to your newsletter.<br/>
+                                    <p><muted><%=n.getDatetime().substring(0, 19)%></muted><br/>
+                                    <a href="#">Room: <%=n.getRoom()%></a> <b><%=n.getName()%></b> just <%=n.getMessage()%>
+                                    on <b><%=n.getType()%>. </b><br/>
                                     </p>
                                 </div>
-                            </div>
-                            <!-- Second Action -->
+                            </div>       
+                            <%}}else{%>
+                            <!-- Notify Card -->
                             <div class="desc">
                                 <div class="thumb">
                                     <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
                                 </div>
                                 <div class="details">
-                                    <p><muted>3 Hours Ago</muted><br/>
-                                    <a href="#">Diana Kennedy</a> purchased a year subscription.<br/>
+                                    <p><muted>Up to date..</muted><br/>
+                                    There's nothing to notify currently, Please check later!<br/>
                                     </p>
                                 </div>
                             </div>
-                            <!-- Third Action -->
-                            <div class="desc">
-                                <div class="thumb">
-                                    <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                                </div>
-                                <div class="details">
-                                    <p><muted>7 Hours Ago</muted><br/>
-                                    <a href="#">Brandon Page</a> purchased a year subscription.<br/>
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- Fourth Action -->
-                            <div class="desc">
-                                <div class="thumb">
-                                    <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                                </div>
-                                <div class="details">
-                                    <p><muted>11 Hours Ago</muted><br/>
-                                    <a href="#">Mark Twain</a> commented your post.<br/>
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- Fifth Action -->
-                            <div class="desc">
-                                <div class="thumb">
-                                    <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                                </div>
-                                <div class="details">
-                                    <p><muted>18 Hours Ago</muted><br/>
-                                    <a href="#">Daniel Pratt</a> purchased a wallet in your store.<br/>
-                                    </p>
-                                </div>
-                            </div>
-
-                            <!-- DUPLICATE -->
-                            <div class="desc">
-                                <div class="thumb">
-                                    <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                                </div>
-                                <div class="details">
-                                    <p><muted>2 Minutes Ago</muted><br/>
-                                    <a href="#">James Brown</a> subscribed to your newsletter.<br/>
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- Second Action -->
-                            <div class="desc">
-                                <div class="thumb">
-                                    <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                                </div>
-                                <div class="details">
-                                    <p><muted>3 Hours Ago</muted><br/>
-                                    <a href="#">Diana Kennedy</a> purchased a year subscription.<br/>
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- Third Action -->
-                            <div class="desc">
-                                <div class="thumb">
-                                    <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                                </div>
-                                <div class="details">
-                                    <p><muted>7 Hours Ago</muted><br/>
-                                    <a href="#">Brandon Page</a> purchased a year subscription.<br/>
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- Fourth Action -->
-                            <div class="desc">
-                                <div class="thumb">
-                                    <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                                </div>
-                                <div class="details">
-                                    <p><muted>11 Hours Ago</muted><br/>
-                                    <a href="#">Mark Twain</a> commented your post.<br/>
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- Fifth Action -->
-                            <div class="desc">
-                                <div class="thumb">
-                                    <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                                </div>
-                                <div class="details">
-                                    <p><muted>18 Hours Ago</muted><br/>
-                                    <a href="#">Daniel Pratt</a> purchased a wallet in your store.<br/>
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- Fifth Action -->
-                            <div class="desc">
-                                <div class="thumb">
-                                    <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                                </div>
-                                <div class="details">
-                                    <p><muted>18 Hours Ago</muted><br/>
-                                    <a href="#">Daniel Pratt</a> purchased a wallet in your store.<br/>
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- Fifth Action -->
-                            <div class="desc">
-                                <div class="thumb">
-                                    <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                                </div>
-                                <div class="details">
-                                    <p><muted>18 Hours Ago</muted><br/>
-                                    <a href="#">Daniel Pratt</a> purchased a wallet in your store.<br/>
-                                    </p>
-                                </div>
-                            </div>
-
+                            <%}%>
                             <!-- USERS ONLINE SECTION -->
 
 

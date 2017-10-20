@@ -6,6 +6,7 @@
 package Controller.Problem;
 
 import Model.Problem;
+import static Model.notifyAdmin.createNoti;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -30,7 +31,10 @@ public class createReport extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        
         String topic = request.getParameter("topic");
         String desc = request.getParameter("desc");
         String roomId = request.getParameter("roomId");
@@ -41,6 +45,10 @@ public class createReport extends HttpServlet {
             p.setTopic(topic);
             p.setDesc(desc);
             p.createRequest(Integer.parseInt(roomId));
+            
+            //Create Noti
+            createNoti("Resident","Problem Report","report "+topic, Integer.parseInt(roomId));
+            
             target = "/reportHistory?roomNo="+roomId;
         }catch(Exception e){
             System.err.println(e);

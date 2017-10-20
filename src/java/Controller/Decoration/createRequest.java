@@ -6,6 +6,7 @@
 package Controller.Decoration;
 
 import Model.Decoration;
+import static Model.notifyAdmin.createNoti;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -31,7 +32,10 @@ public class createRequest extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        
         String desc = request.getParameter("desc");
         String start = request.getParameter("start");
         String end = request.getParameter("end");
@@ -44,6 +48,12 @@ public class createRequest extends HttpServlet {
             d.setStart(start);
             d.setEnd(end);
             d.createRequest(Integer.parseInt(roomId));
+            
+            //Create Noti
+            String app = null;
+            if(desc.length()>10){ app = desc.substring(0,10)+"...";}else{ app = desc;};
+            createNoti("Resident","Decorate Request","request "+app, Integer.parseInt(roomId));
+            
             target = "/userViewHistory?roomNo="+roomId;
         }catch(Exception e){
             System.err.println(e);
