@@ -36,6 +36,7 @@ public class MTNSearchRoom extends HttpServlet {
         List<Maintanance> mtn = null;
         String message = null;
         String id = request.getParameter("id");
+        String target = "/login.jsp";
         if(id != null){
         try{
             int roomId = Integer.parseInt(id);
@@ -48,12 +49,11 @@ public class MTNSearchRoom extends HttpServlet {
         }catch(Exception e){
             message = "please enter number!";
         }
-    }else{
-            message = "please enter number!";
-        }
         request.setAttribute("rId", id);
+        target = "/index.jsp";
+    } 
         request.setAttribute("message", message);
-        getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher(target).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
