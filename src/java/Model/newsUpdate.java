@@ -281,7 +281,7 @@ public class newsUpdate {
         try {
             Connection conn = ConnectionBuilder.getConnection();
             newsUpdate n = null;
-            String sqlCmd = "SELECT * FROM News WHERE News_Topic like ? and hidden = false";
+            String sqlCmd = "SELECT * FROM News WHERE News_Topic like ? and hidden = false ORDER BY News_ID DESC";
             PreparedStatement pstm = conn.prepareStatement(sqlCmd);
             pstm.setString(1, "%" + keyword + "%");
             ResultSet rs = pstm.executeQuery();
@@ -323,7 +323,7 @@ public class newsUpdate {
         try {
             Connection conn = ConnectionBuilder.getConnection();
             newsUpdate n = null;
-            String sqlCmd = "SELECT * FROM News WHERE News_Topic like ? and News_End >= ? and hidden = false";
+            String sqlCmd = "SELECT * FROM News WHERE News_Topic like ? and News_End >= ? and hidden = false  ORDER BY News_ID DESC";
             PreparedStatement pstm = conn.prepareStatement(sqlCmd);
             pstm.setString(1, "%" + keyword + "%");
             pstm.setDate(2, new java.sql.Date(new Date().getTime()));
