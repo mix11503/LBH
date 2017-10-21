@@ -44,6 +44,7 @@ public class adminIndex extends HttpServlet {
         
         if(id.equals("admin")&&password.equals("admin")){    
         //success
+        /*
         int amt = Maintanance.getReqAmountByStatus("New");
         request.getSession().setAttribute("newAmt", amt);
         int pbm = Problem.getNewRequest().size();
@@ -54,10 +55,11 @@ public class adminIndex extends HttpServlet {
         request.getSession().setAttribute("decAmt", dec);
         int mov = Moving.getNewRequest().size();
         request.getSession().setAttribute("movAmt", mov);
-        
+        */
+        /*
         List<notifyAdmin> noti = notifyAdmin.getNotiInfo();
         request.getSession().setAttribute("notify", noti);
-        
+        */
         request.getSession().setAttribute("adminAuthen", true);
         target = "/admin_panel.jsp";
         }else{

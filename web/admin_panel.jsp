@@ -4,6 +4,10 @@
     Author     : Joe's
 --%>
 
+<%@page import="Model.Moving"%>
+<%@page import="Model.Decoration"%>
+<%@page import="Model.parcel"%>
+<%@page import="Model.Problem"%>
 <%@page import="Model.notifyAdmin"%>
 <%@page import="java.util.List"%>
 <%@page import="Model.Maintanance"%>
@@ -74,13 +78,13 @@
                     <div class="row">
                         <div class="col-lg-9 main-chart">
 
-                            <div class="row">
+                            <div class="row" id="topBar"  style="display:none">
                                 <a  href="searchByStatus?status=New">
                   		<div class="col-md-2 col-sm-2 col-md-offset-1 box0">
                   			<div class="box1">
 					  			<i class="fa fa-wrench" aria-hidden="true" style="font-size:71px"></i>
 					  			<h5>Maintenances</h5>
-                  <h2 style="color:#FF0000">${newAmt} <sup><i class="fa fa-bell-o"></i></sup></h2>
+                  <h2 style="color:#FF0000"><%=Maintanance.getReqAmountByStatus("New")%> <sup><i class="fa fa-bell-o"></i></sup></h2>
                   			</div>
 					  		
                   		</div>
@@ -90,7 +94,7 @@
                   			<div class="box1">
 					  			<i class="fa fa-envelope" style="font-size:71px"></i>
                   <h5>Parcel</h5>
-			<h2 style="color:#FF0000">${parAmt} <sup><i class="fa fa-bell-o"></i></sup></h2>
+			<h2 style="color:#FF0000"><%=parcel.getExistParcel().size()%> <sup><i class="fa fa-bell-o"></i></sup></h2>
                   			</div>
 					  			
                   		</div>
@@ -100,7 +104,7 @@
                   			<div class="box1">
 					  			<i class="fa fa-comment" style="font-size:71px"></i>
                   <h5>Problem Report</h5>
-			<h2 style="color:#FF0000">${pbmAmt} <sup><i class="fa fa-bell-o"></i></sup></h2>
+			<h2 style="color:#FF0000"><%=Problem.getNewRequest().size()%> <sup><i class="fa fa-bell-o"></i></sup></h2>
                   			</div>
 					  			
                   		</div>
@@ -110,7 +114,7 @@
                                     <div class="box1">
                                         <i class="fa fa-gavel" style="font-size:71px"></i>
                                         <h5>Decoration</h5>
-                                        <h2 style="color:#FF0000">${decAmt} <sup><i class="fa fa-bell-o"></i></sup></h2>
+                                        <h2 style="color:#FF0000"><%=Decoration.getNewRequest().size()%> <sup><i class="fa fa-bell-o"></i></sup></h2>
                                     </div>
 
                                 </div>
@@ -121,7 +125,7 @@
                                     <div class="box1">
                                         <i class="fa fa-truck" style="font-size:71px"></i>
                                         <h5>Move Stuffs</h5>
-                                        <h2 style="color:#FF0000">${movAmt} <sup><i class="fa fa-bell-o"></i></sup></h2>
+                                        <h2 style="color:#FF0000"><%=Moving.getNewRequest().size()%> <sup><i class="fa fa-bell-o"></i></sup></h2>
                                     </div>
 
                                 </div>
@@ -222,8 +226,8 @@
                         <div class="col-lg-3 ds">
                             <!--COMPLETED ACTIONS DONUTS CHART-->
                             <h3>NOTIFICATIONS</h3>
-                            
-                            <% List<notifyAdmin> noti = (List) request.getSession().getAttribute("notify");
+                            <div id="noti" style="display:none">
+                            <% List<notifyAdmin> noti = notifyAdmin.getNotiInfo();
                                if(noti!=null){
                                for(notifyAdmin n : noti){
                             %>                            
@@ -252,6 +256,8 @@
                                 </div>
                             </div>
                             <%}%>
+                            </div>
+                            
                             <!-- USERS ONLINE SECTION -->
 
 
@@ -296,6 +302,8 @@
         <script src="assets/js/jquery-ui-1.9.2.custom.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/moment.min.js"></script> 
+        
+        
         <!-- <script src="assets/js/fullcalendar/fullcalendar.min.js"></script> -->  
         <script src="assets/js/fullcalendar-3.5.1/fullcalendar.min.js"></script>      
         <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
@@ -314,8 +322,6 @@
         <!--script for this page-->
         <script src="assets/js/sparkline-chart.js"></script>    
         <script src="assets/js/zabuto_calendar.js"></script>	
-
-
 
         <script type="application/javascript">
             
@@ -443,6 +449,14 @@
             });
         </script>
 
+                <script type="application/javascript">
+            $(function() {
+                $('#noti').show();
+            });
+            $(function() {
+                $('#topBar').show();
+            });
+                </script>
 
     </body>
 </html>
