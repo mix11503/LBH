@@ -236,7 +236,7 @@
                               <h4 style="color: black;">Appointment Form</h4>
                               <h6 style="color: black;">Provide your free date for service</h6>
                           <br>
-                <form action="mtnApp" method="get">
+                <form action="mtnApp" method="post">
                           <div class="form-group has-success">
                               <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">1. Date</label>
                               <div class="col-lg-10">
@@ -302,6 +302,7 @@
                               <input type="submit" value=" Submit"style=" width: 80px; height: 40px;" class="btn btn-success"/>
                               <button type="button" style=" width: 80px; height: 40px;" class="btn btn-success">Back</button>
                               <input type="text" name="mtnId" value="<%= m.getMtn_id()%>" hidden/>
+                              <input type="text" name="roomId" value="<%= m.getMtn_room_id()%>" hidden/>
                               </div>
                               </div>
                               </form>
@@ -441,97 +442,3 @@
 
   </body>
 </html>
-
-                                                <%-- THEME --%>
-                                                <%--
-                                                <html>
-                                                    <head>
-                                                        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-                                                        <title>JSP Page</title>
-                                                    </head>
-                                                    <body>
-                                                        <h1>::Maintenance Progress Tracking::</h1>
-                                                        <%
-                                                            Maintanance m = (Maintanance) request.getAttribute("mtn");
-                                                            if (m != null) {
-                                                        %>
-                                                    <center>
-                                                        <table>
-                                                            <tr>
-                                                                <td>
-                                                                    <%if (m.getMtn_status().equalsIgnoreCase("new")) {%>
-                                                                    <img src="status/1.png">
-                                                                    <%} else if (m.getMtn_status().equalsIgnoreCase("queue")) {%>
-                                                                    <img src="status/2.png">
-                                                                    <%} else if (m.getMtn_status().equalsIgnoreCase("done")) {%>
-                                                                    <img src="status/3.png">
-                                                                    <%}%>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                        <table>
-                                                         <tr> <td></td> <td><b>::Request Details::</b></td> <td></td></tr>
-                                                            <tr><td>Form ID</td><td><input type="text" value="<%= m.getMtn_id()%>" disabled/></td></tr>
-                                                            <tr><td>Date</td><td><input type="text" value="<%= m.getMtn_date()%>" disabled/></td></tr>
-                                                            <tr><td>Status</td><td><input type="text" value="<%= m.getMtn_status()%>" disabled/></td></tr>
-                                                         <tr> <td></td> <td><b>::Broken Stuff::</b></td> <td></td> </tr>
-                                                            <tr><td>Service Area<td><input type="text" value="<%= m.getMtn_ServiceArea()%>" disabled/></td></tr>
-                                                            <tr><td>Service Stuff</td><td><input type="text" value="<%= m.getMtn_area_stuff()%>" disabled/></td></tr>
-                                                            <tr><td>Description</td><td><input type="text" value="<%= m.getMtn_desc()%>" style="width:156px; height:50px;" disabled/></td></tr>
-                                                         <tr> <td></td> <td><b>::Action Taken::</b></td> <td></td> </tr>
-                                                            <tr><td>Result</td><td><input type="text" value="<%= m.getMtn_result()%>" disabled/></td></tr>
-                                                            <tr><td>Material</td><td><input type="text" value="<%= m.getMtn_material()%>" disabled/></td></tr>
-                                                            <tr><td>Cost</td><td><input type="text" value="<%= m.getMtn_cost()%>" disabled/></td></tr>
-                                                         <tr> <td></td> <td><b>::Evaluation Result::</b></td> <td></td> </tr>  
-                                                            <tr><td>Evaluation Result</td><td><input type="text" value="<%= m.getMtn_result_eva()%>" disabled/></td></tr>
-                                                            <tr><td>Remark</td><td><input type="text" value="<%= m.getMtn_eva_remark()%>" disabled/></td></tr>
-                                                        </table>
-                                                    </center>
-                                                    
-                                                            <input type="text" name="id" value="<%= m.getMtn_id()%>" hidden/>
-                                                                <br><br><br>
-                                                                <center>
-                                                        <%
-                                                            List<MtnChat> mtn = (List) request.getAttribute("mtnChat");
-                                                            if (mtn != null) {
-                                                        %>
-                                                        <% if (mtn.isEmpty() == false) { %>
-                                                                    <table border="1">
-                                                                        <tr><td><h5>Status Message</h5></td></tr>
-                                                                        <tr>
-                                                                            <td><b>Date</b></td>
-                                                                            <td><b>Status</b></td>
-                                                                        </tr>
-                                                            <%}%>
-                                                            <% for (MtnChat mc : mtn) {%>
-                                                                        <tr>
-                                                                            <td><%= mc.getDt()%></td>
-                                                                            <td><%= mc.getDesc()%></td>
-                                                                        </tr>    
-                                                            <%}%>
-                                                            <%}%>
-                                                            <% if (m.isAppToken() != false) {%>
-                                                                        <tr>
-                                                                            <td>Appointment Form</td>
-                                                                            <td><jsp:include page="appointmentForm.jsp"/>
-                                                                            <input type="text" name="mtnId" value="<%= m.getMtn_id()%>" hidden/>
-                                                                            </form>
-                                                                            </td>
-                                                                        </tr>
-                                                            <%}%>
-                                                                    </table>
-                                                        <%}%>
-                                                                </center>
-                                                                
-                                                                
-                                                    <center> <% if (request.getAttribute("message") != null) {%>
-                                                        <h3><%=request.getAttribute("message")%><h3>
-                                                                <%}%> </center>
-                                                                
-                                                                <center> <% if (request.getAttribute("messageChat") != null) {%>
-                                                                    <h3><%=request.getAttribute("messageChat")%><h3>
-                                                                            <%}%> </center>
-                                                                           <center> <input type="button" value="Back" onclick="location.href = 'MTNSearchRoom?id=201'"/> </center>
-                                                                            </body>
-                                                                            </html>
-                                                --%>

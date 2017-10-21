@@ -19,36 +19,55 @@
     <div class="nav notify-row" id="top_menu" style="margin-left: 30px;">
         <!--  notification start -->
         <ul class="nav top-menu">
-            <!-- settings start -->
-            <!-- settings end -->
-            <!-- inbox dropdown start-->
+            
+            <!-- MTN -->
             <li id="header_inbox_bar" class="dropdown">
-                <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
-                    <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-theme">1</span>
+                <a class="dropdown-toggle" href="">
+                    <i class="fa fa-wrench"></i>
+                <!--    <span class="badge bg-theme">1</span> -->
                 </a>
-                <ul class="dropdown-menu extended inbox">
-                    <div class="notify-arrow notify-arrow-green"></div>
-                    <li>
-                        <p class="green">You have 1 new messages</p>
-                    </li>
-                    <li>
-                        <a href="mtnProgress?mtnId=10001">
-                            <span class="photo"><img alt="avatar" src="assets/img/ui-divya.jpg"></span>
-                            <span class="subject">
-                                <span class="from">Admin Duengjai</span>
-                                <span class="time">9/5/2017</span>
-                            </span>
-                            <span class="message">
-                                Your request has been done!
-                            </span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="">See all messages</a>
-                    </li>
-                </ul>
+            </li>
+            <!-- PROBLEM -->
+            <li id="header_inbox_bar" class="dropdown">
+                <a class="dropdown-toggle" href="">
+                    <i class="fa fa-comment"></i>
+                <!--    <span class="badge bg-theme">1</span> -->
+                </a>
+            </li>
+            <!-- KEYCARD -->
+            <li id="header_inbox_bar" class="dropdown">
+                <a class="dropdown-toggle" href="">
+                    <i class="fa fa-key"></i>
+                <!--    <span class="badge bg-theme">1</span> -->
+                </a>
+            </li>
+            <!-- BLUETOOTH -->
+            <li id="header_inbox_bar" class="dropdown">
+                <a class="dropdown-toggle" href="">
+                    <i class="fa fa-car"></i>
+                <!--    <span class="badge bg-theme">1</span> -->
+                </a>
+            </li>
+            <!-- PARCEL -->
+            <li id="header_inbox_bar" class="dropdown">
+                <a class="dropdown-toggle" href="userParcel?room=${roomId}">
+                    <i class="fa fa-envelope"></i>
+                    <span class="badge bg-theme">${parcelExistAmount}</span>
+                </a>
+            </li>
+            <!-- DECORATE -->
+            <li id="header_inbox_bar" class="dropdown">
+                <a class="dropdown-toggle" href="">
+                    <i class="fa fa-gavel"></i>
+                <!--    <span class="badge bg-theme">1</span> -->
+                </a>
+            </li>
+            <!-- MOVING -->
+            <li id="header_inbox_bar" class="dropdown">
+                <a class="dropdown-toggle" href="">
+                    <i class="fa fa-truck"></i>
+                <!--    <span class="badge bg-theme">1</span> -->
+                </a>
             </li>
             <!-- inbox dropdown end -->
         </ul>
@@ -127,8 +146,7 @@ MAIN SIDEBAR MENU
             <li class="sub-menu">
                 <a href="javascript:;" >
                     <i class="fa fa-envelope-o"></i>
-                    <span>Parcel box</span>&nbsp;
-                    <span class="badge bg-theme">${parcelExistAmount}</span>
+                    <span>Parcel box</span>
                 </a>
                 <ul class="sub">
                     <li><a  href="userParcel?room=${roomId}">View Inbox</a></li>                                

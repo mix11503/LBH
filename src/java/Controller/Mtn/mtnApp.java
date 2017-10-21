@@ -10,6 +10,7 @@ package Controller.Mtn;
 import Model.Maintanance;
 import Model.MtnChat;
 import Model.mtnAppointment;
+import static Model.notifyAdmin.createNoti;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -72,6 +73,10 @@ public class mtnApp extends HttpServlet {
                         + "Optional Choice: "+other;
             mc.setDesc(desc);
             mc.updateChat(Integer.parseInt(mtnId));
+            
+            //Create Noti
+            String appoint = " Appointment Date: "+date1+", ["+time1+" - "+timeend1+"]";
+            createNoti("Resident","Maintenance","request "+appoint, Integer.parseInt(request.getParameter("roomId")));
             
         }catch(Exception e){
             System.err.println(e);

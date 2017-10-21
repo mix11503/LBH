@@ -153,6 +153,23 @@ public class parcel {
         return parcel;
     }
     
+    public static int getAmtParcelByRoomId(int roomId) {
+        int amt = 0;
+        try {
+            Connection conn = ConnectionBuilder.getConnection();
+            String sqlCmd = "SELECT count(Parcel_ID) AS amt FROM Parcel where Room_ID = "+roomId+" AND Parcel_Status = false";
+            PreparedStatement pstm = conn.prepareStatement(sqlCmd);
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                amt = rs.getInt("amt");
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            System.err.println("Parcel, getAmtByRoomID: " + ex);
+        }
+        return amt;
+    }
+    
     public static List<parcel> searchParcelByDate(String date) {
         List<parcel> parcel = new ArrayList<parcel>();
         try {
@@ -295,6 +312,8 @@ parcel p = parcel.searchByBarcode("AB12345TH");
         System.out.println("success");
 */
     //parcel.markPrinted("2017-09-16");
+       // System.out.println(parcel.getAmtParcelByRoomId(201));
+      //  System.out.println(parcel.getAmtParcelByRoomId(202));
     }
 
     public String getPickStamp() {

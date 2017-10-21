@@ -8,6 +8,7 @@ package Controller.Mtn;
 
 
 import Model.Maintanance;
+import static Model.notifyAdmin.createNoti;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -49,6 +50,10 @@ public class finishEva extends HttpServlet {
             }catch(Exception e){
                 System.err.println("Finish eva: " + e);
             }
+            
+            //Create Noti
+            createNoti("Resident","Maintenance","evaluate "+eva+": "+remark, Integer.parseInt(request.getParameter("roomId")));
+            
         }else{
             message = "Please select your evaluation!";
         }

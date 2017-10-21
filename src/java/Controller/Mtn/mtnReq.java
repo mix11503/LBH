@@ -56,7 +56,11 @@ public class mtnReq extends HttpServlet {
             FileItemFactory factory = new DiskFileItemFactory();
             ServletFileUpload upload = new ServletFileUpload(factory);
             List<String> paths = new LinkedList<String>();
-
+            
+            //Add to notify
+            String area = "";
+            String stuff = "";
+            
             try {
                 List items = upload.parseRequest(request);
                 Iterator iterator = items.iterator();
@@ -73,8 +77,10 @@ public class mtnReq extends HttpServlet {
                             roomid = Integer.parseInt(value);
                         } else if (name.equalsIgnoreCase("area")) {
                             mtn.setMtn_ServiceArea(value);
+                            area = value;
                         } else if (name.equalsIgnoreCase("stuff")) {
                             mtn.setMtn_area_stuff(value);
+                            stuff = value;
                         } else if (name.equalsIgnoreCase("desc")) {
                             mtn.setMtn_desc(value);
                         }
@@ -99,8 +105,7 @@ public class mtnReq extends HttpServlet {
                     target = "/MTNSearchRoom?id=" + roomid;
                     
                     //Create Noti
-                    //String app = request.getParameter("area") + ": " + request.getParameter("stuff");
-                    //createNoti("Resident","Maintenance","request "+app, Integer.parseInt(request.getParameter("roomId")));
+                    createNoti("Resident","Maintenance","request "+area+": "+stuff, roomid);
                 }
             } catch (FileUploadException e) {
                 e.printStackTrace();

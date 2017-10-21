@@ -192,6 +192,7 @@
                                   <input type="submit" value="Evaluate"/>
                               <br>
                                 <input type="text" name="id" value="<%= m.getMtn_id()%>" hidden/>
+                                <input type="text" name="roomId" value="<%= m.getMtn_room_id()%>" hidden/>
             </form>
                               <hr>
 

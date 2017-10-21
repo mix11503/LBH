@@ -87,7 +87,7 @@
                                                 </div>
                                             </div>
 
-                                            <form  method="get" action="updateStatus">
+                                            <form  method="post" action="updateStatus">
                                                 <div class="form-group has-success">
                                                     <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Status</label>
                                                     <table border="0"><tr>  
@@ -146,7 +146,7 @@
                             
                             <hr>
                             <h4 style="color: black;">Action Taken</h4>
-                            <form  method="get" action="updateAction">
+                            <form  method="post" action="updateAction">
                               <div class="form-group has-success">
                               <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Result</label>
                               <div class="col-lg-10">
@@ -228,7 +228,7 @@
                               <h4 style="color: black;">Progress Message Update</h4> 
                                         <%-- TEST BUTTON --%>           
                               
-           <form action="updateChat" method="get">
+           <form action="updateChat" method="post">
                
                               <div class="row mt">
                               <div class="col-sm-6" style="margin-left: 0%">
@@ -247,7 +247,7 @@
                               </form>
                               <br>
                                         <%--END TEST BUTTON --%>                  
-                              <form action="updateChat" method="get">
+                              <form action="updateChat" method="post">
                               <div class="row">
                                       <div class="col-sm-5">
                                           <textarea class="form-control" id="chattext" name="chat" required></textarea>
@@ -263,7 +263,7 @@
                                  
                               </form>
                                     <br>
-                                    <form action="setAppointment" method="get">
+                                    <form action="setAppointment" method="post">
                                       <div class="row">
                                         <div class="col-sm-3">
                                            <input type="submit" class="btn btn-warning" value="Request for Appointment Info" <%if (m.isAppToken() == true) {%>disabled<%}%> >
@@ -463,87 +463,3 @@
 
   </body>
 </html>
-                            <%-- THEME --%>
-                            <%--
-                            <html>
-                                <head>
-                                    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-                                    <title>JSP Page</title>
-                                </head>
-                                <form action="SearchMtnReq" method="get">
-                                    <h3>Each Maintenance Request Management</h3><input type="text" name="id">
-                                    <input type="submit" value="search">
-                                </form>
-                                <% if (request.getAttribute("message") != null) {%>
-                                <h3><%=request.getAttribute("message")%><h3>
-                                        <%}%>
-                                        <%
-                                            Maintanance m = (Maintanance) request.getAttribute("mtn");
-                                            if (m != null) {
-                                        %>
-                                        <center>
-                                            <h1>::Request Details::</h1>
-                                            <form action="" method="get">
-                                                <table>
-                                                    <tr><td>Form ID</td><td><input type="text" value="<%= m.getMtn_id()%>" disabled/></td></tr>
-                                                    <tr><td>Date</td><td><input type="text" value="<%= m.getMtn_date()%>" disabled/></td></tr>
-                                                    <tr><td>Status<td><select name="status">
-                                                                <option value="New"<%if (m.getMtn_status().equalsIgnoreCase("new")) {%>selected="selected"<%}%>>New</option>
-                                                                <option value="Queue"<%if (m.getMtn_status().equalsIgnoreCase("queue")) {%>selected="selected"<%}%>>Queue</option>
-                                                                <option value="Done"<%if (m.getMtn_status().equalsIgnoreCase("done")) {%>selected="selected"<%}%>>Done</option></select></td></tr>
-                                                    <tr><td>Service Area<td><input type="text" value="<%= m.getMtn_ServiceArea()%>"/></td></tr>
-                                                    <tr><td>Description</td><td><input type="text" value="<%= m.getMtn_desc()%>"/></td></tr>
-                                                    <tr><td>Result</td><td><input type="text" value="<%= m.getMtn_result()%>"/></td></tr>
-                                                    <tr><td>Material</td><td><input type="text" value="<%= m.getMtn_material()%>"/></td></tr>
-                                                    <tr><td>Cost</td><td><input type="text" value="<%= m.getMtn_cost()%>"/></td></tr>
-                                                    <tr><td>Evaluate</td><td><input type="text" value="<%= m.getMtn_result_eva()%>" disabled/></td></tr>
-                                                    <tr><td>Remark</td><td><input type="text" value="<%= m.getMtn_eva_remark()%>" disabled/></td></tr>
-                                                    <tr><td><input type="submit" value="Update Info"/></td></tr>
-                                                </table>
-                                                <input type="text" name="id" value="<%= m.getMtn_id()%>" hidden/>
-                                            </form>
-                                        </center>
-                                        <%}%>
-                                        <hr>
-                                        <center>
-                                            <%
-                                                List<MtnChat> mtn = (List) request.getAttribute("mtnChat");
-                                                if (mtn != null) {
-                                            %>
-                                            <table border="1">
-                                                <tr><td><h5>Status Message</h5></td></tr>
-                                                <tr>
-                                                    <td><b>Date</b></td>
-                                                    <td><b>Status</b></td>
-                                                </tr>
-                                                <% for (MtnChat mc : mtn) {%>
-                                                <tr>
-                                                    <td><%= mc.getDt()%></td>
-                                                    <td><%= mc.getDesc()%></td>
-                                                </tr>    
-                                                <%}%>
-                                            </table>
-
-                <form action="updateChat" method="get">
-                    <h3>Update Chat</h3><input type="text" name="chat">
-                    <input type="submit" value="Update">
-                    <input type="text" name="id" value="<%= m.getMtn_id()%>" hidden/>
-                </form>
-                
-                <form action="setAppointment" method="get">
-                    <input type="submit" value="Request for Appointment Info" <%if(m.isAppToken()==true){%>disabled<%}%> >
-                    <input type="text" name="appToken" value="true" hidden/>
-                    <input type="text" name="id" value="<%= m.getMtn_id()%>" hidden/>
-                </form>
-                <% if (request.getAttribute("messageUC") != null) {%>
-                <h3><%=request.getAttribute("messageUC")%><h3>
-                        <%}%>
-
-                        <%}%>
-                        </center>
-                        <center> <% if (request.getAttribute("messageChat") != null) {%>
-                            <h3><%=request.getAttribute("messageChat")%><h3>
-                                    <%}%> </center>
-                                    </body>
-                                    </html>
-                            --%>

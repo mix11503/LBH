@@ -6,6 +6,7 @@
 package Controller;
 
 import Model.newsUpdate;
+import Model.parcel;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -44,6 +45,10 @@ public class userIndex extends HttpServlet {
         if(news!=null){request.getSession().setAttribute("newsUser", news);}
         request.getSession().setAttribute("roomId", Integer.parseInt(roomid));
         target = "/user_panel.jsp";
+        
+        //Noti Bar
+        int parAmt = parcel.getAmtParcelByRoomId(Integer.parseInt(roomid));
+        request.getSession().setAttribute("parcelExistAmount", parAmt);
         }else{
             message = "Please check your ID or Password";
         }
