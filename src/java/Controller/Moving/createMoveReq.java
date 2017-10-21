@@ -41,18 +41,21 @@ public class createMoveReq extends HttpServlet {
         String time = request.getParameter("time");
         String roomId = request.getParameter("roomId");
         String st = request.getParameter("stuff");
+        String stAmt = request.getParameter("stuffAmt");
+        String type = request.getParameter("type");
+        
         try{
             Moving m = new Moving();
             m.setDateMove(date+" "+time);
-            m.setInOrOut(true);
+            m.setInOrOut(Boolean.parseBoolean(type));
             m.setRemark(desc);
             m.createRequest(Integer.parseInt(roomId));
             //add stuff
-            stuff.addStuff(st, 1, m.getId());
+            stuff.addStuff(st, Integer.parseInt(stAmt), m.getId());
             //add more stuff
         for(int i=1;i<=10;i++){
             if(request.getParameter("stuff"+i)!=null){
-                stuff.addStuff(request.getParameter("stuff"+i), 1, m.getId());
+                stuff.addStuff(request.getParameter("stuff"+i), Integer.parseInt(request.getParameter("stuffAmt"+i)), m.getId());
             }
         }
         //Create Noti

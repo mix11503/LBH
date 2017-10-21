@@ -60,6 +60,15 @@
                                 <form action="createMoveReq" method="post">
                                     <input type="text" name="roomId" value="<%=roomId%>" hidden/>  
                                 <div class="form-group has-success">
+                                  <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Type of Move</label>
+                                  <div class="col-lg-10">
+                                      <select class="form-control" name="type" required>
+                                                  <option value="true">Move In</option>
+                                                  <option value="false">Move Out</option>
+						</select>
+                                  </div><br><br>
+                              </div>    
+                                <div class="form-group has-success">
                                   <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Date of Move</label>
                                   <div class="col-lg-10">
                                   <input type="date" class="form-control" name="date" required>
@@ -80,7 +89,8 @@
                                     <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">List your stuffs</label>
                                     <div class="field_wrapper">
                                     <div>
-                                        <input type="text" name="stuff" value="" required/> &nbsp;&nbsp;
+                                        <input type="text" name="stuff" value="" placeholder="Stuff" required/> &nbsp;&nbsp;
+                                        <input type="number" name="stuffAmt" value="" placeholder="Amount" required/> &nbsp;&nbsp;
                                         <a href="javascript:void(0);" class="add_button" title="Add field">
                                             <button type="button" class="btn btn-info"> + </button>
                                         </a>
@@ -132,7 +142,7 @@
                 var prestyle = '<label class="col-sm-2 control-label col-lg-2" for="inputSuccess">>></label>';
             $(addButton).click(function () { //Once add button is clicked
                     if (x < maxField) { //Check maximum number of input fields 
-                        $(wrapper).append('<div>'+prestyle+'<input type="text" name="stuff'+x+'" required/><a href="javascript:void(0);" class="remove_button" title="Remove field">'+removeBut+'</a></div>'); // Add field html
+                        $(wrapper).append('<div>'+prestyle+'<input type="text" name="stuff'+x+'" placeholder="Stuff" required/>&nbsp;&nbsp;<input type="number" name="stuffAmt'+x+'" value="" placeholder="Amount" required/>&nbsp;<a href="javascript:void(0);" class="remove_button" title="Remove field">'+removeBut+'</a></div>'); // Add field html
                     x++; //Increment field counter
         }
                 });
