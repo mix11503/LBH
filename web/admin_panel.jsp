@@ -77,6 +77,15 @@
 
                     <div class="row">
                         <div class="col-lg-9 main-chart">
+                            
+                            <% int mtnAmt = Maintanance.getReqAmountByStatus("New");
+                               int parAmt = parcel.getExistParcel().size(); 
+                               int proAmt = Problem.getNewRequest().size();
+                               int decAmt = Decoration.getNewRequest().size();
+                               int movAmt = Moving.getNewRequest().size();
+                               String bell = " <sup><i class='fa fa-bell-o'></i></sup>";
+                               String ok = "<div style='color:green;'>OK!</div>";
+                            %>
 
                             <div class="row" id="topBar"  style="display:none">
                                 <a  href="searchByStatus?status=New">
@@ -84,7 +93,7 @@
                   			<div class="box1">
 					  			<i class="fa fa-wrench" aria-hidden="true" style="font-size:71px"></i>
 					  			<h5>Maintenances</h5>
-                  <h2 style="color:#FF0000"><%=Maintanance.getReqAmountByStatus("New")%> <sup><i class="fa fa-bell-o"></i></sup></h2>
+                  <h2 style="color:#FF0000"><%=mtnAmt==0?ok:mtnAmt+bell%></h2>
                   			</div>
 					  		
                   		</div>
@@ -94,7 +103,7 @@
                   			<div class="box1">
 					  			<i class="fa fa-envelope" style="font-size:71px"></i>
                   <h5>Parcel</h5>
-			<h2 style="color:#FF0000"><%=parcel.getExistParcel().size()%> <sup><i class="fa fa-bell-o"></i></sup></h2>
+			<h2 style="color:#FF0000"><%=parAmt==0?ok:parAmt+bell%></h2>
                   			</div>
 					  			
                   		</div>
@@ -104,7 +113,7 @@
                   			<div class="box1">
 					  			<i class="fa fa-comment" style="font-size:71px"></i>
                   <h5>Problem Report</h5>
-			<h2 style="color:#FF0000"><%=Problem.getNewRequest().size()%> <sup><i class="fa fa-bell-o"></i></sup></h2>
+                  <h2 style="color:#FF0000"><%=proAmt==0?ok:proAmt+bell%></h2>
                   			</div>
 					  			
                   		</div>
@@ -114,7 +123,7 @@
                                     <div class="box1">
                                         <i class="fa fa-gavel" style="font-size:71px"></i>
                                         <h5>Decoration</h5>
-                                        <h2 style="color:#FF0000"><%=Decoration.getNewRequest().size()%> <sup><i class="fa fa-bell-o"></i></sup></h2>
+                                        <h2 style="color:#FF0000"><%=decAmt==0?ok:decAmt+bell%></h2>
                                     </div>
 
                                 </div>
@@ -125,7 +134,7 @@
                                     <div class="box1">
                                         <i class="fa fa-truck" style="font-size:71px"></i>
                                         <h5>Move Stuffs</h5>
-                                        <h2 style="color:#FF0000"><%=Moving.getNewRequest().size()%> <sup><i class="fa fa-bell-o"></i></sup></h2>
+                                        <h2 style="color:#FF0000"><%=movAmt==0?ok:movAmt+bell%></h2>
                                     </div>
 
                                 </div>
@@ -358,7 +367,7 @@
                 $('#notiDetails').load(listAllNoti());
                  //window.location.reload(true);
                     //listAllNoti();
-                }, 5000);
+                }, 10000);
                 
                 console.log($('#calendar').fullCalendar( 'getEventSources' ));                
                 

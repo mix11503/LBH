@@ -46,9 +46,6 @@ public class userIndex extends HttpServlet {
         request.getSession().setAttribute("roomId", Integer.parseInt(roomid));
         target = "/user_panel.jsp";
         
-        //Noti Bar
-        int parAmt = parcel.getAmtParcelByRoomId(Integer.parseInt(roomid));
-        request.getSession().setAttribute("parcelExistAmount", parAmt);
         }else{
             message = "Please check your ID or Password";
         }

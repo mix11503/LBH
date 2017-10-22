@@ -241,6 +241,27 @@ public class Decoration {
         }
         return dec;
     }
+    
+    public static int getAmountReqNoti(int RoomId) {
+        int amt = -1;
+        try {
+            Connection conn = ConnectionBuilder.getConnection();
+            String sqlCmd = "SELECT COUNT(*) AS AMT FROM DecorateRequest where Room_ID = ? and DEC_status = ? and DEC_Start >= ?";
+            PreparedStatement pstm = conn.prepareStatement(sqlCmd);
+            pstm.setInt(1, RoomId);
+            pstm.setBoolean(2, true);
+            pstm.setDate(3, new java.sql.Date(new Date().getTime()));
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                amt = rs.getInt("AMT");
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            System.err.println("Dec, getAmtNoti: " + ex);
+        }
+        return amt;
+    }
+    
     public static void main(String[] args) {
         /*
         Decoration d = new Decoration();
@@ -258,6 +279,7 @@ public class Decoration {
        }
        */
         //System.out.println(Decoration.findById(2).toString());
+        //System.out.println(getAmountReqNoti(202));
 }
 
     public Date getReqDate() {
