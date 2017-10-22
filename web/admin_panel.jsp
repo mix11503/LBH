@@ -351,7 +351,14 @@
 		});
                 
                 //NotiAdmin
+                
                 listAllNoti();
+                window.setInterval(function(){
+                $('#notiDetails').empty();
+                $('#notiDetails').load(listAllNoti());
+                 //window.location.reload(true);
+                    //listAllNoti();
+                }, 5000);
                 
                 console.log($('#calendar').fullCalendar( 'getEventSources' ));                
                 
@@ -390,11 +397,11 @@
                             $('#notiDetails').append('<div class="desc"><div class="thumb"><span class="badge bg-theme">'+
                               '<i class="fa fa-clock-o"></i></span></div><div class="details">'+
                               '<p><muted>'+notifyAdmin.datetime+'</muted><br/>'+
-                              '<a href="#">'+notifyAdmin.room+'</a> <b>'+notifyAdmin.name+'</b>'+ notifyAdmin.message+
-                              '<b>'+notifyAdmin.type+'</b><br/></p></div></div>'
+                              'Room: <a href="#">'+notifyAdmin.room+',<br/></a><b> '+notifyAdmin.name+' </b>'+ notifyAdmin.message+
+                              ' on <b>'+notifyAdmin.type+'</b><br/></p></div></div>'
                             )                            
                     });
-                    console.log(data);
+                    //console.log(data);
                 }, "json")
             }
                 
@@ -440,6 +447,7 @@
                     $('#calendar').fullCalendar( 'refetchEvents' );
                 });
             });
+            
         </script>
 
                 <script type="application/javascript">
@@ -449,7 +457,8 @@
             $(function() {
                 $('#topBar').show();
             });
-                </script>
+            
+          </script>
 
     </body>
 </html>
