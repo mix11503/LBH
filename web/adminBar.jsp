@@ -31,7 +31,7 @@ MAIN SIDEBAR MENU
         <ul class="sidebar-menu" id="nav-accordion">
 
             <p class="centered"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-            <h5 class="centered">Admin DuengJai</h5>
+            <h5 class="centered">Mr. Scofield</h5>
                 <!-- Add class="active" at a href to blue hilight-->
             <li class="mt">
                 <a href="admin_panel.jsp">

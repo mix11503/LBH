@@ -226,42 +226,15 @@
                         <div class="col-lg-3 ds">
                             <!--COMPLETED ACTIONS DONUTS CHART-->
                             <h3>NOTIFICATIONS</h3>
-                            <div id="noti" style="display:none">
-                            <% List<notifyAdmin> noti = notifyAdmin.getNotiInfo();
-                               if(noti!=null){
-                               for(notifyAdmin n : noti){
-                            %>                            
-                            <!-- Notify Card -->
-                            <div class="desc">
-                                <div class="thumb">
-                                    <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                            <!--jsp:include page="admin_panel_noti.jsp"/-->
+                            
+                            <div id="notiAjax">                                
+                                <div id="notiDetails">      
+                                    
                                 </div>
-                                <div class="details">
-                                    <p><muted><%=n.getDatetime().substring(0, 19)%></muted><br/>
-                                    <a href="#">Room: <%=n.getRoom()%></a> <b><%=n.getName()%></b> just <%=n.getMessage()%>
-                                    on <b><%=n.getType()%>. </b><br/>
-                                    </p>
-                                </div>
-                            </div>       
-                            <%}}else{%>
-                            <!-- Notify Card -->
-                            <div class="desc">
-                                <div class="thumb">
-                                    <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                                </div>
-                                <div class="details">
-                                    <p><muted>Up to date..</muted><br/>
-                                    There's nothing to notify currently, Please check later!<br/>
-                                    </p>
-                                </div>
-                            </div>
-                            <%}%>
                             </div>
                             
                             <!-- USERS ONLINE SECTION -->
-
-
-
 
                             <!-- CALENDAR>
                             <div id="calendar" class="mb">
@@ -376,6 +349,10 @@
                         $('#eventDetailModal').modal('toggle');
                     }
 		});
+                
+                //NotiAdmin
+                listAllNoti();
+                
                 console.log($('#calendar').fullCalendar( 'getEventSources' ));                
                 
                 $.ajax({
@@ -405,6 +382,22 @@
                         {type: "block", label: "Regular event", }
                     ]
                 });
+               
+               //get noti Req
+            function listAllNoti(){
+                $.post("adminPanelNoti",function(data){
+                    $.each(data, function(i, notifyAdmin) {     
+                            $('#notiDetails').append('<div class="desc"><div class="thumb"><span class="badge bg-theme">'+
+                              '<i class="fa fa-clock-o"></i></span></div><div class="details">'+
+                              '<p><muted>'+notifyAdmin.datetime+'</muted><br/>'+
+                              '<a href="#">'+notifyAdmin.room+'</a> <b>'+notifyAdmin.name+'</b>'+ notifyAdmin.message+
+                              '<b>'+notifyAdmin.type+'</b><br/></p></div></div>'
+                            )                            
+                    });
+                    console.log(data);
+                }, "json")
+            }
+                
             });
 
             function deleteEvent(id){

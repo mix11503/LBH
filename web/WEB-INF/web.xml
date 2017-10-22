@@ -348,6 +348,10 @@
         <servlet-name>logout</servlet-name>
         <servlet-class>Controller.logout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>adminPanelNoti</servlet-name>
+        <servlet-class>Controller.adminPanelNoti</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
         <url-pattern>/MTNSearchRoom</url-pattern>
@@ -695,6 +699,10 @@
     <servlet-mapping>
         <servlet-name>logout</servlet-name>
         <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminPanelNoti</servlet-name>
+        <url-pattern>/adminPanelNoti</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
