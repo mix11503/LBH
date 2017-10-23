@@ -3,6 +3,9 @@
     Created on : Apr 30, 2017, 3:42:55 PM
     Author     : Joe's
 --%>
+<%@page import="java.util.List"%>
+<%@page import="Model.notifyUser"%>
+<%@page import="Model.KeycardReq"%>
 <%@page import="Model.Moving"%>
 <%@page import="Model.Decoration"%>
 <%@page import="Model.parcel"%>
@@ -23,6 +26,9 @@
     int parAmt = parcel.getAmtParcelByRoomId(roomId);
     int decAmt = Decoration.getAmountReqNoti(roomId);
     int movAmt = Moving.getAmountReqNoti(roomId);
+    int keyAmt = KeycardReq.getAmountReqNoti(roomId);
+    List<notifyUser> mtnDetails = notifyUser.getNotiMtnByRoom(roomId);
+    int mtnAmt = mtnDetails.size();
     %>
     <div class="nav notify-row" id="top_menu" style="margin-left: 30px;">
         <!--  notification start -->
@@ -37,16 +43,37 @@
             </li>
             <!-- MTN -->
             <li id="header_inbox_bar" class="dropdown">
-                <a class="dropdown-toggle">
+                <a data-toggle="dropdown" class="dropdown-toggle">
                     <i class="fa fa-wrench"></i>
-                <!--    <span class="badge bg-theme">1</span> -->
+                    <span class="badge bg-theme"><%=mtnAmt==0?"":mtnAmt%></span>
                 </a>
+                        <ul class="dropdown-menu extended inbox">
+                            <div class="notify-arrow notify-arrow-green"></div>
+                            <li>
+                                <p class="green"><%=mtnAmt==0?"You are up to date.":"You have "+mtnAmt+" new messages."%></p>
+                            </li>
+                            <%for(notifyUser nu : mtnDetails){
+                                if(nu!=null){ %>
+                            <li>
+                                <a href="<%=nu.getAction()%>">
+                                    <span class="photo"><img alt="avatar" src="assets/img/ui-zac.jpg"></span>
+                                    <span class="subject">
+                                    <span class="from">Admin</span>
+                                    <span class="time"><%=nu.getDatetime().substring(0,16)%></span>
+                                    </span>
+                                    <span class="message">
+                                        <%=nu.getMessage()%>
+                                    </span>
+                                </a>
+                            </li>
+                            <%}}%>
+                        </ul>    
             </li>
             <!-- KEYCARD -->
             <li id="header_inbox_bar" class="dropdown">
-                <a class="dropdown-toggle">
+                <a class="dropdown-toggle" <%=keyAmt==0?"":"href='SearchKeycardByRoom'"%>>
                     <i class="fa fa-key"></i>
-                <!--    <span class="badge bg-theme">1</span> -->
+                    <span class="badge bg-theme"><%=keyAmt==0?"":keyAmt%></span>
                 </a>
             </li>
             <!-- BLUETOOTH -->
@@ -54,7 +81,7 @@
                 <a class="dropdown-toggle">
                     <i class="fa fa-car"></i>
                 <!--    <span class="badge bg-theme">1</span> -->
-                </a>
+                </a>          
             </li>
             <!-- DECORATE -->
             <li id="header_inbox_bar" class="dropdown">

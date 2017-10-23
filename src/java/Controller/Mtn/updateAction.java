@@ -6,6 +6,7 @@
 package Controller.Mtn;
 
 import Model.Maintanance;
+import Model.notifyUser;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -35,6 +36,7 @@ public class updateAction extends HttpServlet {
         String result = request.getParameter("result");
         String cost = request.getParameter("cost");
         String material = request.getParameter("material");
+        String room = request.getParameter("room");
         Maintanance m = null;
         double dcost;
         String message = null;
@@ -47,6 +49,7 @@ public class updateAction extends HttpServlet {
                     m.setMtn_material(material);
                     m.setMtn_cost(dcost);
                     m.updateAction(Integer.parseInt(id));
+                    notifyUser.createNotiMtn("mtnProgress?mtnId="+id,"Action Taken: "+result,Integer.parseInt(room));
                 } catch (Exception e) {
                     System.err.println("updateAction " + e);
                 }

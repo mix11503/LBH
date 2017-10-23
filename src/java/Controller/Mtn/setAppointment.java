@@ -7,6 +7,7 @@ package Controller.Mtn;
 
 import Model.Maintanance;
 import Model.MtnChat;
+import Model.notifyUser;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -34,11 +35,13 @@ public class setAppointment extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String appToken = request.getParameter("appToken");
         String id = request.getParameter("id");
+        String room = request.getParameter("room");
         Maintanance mtn = null;
         try{
             mtn = Maintanance.findBymtnId(Integer.parseInt(id));
             mtn.setAppToken(Boolean.parseBoolean(appToken));
             mtn.setAppToken(Integer.parseInt(id));
+            notifyUser.createNotiMtn("mtnProgress?mtnId="+id,"Please fill in appointment form.",Integer.parseInt(room));
         }catch(Exception e){
             System.err.println(e);
         }

@@ -7,6 +7,7 @@ package Controller.Mtn;
  */
 
 import Model.Maintanance;
+import Model.notifyUser;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -33,12 +34,22 @@ public class updateStatus extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String id = request.getParameter("id");
+        String room = request.getParameter("room");
         String status = request.getParameter("status");
+        
+        String path;
+        if (status.equalsIgnoreCase("done")) {
+            path = "mtnEva?mtnId="+id;
+        }else{
+            path = "mtnProgress?mtnId="+id;
+        }
+        
         Maintanance m = null;
         if(id!=null&&status!=null){
             try{
             m = new Maintanance();
             m.updateStatus(Integer.parseInt(id), status);
+            notifyUser.createNotiMtn(path,"Request Status Update: "+status,Integer.parseInt(room));
         }catch(Exception e){
                 System.err.println("updateStatus "+e);
         }

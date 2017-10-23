@@ -6,6 +6,7 @@
 package Controller.Mtn;
 
 import Model.MtnChat;
+import Model.notifyUser;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -34,6 +35,7 @@ public class updateChat extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String chat = request.getParameter("chat");
         String id = request.getParameter("id");
+        String room = request.getParameter("room");
         MtnChat m = null;
         String message = null;
         if (chat != null || chat.trim().equalsIgnoreCase("") == false) {
@@ -42,6 +44,7 @@ public class updateChat extends HttpServlet {
                 m.setDesc(chat);
                 m.setMtnId(Integer.parseInt(id));
                 m.updateChat(Integer.parseInt(id));
+                notifyUser.createNotiMtn("mtnProgress?mtnId="+id,"Message: "+chat,Integer.parseInt(room));
             } catch (Exception e) {
                 message = "please enter number!";
             }

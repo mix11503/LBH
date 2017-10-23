@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 
 import java.util.*;
@@ -116,6 +117,27 @@ public class KeycardReq {
         this.key_fee = rs.getLong("KEY_Req_Fee");
         this.key_date = rs.getDate("KEY_Req_Date");
         this.keycard = Keycard.findById(rs.getInt("KEY_ID"));
+    }
+    
+    public static int getAmountReqNoti(int RoomId) {
+        int amt = -1;
+        try {
+            Connection conn = ConnectionBuilder.getConnection();
+            String sqlCmd = "SELECT COUNT(*) AS AMT FROM Keycard_Request kr join Keycard k on kr.KEY_ID = k.KEY_ID"
+                    + " where ROOM_ID = ? and KEY_Status_Approve NOT LIKE ? and KEY_Req_Date >= ?";
+            PreparedStatement pstm = conn.prepareStatement(sqlCmd);
+            pstm.setInt(1, RoomId);
+            pstm.setString(2,"WaitingAdd");
+            pstm.setString(3, LocalDate.now().minusMonths(1).toString());
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                amt = rs.getInt("AMT");
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            System.err.println("Key, getAmtNoti: " + ex);
+        }
+        return amt;
     }
     
     public static KeycardReq listWaitingRequestByRoom(int roomId){

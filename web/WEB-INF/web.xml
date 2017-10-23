@@ -352,6 +352,10 @@
         <servlet-name>adminPanelNoti</servlet-name>
         <servlet-class>Controller.adminPanelNoti</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>userMtnNoti</servlet-name>
+        <servlet-class>Controller.userMtnNoti</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
         <url-pattern>/MTNSearchRoom</url-pattern>
@@ -703,6 +707,10 @@
     <servlet-mapping>
         <servlet-name>adminPanelNoti</servlet-name>
         <url-pattern>/adminPanelNoti</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>userMtnNoti</servlet-name>
+        <url-pattern>/userMtnNoti</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

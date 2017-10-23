@@ -105,6 +105,7 @@
                                                 </div>
 
                                                 <input type="text" name="id" value="<%= m.getMtn_id()%>" hidden/>
+                                                <input type="text" name="room" value="<%= m.getMtn_room_id()%>" hidden/>
                                             </form>
                                             <h4 style="color: black;">Service Information</h4>
                                             <div class="form-group has-success">
@@ -169,6 +170,7 @@
                               </div>
                                   <input type="submit" value="Update Result"/>
                                   <input type="text" name="id" value="<%= m.getMtn_id()%>" hidden/>
+                                  <input type="text" name="room" value="<%= m.getMtn_room_id()%>" hidden/>
                                       </form>
                                       <h4 style="color:#FF0000">${messageAction}</h4>
                                   <hr>
@@ -244,6 +246,7 @@
                               </div>
                               </div>
                               <input type="text" name="id" value="<%= m.getMtn_id()%>" hidden/>
+                              <input type="text" name="room" value="<%= m.getMtn_room_id()%>" hidden/>
                               </form>
                               <br>
                                         <%--END TEST BUTTON --%>                  
@@ -254,6 +257,7 @@
                                       </div>
                               </div>
                                 <input type="text" name="id" value="<%= m.getMtn_id()%>" hidden/>
+                                <input type="text" name="room" value="<%= m.getMtn_room_id()%>" hidden/>
                               <br>
                               <div class="row">
                                       <div class="col-sm-2">
@@ -269,6 +273,7 @@
                                            <input type="submit" class="btn btn-warning" value="Request for Appointment Info" <%if (m.isAppToken() == true) {%>disabled<%}%> >
                                            <input type="text" name="appToken" value="true" hidden/>
                                            <input type="text" name="id" value="<%= m.getMtn_id()%>" hidden/>
+                                           <input type="text" name="room" value="<%= m.getMtn_room_id()%>" hidden/>
                                         </div>
                                       </div>
                                     </form>
