@@ -105,7 +105,7 @@
                                  else{pic = "gen.jpg";}
                      %>
                       
-                        <div class="col-md-3 col-sm-3 mb" data-toggle="modal" data-target="#myModal<%=i%>">
+                        <div class="col-md-3 col-sm-3 mb" data-toggle="modal" data-target="#myModal<%=nu.getNews_id()%>">
                           <div class="white-panel pn white-header">
                             <div class="white-header">
                                 <h5 style="color: #272b34;"><b><%=headline%></b></h5>
@@ -123,7 +123,7 @@
                         </div><!-- /col-md-3-->
                         
                         <!-- Modal -->
-            <div class="modal fade" id="myModal<%=i%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal fade" id="myModal<%=nu.getNews_id()%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">

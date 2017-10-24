@@ -33,7 +33,31 @@
     <div class="nav notify-row" id="top_menu" style="margin-left: 30px;">
         <!--  notification start -->
         <ul class="nav top-menu">
-            
+            <!-- NOTI 
+            <li id="header_inbox_bar" class="dropdown">
+                <a data-toggle="dropdown" class="dropdown-toggle">
+                    <i class="fa fa-bell-o"></i>
+                    <span class="badge bg-theme"></span>
+                </a>
+                        <ul class="dropdown-menu extended inbox">
+                            <div class="notify-arrow notify-arrow-green"></div>
+                            <li>
+                                <p class="green"></p>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <span class="photo"><img alt="avatar" src="assets/img/ui-zac.jpg"></span>
+                                    <span class="subject">
+                                    <span class="from">Admin</span>
+                                    <span class="time"></span>
+                                    </span>
+                                    <span class="message">
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>    
+            </li>
+            -->
             <!-- PARCEL -->
             <li id="header_inbox_bar" class="dropdown">
                 <a class="dropdown-toggle" <%=parAmt==0?"":"href='userParcel?room="%>${roomId}'>
