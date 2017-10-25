@@ -29,10 +29,16 @@ public class LoadAllEvent extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
+
         List<WorkCalendarEvent> eventList = WorkCalendarEvent.findAllEvent();
         Gson gson = new Gson();
-        response.getOutputStream().print(gson.toJson(eventList));
-    }
+       // response.getOutputStream().print(gson.toJson(eventList));
+        
+         try (PrintWriter out = response.getWriter()) {
+             out.println(gson.toJson(eventList));
+        }
+         }
+    
     
     @Override
     public String getServletInfo() {

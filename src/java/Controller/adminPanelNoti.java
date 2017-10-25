@@ -29,7 +29,10 @@ public class adminPanelNoti extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         List<notifyAdmin> noti = notifyAdmin.getNotiInfo();
         Gson gson = new Gson();
-        response.getOutputStream().print(gson.toJson(noti));      
+        //response.getOutputStream().print(gson.toJson(noti));   
+        try (PrintWriter out = response.getWriter()) {
+             out.println(gson.toJson(noti));
+        }
     }
     
     @Override

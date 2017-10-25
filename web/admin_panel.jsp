@@ -4,6 +4,7 @@
     Author     : Joe's
 --%>
 
+<%@page import="Model.WorkCalendarEvent"%>
 <%@page import="Model.Moving"%>
 <%@page import="Model.Decoration"%>
 <%@page import="Model.parcel"%>
@@ -141,7 +142,6 @@
                                     </a>
                                         
                             </div><!-- /row mt -->	
-                            
                             <!-- Calendar API -->
                             <div>
                                 <aside class="col-lg-12 mt">
@@ -263,7 +263,8 @@
                     </div><! --/row -->
                 </section>
             </section>
-
+            
+                
             <!--main content end-->
             <!--footer start-->
             <footer class="site-footer">
