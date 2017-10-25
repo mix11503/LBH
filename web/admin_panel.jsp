@@ -364,11 +364,12 @@
                 
                 listAllNoti();
                 window.setInterval(function(){
-                $('#notiDetails').empty();
-                $('#notiDetails').load(listAllNoti());
+                updateNoti();
+                //$('#notiDetails').empty();
+                //$('#notiDetails').load(listAllNoti());
                  //window.location.reload(true);
                     //listAllNoti();
-                }, 10000);
+                }, 5000);
                 
                 console.log($('#calendar').fullCalendar( 'getEventSources' ));                
                 
@@ -400,9 +401,12 @@
                     ]
                 });
                
+               var notiList;
+               
                //get noti Req
             function listAllNoti(){
                 $.post("adminPanelNoti",function(data){
+                    notiList = $.ajax({type: "POST", url: "adminPanelNoti", async: false}).responseText;
                     $.each(data, function(i, notifyAdmin) {     
                             $('#notiDetails').append('<div class="desc"><div class="thumb"><span class="badge bg-theme">'+
                               '<i class="fa fa-clock-o"></i></span></div><div class="details">'+
@@ -411,10 +415,18 @@
                               ' on <b>'+notifyAdmin.type+'</b><br/></p></div></div>'
                             )                            
                     });
-                    //console.log(data);
+                    //console.log(notiList);
                 }, "json")
             }
-                
+            
+            function updateNoti(){
+                var newList = $.ajax({type: "POST", url: "adminPanelNoti", async: false}).responseText;
+                if(notiList!=newList){
+                    notiList = newList;    
+                    $('#notiDetails').empty();
+                    $('#notiDetails').load(listAllNoti());
+            }
+        }
             });
 
             function deleteEvent(id){
