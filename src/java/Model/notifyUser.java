@@ -269,8 +269,8 @@ public class notifyUser {
      */
         //System.out.println(notifyUser.getNotiMtnByRoom(201).size());
         //createNotiNews("/test",10071,300);
-        /*
-        List<notifyUser> noti = notifyUser.getNotiNewsByRoom(201);
+/*        
+        List<notifyUser> noti = notifyUser.getNotiNewsByRoom(202);
         for(notifyUser n : noti){
             System.out.println(n.toStringNews());
         }

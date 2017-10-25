@@ -29,35 +29,44 @@
     int keyAmt = KeycardReq.getAmountReqNoti(roomId);
     List<notifyUser> mtnDetails = notifyUser.getNotiMtnByRoom(roomId);
     int mtnAmt = notifyUser.getAmtNewMtnNotifyByRoom(roomId);
+    List<notifyUser> newsNotify = notifyUser.getNotiNewsByRoom(roomId);
     %>
     <div class="nav notify-row" id="top_menu" style="margin-left: 30px;">
         <!--  notification start -->
         <ul class="nav top-menu">
-            <!-- NOTI 
+            <!-- NOTI -->
             <li id="header_inbox_bar" class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle">
                     <i class="fa fa-bell-o"></i>
-                    <span class="badge bg-theme"></span>
+                    <span class="badge bg-theme"><%=newsNotify.size()==0?"":"<i class='fa fa-star'></i>"%></span>
                 </a>
                         <ul class="dropdown-menu extended inbox">
                             <div class="notify-arrow notify-arrow-green"></div>
                             <li>
                                 <p class="green"></p>
                             </li>
+                            <%for(notifyUser nn : newsNotify){
+                                if(nn!=null){
+                            String pic = "gen.jpg";
+                            if(nn.getNews_cate().equals("amb")){pic = "amb.jpg";}
+                                 else if(nn.getNews_cate().equals("mtn")){pic = "mtn.jpg";}
+                                 else if(nn.getNews_cate().equals("ads")){pic = "ads.jpg";}
+                                 else{pic = "gen.jpg";}
+                            %>
                             <li>
-                                <a href="">
-                                    <span class="photo"><img alt="avatar" src="assets/img/ui-zac.jpg"></span>
+                                <a  data-toggle="modal" data-target="#myModal<%=nn.getNews_id()%>"> 
+                                    <span class="photo"><img alt="avatar" src="<%=pic%>"></span>
                                     <span class="subject">
-                                    <span class="from">Admin</span>
-                                    <span class="time"></span>
+                                    <span class="from">ATTENTION!</span>
+                                    <span class="time"><%=nn.getNews_datetime().substring(0,16)%></span>
                                     </span>
-                                    <span class="message">
-                                    </span>
+                                    <span class="message"><%=nn.getNews_topic()%></span>
                                 </a>
                             </li>
+                            <%}}%>
                         </ul>    
             </li>
-            -->
+            
             <!-- PARCEL -->
             <li id="header_inbox_bar" class="dropdown">
                 <a class="dropdown-toggle" <%=parAmt==0?"":"href='userParcel?room="%>${roomId}'>
