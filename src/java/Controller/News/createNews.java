@@ -6,6 +6,7 @@
 package Controller.News;
 
 import Model.newsUpdate;
+import static Model.notifyUser.createNotiNews;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -60,14 +61,15 @@ public class createNews extends HttpServlet {
             
             if(all!=null){
              nu.attachedTag(nu.getNews_id(), Integer.parseInt(all));
+             createNotiNews("",nu.getNews_id(),0);
             }else{
-            if(f2!=null){nu.attachedTag(nu.getNews_id(), Integer.parseInt(f2));}
-            if(f3!=null){nu.attachedTag(nu.getNews_id(), Integer.parseInt(f3));}
-            if(f4!=null){nu.attachedTag(nu.getNews_id(), Integer.parseInt(f4));}
-            if(f5!=null){nu.attachedTag(nu.getNews_id(), Integer.parseInt(f5));}
-            if(f6!=null){nu.attachedTag(nu.getNews_id(), Integer.parseInt(f6));}
-            if(f7!=null){nu.attachedTag(nu.getNews_id(), Integer.parseInt(f7));}
-            if(f8!=null){nu.attachedTag(nu.getNews_id(), Integer.parseInt(f8));}
+            if(f2!=null){nu.attachedTag(nu.getNews_id(), Integer.parseInt(f2));createNotiNews("",nu.getNews_id(),200);}
+            if(f3!=null){nu.attachedTag(nu.getNews_id(), Integer.parseInt(f3));createNotiNews("",nu.getNews_id(),300);}
+            if(f4!=null){nu.attachedTag(nu.getNews_id(), Integer.parseInt(f4));createNotiNews("",nu.getNews_id(),400);}
+            if(f5!=null){nu.attachedTag(nu.getNews_id(), Integer.parseInt(f5));createNotiNews("",nu.getNews_id(),500);}
+            if(f6!=null){nu.attachedTag(nu.getNews_id(), Integer.parseInt(f6));createNotiNews("",nu.getNews_id(),600);}
+            if(f7!=null){nu.attachedTag(nu.getNews_id(), Integer.parseInt(f7));createNotiNews("",nu.getNews_id(),700);}
+            if(f8!=null){nu.attachedTag(nu.getNews_id(), Integer.parseInt(f8));createNotiNews("",nu.getNews_id(),800);}
             }     
             message = "Create News Successfully!";
         }catch(Exception e){

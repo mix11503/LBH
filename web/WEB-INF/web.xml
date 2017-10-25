@@ -356,6 +356,10 @@
         <servlet-name>userMtnNoti</servlet-name>
         <servlet-class>Controller.userMtnNoti</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>clicked</servlet-name>
+        <servlet-class>Controller.Mtn.clicked</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
         <url-pattern>/MTNSearchRoom</url-pattern>
@@ -711,6 +715,10 @@
     <servlet-mapping>
         <servlet-name>userMtnNoti</servlet-name>
         <url-pattern>/userMtnNoti</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>clicked</servlet-name>
+        <url-pattern>/clicked</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

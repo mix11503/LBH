@@ -3,6 +3,7 @@
     Created on : Apr 30, 2017, 3:42:55 PM
     Author     : Joe's
 --%>
+<%@page import="java.net.URLEncoder"%>
 <%@page import="java.util.List"%>
 <%@page import="Model.notifyUser"%>
 <%@page import="Model.KeycardReq"%>
@@ -54,7 +55,7 @@
                                  else{pic = "gen.jpg";}
                             %>
                             <li>
-                                <a  data-toggle="modal" data-target="#myModal<%=nn.getNews_id()%>"> 
+                                <a data-toggle="modal" data-target="#myModal<%=nn.getNews_id()%>"> 
                                     <span class="photo"><img alt="avatar" src="<%=pic%>"></span>
                                     <span class="subject">
                                     <span class="from">ATTENTION!</span>
@@ -86,9 +87,11 @@
                                 <p class="green"><%=mtnAmt==0?"You are up to date.":"You have "+mtnAmt+" new messages."%></p>
                             </li>
                             <%for(notifyUser nu : mtnDetails){
-                                if(nu!=null){ %>
+                                if(nu!=null){ 
+                            String path = URLEncoder.encode(nu.getAction(), "UTF-8");
+                            %>
                                 <li <%=nu.isClicked()?"":"style='background-color:rgba(0,0,0,0.07)'"%>>
-                                    <a href="<%=nu.getAction()%>">
+                                    <a href="clicked?id=<%=nu.getId()%>&add=<%=path%>">
                                     <span class="photo"><img alt="avatar" src="assets/img/ui-zac.jpg"></span>
                                     <span class="subject">
                                     <span class="from">Admin</span>
