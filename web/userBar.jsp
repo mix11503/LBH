@@ -28,7 +28,7 @@
     int movAmt = Moving.getAmountReqNoti(roomId);
     int keyAmt = KeycardReq.getAmountReqNoti(roomId);
     List<notifyUser> mtnDetails = notifyUser.getNotiMtnByRoom(roomId);
-    int mtnAmt = mtnDetails.size();
+    int mtnAmt = notifyUser.getAmtNewMtnNotifyByRoom(roomId);
     %>
     <div class="nav notify-row" id="top_menu" style="margin-left: 30px;">
         <!--  notification start -->
@@ -78,8 +78,8 @@
                             </li>
                             <%for(notifyUser nu : mtnDetails){
                                 if(nu!=null){ %>
-                            <li>
-                                <a href="<%=nu.getAction()%>">
+                                <li <%=nu.isClicked()?"":"style='background-color:rgba(0,0,0,0.07)'"%>>
+                                    <a href="<%=nu.getAction()%>">
                                     <span class="photo"><img alt="avatar" src="assets/img/ui-zac.jpg"></span>
                                     <span class="subject">
                                     <span class="from">Admin</span>

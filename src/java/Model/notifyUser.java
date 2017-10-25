@@ -19,12 +19,22 @@ public class notifyUser {
     private String message;
     private Date expire;
     private int room;
+    private boolean clicked;
     
     private int news_id;
     private String news_action;
     private String news_topic;
     private String news_cate;
     private String news_datetime;
+
+    
+    public boolean isClicked() {
+        return clicked;
+    }
+
+    public void setClicked(boolean clicked) {
+        this.clicked = clicked;
+    }
 
     public int getId() {
         return id;
@@ -143,6 +153,20 @@ public class notifyUser {
         }
         return x > 0;
     }
+    public static boolean notifyClicked(int id) {
+        int x = 0;
+        try {
+            Connection conn = ConnectionBuilder.getConnection();
+            String sqlCmd = "Update notiMtnUser set clicked = true where notiM_id = ?";
+            PreparedStatement pstm = conn.prepareStatement(sqlCmd);
+            pstm.setInt(1, id);
+            x = pstm.executeUpdate();
+            conn.close();
+        } catch (SQLException ex) {
+            System.err.println("notifyUser, clicked: " + ex);
+        }
+        return x > 0;
+    }
     public static List<notifyUser> getNotiMtnByRoom(int roomId) {
         List<notifyUser> noti = new ArrayList<notifyUser>();
         try {
@@ -162,6 +186,7 @@ public class notifyUser {
                 nu.setExpire(rs.getDate("notiM_expired"));
                 nu.setMessage(rs.getString("notiM_message"));
                 nu.setRoom(rs.getInt("notiM_room"));
+                nu.setClicked(rs.getBoolean("clicked"));
                 noti.add(nu);
             }
             conn.close();
@@ -169,6 +194,24 @@ public class notifyUser {
             System.err.println("notifyUser, getNotiMtnByRoom: " + ex);
         }
         return noti;
+    }
+    public static int getAmtNewMtnNotifyByRoom(int roomId) {
+        int amt = -1;
+        try {
+            Connection conn = ConnectionBuilder.getConnection();
+            String sqlCmd = "SELECT count(*) AS AMT FROM notiMtnUser where notiM_room = ? and notiM_expired >= ? and clicked = false";
+            PreparedStatement pstm = conn.prepareStatement(sqlCmd);
+            pstm.setInt(1, roomId);
+            pstm.setString(2, LocalDate.now().toString());
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                amt = rs.getInt("amt");
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            System.err.println("notifyUser, getNotiMtnNewAmtByRoom: " + ex);
+        }
+        return amt;
     }
     public static boolean createNotiNews(String action, int newsID, int roomTag) {
         int x = 0;
@@ -194,7 +237,7 @@ public class notifyUser {
         try {
             Connection conn = ConnectionBuilder.getConnection();
             notifyUser nu = null;
-            String sqlCmd = "SELECT * FROM notiNews nn join News n ON nn.newsID = n.News_ID  where nn.roomTag = 0 OR nn.roomTag = ?"
+            String sqlCmd = "SELECT * FROM notiNews nn join News n ON nn.newsID = n.News_ID  where nn.roomTag = 0 OR nn.roomTag = ? "
                     + "and n.News_Start<= ? and n.News_End >= ? and n.hidden = false ORDER BY nn.newsID DESC";
             PreparedStatement pstm = conn.prepareStatement(sqlCmd);
             int tag = (roomId/100)*100;
@@ -232,6 +275,9 @@ public class notifyUser {
             System.out.println(n.toStringNews());
         }
 */
+        //System.out.println(getAmtNewMtnNotifyByRoom(201));
+       // System.out.println(getAmtNewMtnNotifyByRoom(202));
+       //notifyClicked(12);
     }
 
 }
