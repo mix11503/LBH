@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -137,9 +138,10 @@ public class parcel {
         try {
             Connection conn = ConnectionBuilder.getConnection();
             parcel p = null;
-            String sqlCmd = "SELECT * FROM Parcel where Room_ID = ? ORDER BY Parcel_ID DESC";
+            String sqlCmd = "SELECT * FROM Parcel where Room_ID = ? and Parcel_Date >= ? ORDER BY Parcel_ID DESC";
             PreparedStatement pstm = conn.prepareStatement(sqlCmd);
             pstm.setInt(1, roomId);
+            pstm.setString(2, LocalDate.now().minusMonths(1).toString());
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 p = new parcel();
@@ -157,8 +159,9 @@ public class parcel {
         int amt = 0;
         try {
             Connection conn = ConnectionBuilder.getConnection();
-            String sqlCmd = "SELECT count(Parcel_ID) AS amt FROM Parcel where Room_ID = "+roomId+" AND Parcel_Status = false";
+            String sqlCmd = "SELECT count(Parcel_ID) AS amt FROM Parcel where Room_ID = "+roomId+" AND Parcel_Status = false and Parcel_Date >= ?";
             PreparedStatement pstm = conn.prepareStatement(sqlCmd);
+            pstm.setString(1, LocalDate.now().minusMonths(1).toString());
             ResultSet rs = pstm.executeQuery();
             if (rs.next()) {
                 amt = rs.getInt("amt");

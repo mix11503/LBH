@@ -70,7 +70,7 @@
     </servlet>
     <servlet>
         <servlet-name>testRichMCE</servlet-name>
-        <servlet-class>Controller.testRichMCE</servlet-class>
+        <servlet-class>.testRichMCE</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>searchNews</servlet-name>
@@ -359,6 +359,10 @@
     <servlet>
         <servlet-name>clicked</servlet-name>
         <servlet-class>Controller.Mtn.clicked</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>adminBarNoti</servlet-name>
+        <servlet-class>Controller.adminBarNoti</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
@@ -719,6 +723,10 @@
     <servlet-mapping>
         <servlet-name>clicked</servlet-name>
         <url-pattern>/clicked</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminBarNoti</servlet-name>
+        <url-pattern>/adminBarNoti</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

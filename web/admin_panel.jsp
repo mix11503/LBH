@@ -78,23 +78,14 @@
 
                     <div class="row">
                         <div class="col-lg-9 main-chart">
-                            
-                            <% int mtnAmt = Maintanance.getReqAmountByStatus("New");
-                               int parAmt = parcel.getExistParcel().size(); 
-                               int proAmt = Problem.getNewRequest().size();
-                               int decAmt = Decoration.getNewRequest().size();
-                               int movAmt = Moving.getNewRequest().size();
-                               String bell = " <sup><i class='fa fa-bell-o'></i></sup>";
-                               String ok = "<div style='color:green;'>OK!</div>";
-                            %>
 
                             <div class="row" id="topBar"  style="display:none">
                                 <a  href="searchByStatus?status=New">
                   		<div class="col-md-2 col-sm-2 col-md-offset-1 box0">
                   			<div class="box1">
-					  			<i class="fa fa-wrench" aria-hidden="true" style="font-size:71px"></i>
-					  			<h5>Maintenances</h5>
-                  <h2 style="color:#FF0000"><%=mtnAmt==0?ok:mtnAmt+bell%></h2>
+		<i class="fa fa-wrench" aria-hidden="true" style="font-size:71px"></i>
+		<h5>Maintenances</h5>
+                  <h2 id="mtnAmt" style="color:#FF0000"></h2>
                   			</div>
 					  		
                   		</div>
@@ -104,7 +95,7 @@
                   			<div class="box1">
 					  			<i class="fa fa-envelope" style="font-size:71px"></i>
                   <h5>Parcel</h5>
-			<h2 style="color:#FF0000"><%=parAmt==0?ok:parAmt+bell%></h2>
+			<h2 id="parAmt" style="color:#FF0000"></h2>
                   			</div>
 					  			
                   		</div>
@@ -114,7 +105,7 @@
                   			<div class="box1">
 					  			<i class="fa fa-comment" style="font-size:71px"></i>
                   <h5>Problem Report</h5>
-                  <h2 style="color:#FF0000"><%=proAmt==0?ok:proAmt+bell%></h2>
+                  <h2 id="proAmt" style="color:#FF0000"></h2>
                   			</div>
 					  			
                   		</div>
@@ -124,7 +115,7 @@
                                     <div class="box1">
                                         <i class="fa fa-gavel" style="font-size:71px"></i>
                                         <h5>Decoration</h5>
-                                        <h2 style="color:#FF0000"><%=decAmt==0?ok:decAmt+bell%></h2>
+                                        <h2 id="decAmt" style="color:#FF0000"></h2>
                                     </div>
 
                                 </div>
@@ -135,7 +126,7 @@
                                     <div class="box1">
                                         <i class="fa fa-truck" style="font-size:71px"></i>
                                         <h5>Move Stuffs</h5>
-                                        <h2 style="color:#FF0000"><%=movAmt==0?ok:movAmt+bell%></h2>
+                                        <h2 id="movAmt" style="color:#FF0000"></h2>
                                     </div>
 
                                 </div>
@@ -361,14 +352,11 @@
 		});
                 
                 //NotiAdmin
-                
+                getBarAmt();
                 listAllNoti();
                 window.setInterval(function(){
                 updateNoti();
-                //$('#notiDetails').empty();
-                //$('#notiDetails').load(listAllNoti());
-                 //window.location.reload(true);
-                    //listAllNoti();
+                updateBar();
                 }, 5000);
                 
                 console.log($('#calendar').fullCalendar( 'getEventSources' ));                
@@ -379,7 +367,7 @@
                         // will fire when timeout is reached
                     },
                     success: function(data){
-                        console.log("DATA: "+data);
+                        //console.log("DATA: "+data);
                     },
                     timeout: 30000 // sets timeout to 3 seconds
                 });
@@ -427,6 +415,41 @@
                     $('#notiDetails').load(listAllNoti());
             }
         }
+        
+        var barList;
+            //get Bar Amt
+            function getBarAmt(){
+                $.ajax({
+                    type: "GET", 
+                    url: "adminBarNoti",
+                    dataType: "json",
+                    success: function(amt){
+                        $('#mtnAmt').append(amt.mtnAmt);
+                        $('#parAmt').append(amt.parAmt);
+                        $('#proAmt').append(amt.proAmt);
+                        $('#decAmt').append(amt.decAmt);
+                        $('#movAmt').append(amt.movAmt);
+                        //console.log(amt);
+                    }
+                });
+                barList = $.ajax({type: "GET", url: "adminBarNoti", async: false}).responseText;
+                //console.log(amt);
+                //console.log($.ajax({type: "GET", url: "adminBarNoti", async: false}).responseText);
+            }
+            
+            function updateBar(){
+                var newBar = $.ajax({type: "GET", url: "adminBarNoti", async: false}).responseText;
+                if(barList!=newBar){
+                    barList = newBar;
+                    $('#mtnAmt').empty();
+                    $('#parAmt').empty();
+                    $('#proAmt').empty();
+                    $('#decAmt').empty();
+                    $('#movAmt').empty();
+                    getBarAmt();
+                }
+            }
+        
             });
 
             function deleteEvent(id){
