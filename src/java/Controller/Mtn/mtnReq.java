@@ -105,7 +105,7 @@ public class mtnReq extends HttpServlet {
                     target = "/MTNSearchRoom?id=" + roomid;
                     
                     //Create Noti
-                    createNoti("Resident","Maintenance","request "+area+": "+stuff, roomid);
+                    createNoti("Resident","Maintenance","request "+area+": "+stuff,"SearchMtnReq?id="+mtn.getMtn_id(), roomid);
                 }
             } catch (FileUploadException e) {
                 e.printStackTrace();

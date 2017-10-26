@@ -396,11 +396,11 @@
                 $.post("adminPanelNoti",function(data){
                     notiList = $.ajax({type: "POST", url: "adminPanelNoti", async: false}).responseText;
                     $.each(data, function(i, notifyAdmin) {     
-                            $('#notiDetails').append('<div class="desc"><div class="thumb"><span class="badge bg-theme">'+
+                            $('#notiDetails').append('<a href="'+notifyAdmin.action+'"><div class="desc"><div class="thumb"><span class="badge bg-theme">'+
                               '<i class="fa fa-clock-o"></i></span></div><div class="details">'+
                               '<p><muted>'+notifyAdmin.datetime+'</muted><br/>'+
-                              'Room: <a href="#">'+notifyAdmin.room+',<br/></a><b> '+notifyAdmin.name+' </b>'+ notifyAdmin.message+
-                              ' on <b>'+notifyAdmin.type+'</b><br/></p></div></div>'
+                              'Room: <b style="color:#ff4000;">'+notifyAdmin.room+'<br/></b><b> '+notifyAdmin.name+' </b>'+ notifyAdmin.message+
+                              ' on <b  style="color:#28aec1;">'+notifyAdmin.type+'</b><br/></p></div></div></a>'
                             )                            
                     });
                     //console.log(notiList);

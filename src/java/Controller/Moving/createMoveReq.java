@@ -61,7 +61,7 @@ public class createMoveReq extends HttpServlet {
         //Create Noti
             String app = null;
             if(desc.length()>10){ app = desc.substring(0,10)+"...";}else{ app = desc;};
-            createNoti("Resident","Moving Request","request "+app, Integer.parseInt(roomId));
+            createNoti("Resident","Moving Request","request "+app,"admMgnReq", Integer.parseInt(roomId));
         }catch(Exception e){
             System.err.println(e);
         }

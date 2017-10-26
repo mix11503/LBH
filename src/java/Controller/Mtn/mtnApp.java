@@ -76,7 +76,7 @@ public class mtnApp extends HttpServlet {
             
             //Create Noti
             String appoint = " Appointment Date: "+date1+", ["+time1+" - "+timeend1+"]";
-            createNoti("Resident","Maintenance","request "+appoint, Integer.parseInt(request.getParameter("roomId")));
+            createNoti("Resident","Maintenance","request "+appoint,"SearchMtnReq?id="+mtnId, Integer.parseInt(request.getParameter("roomId")));
             
         }catch(Exception e){
             System.err.println(e);

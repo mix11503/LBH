@@ -52,7 +52,7 @@ public class createRequest extends HttpServlet {
             //Create Noti
             String app = null;
             if(desc.length()>10){ app = desc.substring(0,10)+"...";}else{ app = desc;};
-            createNoti("Resident","Decorate Request","request "+app, Integer.parseInt(roomId));
+            createNoti("Resident","Decorate Request","request "+app,"SearchFilter?filter=New", Integer.parseInt(roomId));
             
             target = "/userViewHistory?roomNo="+roomId;
         }catch(Exception e){

@@ -371,6 +371,7 @@ public class Maintanance {
             x = pstm.executeUpdate();
             ResultSet rs = pstm.getGeneratedKeys();
             if (rs.next()) {
+                this.mtn_id = rs.getInt(1);
                 int key = rs.getInt(1);
                 for (int i = 0; i < paths.size(); i++) {
                     sqlCmd = "INSERT INTO MTN_Pic"

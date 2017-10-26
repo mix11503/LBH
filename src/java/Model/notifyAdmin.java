@@ -18,6 +18,7 @@ public class notifyAdmin {
     private String type;
     private String message;
     private int room;
+    private String action;
 
     public int getId() {
         return id;
@@ -66,10 +67,18 @@ public class notifyAdmin {
     public void setRoom(int room) {
         this.room = room;
     }
+    
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
 
     @Override
     public String toString() {
-        return "notifyAdmin{" + "id=" + id + ", name=" + name + ", datetime=" + datetime + ", type=" + type + ", message=" + message + ", room=" + room + '}';
+        return "notifyAdmin{" + "id=" + id + ", name=" + name + ", datetime=" + datetime + ", type=" + type + ", message=" + message + ", room=" + room + ", action=" + action + '}';
     }
     
     private static void orm(ResultSet rs, notifyAdmin na) throws SQLException {
@@ -79,21 +88,23 @@ public class notifyAdmin {
         na.setType(rs.getString("noti_type"));
         na.setMessage(rs.getString("noti_message"));
         na.setRoom(rs.getInt("noti_room"));
+        na.setAction(rs.getString("noti_action"));
     }
     
-    public static boolean createNoti(String name, String type, String message, int room) {
+    public static boolean createNoti(String name, String type, String message, String action, int room) {
         int x = 0;
         DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", new Locale("en","TH"));
         try {
             Connection conn = ConnectionBuilder.getConnection();
             String sqlCmd = null;
-            sqlCmd = "INSERT INTO notify(noti_datetime, noti_name, noti_type, noti_message, noti_room) VALUES (?,?,?,?,?)";
+            sqlCmd = "INSERT INTO notify(noti_datetime, noti_name, noti_type, noti_message, noti_action, noti_room) VALUES (?,?,?,?,?,?)";
             PreparedStatement pstm = conn.prepareStatement(sqlCmd);
             pstm.setString(1, sdf.format(new Date()));
             pstm.setString(2, name);
             pstm.setString(3, type);
             pstm.setString(4, message);
-            pstm.setInt(5, room);
+            pstm.setString(5, action);
+            pstm.setInt(6, room);
             x = pstm.executeUpdate();
             conn.close();
         } catch (SQLException ex) {
@@ -132,4 +143,5 @@ public class notifyAdmin {
        // createNoti("Kritsana","Noti","update datetime",201);
     }
 */
+
 }

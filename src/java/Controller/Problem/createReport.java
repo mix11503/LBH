@@ -47,7 +47,7 @@ public class createReport extends HttpServlet {
             p.createRequest(Integer.parseInt(roomId));
             
             //Create Noti
-            createNoti("Resident","Problem Report","report "+topic, Integer.parseInt(roomId));
+            createNoti("Resident","Problem Report","report "+topic,"getCurrentReport", Integer.parseInt(roomId));
             
             target = "/reportHistory?roomNo="+roomId;
         }catch(Exception e){

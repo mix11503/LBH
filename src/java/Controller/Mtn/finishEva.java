@@ -52,7 +52,7 @@ public class finishEva extends HttpServlet {
             }
             
             //Create Noti
-            createNoti("Resident","Maintenance","evaluate "+eva+": "+remark, Integer.parseInt(request.getParameter("roomId")));
+            createNoti("Resident","Maintenance","evaluate "+eva+": "+remark,"SearchMtnReq?id="+id, Integer.parseInt(request.getParameter("roomId")));
             
         }else{
             message = "Please select your evaluation!";
