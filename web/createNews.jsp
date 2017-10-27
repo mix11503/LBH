@@ -79,19 +79,20 @@ tinymce.init({
   toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
  
  // without images_upload_url set, Upload tab won't show up
-  images_upload_url: 'postAcceptor.php',
+  images_upload_url: 'imgUpload',
   
   // we override default upload handler to simulate successful upload
   images_upload_handler: function (blobInfo, success, failure) {
     setTimeout(function() {
       // Upload Handler
-      success('https://www.mx7.com/i/0b3/HEe6eV.jpg');
+      //url 'https://www.mx7.com/i/0b3/HEe6eV.jpg'
+      //$.ajax({type: "POST", url: "imgUpload", async: false}).responseText
+      success($.ajax({type: "POST", url: "imgUpload", async: false}).responseText);
     }, 2000);
   },    
         content_css: [
     '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
     '//www.tinymce.com/css/codepen.min.css']
-
 
 });
 

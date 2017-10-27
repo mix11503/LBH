@@ -364,6 +364,10 @@
         <servlet-name>adminBarNoti</servlet-name>
         <servlet-class>Controller.adminBarNoti</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>imgUpload</servlet-name>
+        <servlet-class>Controller.News.imgUpload</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
         <url-pattern>/MTNSearchRoom</url-pattern>
@@ -727,6 +731,10 @@
     <servlet-mapping>
         <servlet-name>adminBarNoti</servlet-name>
         <url-pattern>/adminBarNoti</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>imgUpload</servlet-name>
+        <url-pattern>/imgUpload</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

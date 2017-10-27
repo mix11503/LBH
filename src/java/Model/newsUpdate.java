@@ -339,15 +339,31 @@ public class newsUpdate {
         }
         return news;
     }
+    
+    public static String uploadImage(String path){
+    int x = 0;
+    String imgPath = "";
+        try{
+            Connection conn = ConnectionBuilder.getConnection();
+            String sqlCmd = "INSERT INTO imageMCE (image_path) VALUES (?)";
+            PreparedStatement pstm = conn.prepareStatement(sqlCmd);
+            pstm.setString(1, path);
+            x = pstm.executeUpdate();
+            conn.close();
+        }catch(SQLException e){
+            System.err.println("uploadImage: "+e);
+        }
+        return imgPath;
+    }
 
     public static void main(String[] args) {
 
         //List<newsUpdate> news = newsUpdate.searchNewsInRange("2017-08-01", "2017-08-28");
-           List<newsUpdate> news = newsUpdate.getCurrentNews();
+    /*       List<newsUpdate> news = newsUpdate.getCurrentNews();
         for(newsUpdate n : news){
             System.out.println(n.toString());
         }
-         
+    */     
  /*
         if(new java.sql.Date(new Date().getTime()).equals("2017-08-20")){
             System.out.println("True");
