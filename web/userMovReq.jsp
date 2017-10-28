@@ -81,10 +81,10 @@
                                 <div class="form-group has-success">
                                   <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Reason of moving stuffs</label>
                                   <div class="col-lg-10">
-                                      <textarea class="form-control" style="width: 100%; height: 100px;" name="desc" placeholder="Why do you want to move these stuffs?.." maxlength="180" required></textarea>
+                                      <textarea class="form-control" style="width: 100%; height: 100px;" name="desc" placeholder="Why do you want to move these stuffs?.." maxlength="180" required></textarea><br>
                                   </div>
                               </div>    
-                                <div>
+                                <div class="form-inline">
                                     <br><br>
                                     <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">List your stuffs</label>
                                     <div class="field_wrapper">
@@ -92,12 +92,12 @@
                                         <input type="text" name="stuff" value="" placeholder="Stuff" required/> &nbsp;&nbsp;
                                         <input type="number" name="stuffAmt" value="" placeholder="Amount" required/> &nbsp;&nbsp;
                                         <a href="javascript:void(0);" class="add_button" title="Add field">
-                                            <button type="button" class="btn btn-info"> + </button>
+                                            <button type="button" class="btn btn-info"> + </button><br>
                                         </a>
                                     </div>
                                 </div>
                                     </div>
-                                    <input type="submit" style="margin-left: 500px; width: 150px; height: 40px;" class="btn btn-success" value="Create Request"/>
+                                    <br><input type="submit" style="margin-left: 500px; width: 150px; height: 40px;" class="btn btn-success" value="Create Request"/>
         </form>
                             </div><!-- /form-panel -->
                         </div><!-- /col-lg-12 -->
@@ -139,10 +139,10 @@
                 var x = 1; //Initial field counter is 1
                 var removeBut = '&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-warning"> - </button>';
                 //var fieldHTML = '<div><input type="text" name="field_name['+x+']" value=""/><a href="javascript:void(0);" class="remove_button" title="Remove field"><img src="remove-icon.png"/></a></div>'; //New input field html 
-                var prestyle = '<label class="col-sm-2 control-label col-lg-2" for="inputSuccess">>></label>';
+                var prestyle = '<br><label class="col-sm-2 control-label col-lg-2" for="inputSuccess">>></label>';
             $(addButton).click(function () { //Once add button is clicked
                     if (x < maxField) { //Check maximum number of input fields 
-                        $(wrapper).append('<div>'+prestyle+'<input type="text" name="stuff'+x+'" placeholder="Stuff" required/>&nbsp;&nbsp;<input type="number" name="stuffAmt'+x+'" value="" placeholder="Amount" required/>&nbsp;<a href="javascript:void(0);" class="remove_button" title="Remove field">'+removeBut+'</a></div>'); // Add field html
+                        $(wrapper).append('<div>'+prestyle+'<input type="text" name="stuff'+x+'" placeholder="Stuff" required/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="number" name="stuffAmt'+x+'" value="" placeholder="Amount" required/>&nbsp;<a href="javascript:void(0);" class="remove_button" title="Remove field">'+removeBut+'</a></div>'); // Add field html
                     x++; //Increment field counter
         }
                 });
