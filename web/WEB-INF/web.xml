@@ -368,6 +368,10 @@
         <servlet-name>imgUpload</servlet-name>
         <servlet-class>Controller.News.imgUpload</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>printMTN</servlet-name>
+        <servlet-class>Controller.Mtn.printMTN</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
         <url-pattern>/MTNSearchRoom</url-pattern>
@@ -735,6 +739,10 @@
     <servlet-mapping>
         <servlet-name>imgUpload</servlet-name>
         <url-pattern>/imgUpload</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>printMTN</servlet-name>
+        <url-pattern>/printMTN</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

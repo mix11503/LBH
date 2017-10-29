@@ -68,13 +68,15 @@
                                 <div class="col-lg-12">
 
                                     <br>
+                                    
                                     <div class="form-panel" style="border-radius: 10px; padding-left: 20px;">
                                         <div class="form-horizontal tasi-form">
                                             <br>
                                             <h4 style="color: black;">Request Detail</h4>
+                                            <a href="printMTN?id=<%=m.getMtn_id()%>" target="_blank"><button style="float: right;" class="btn btn-primary">PRINT THIS PAGE</button></a>
                                             <br>
                                             <div class="form-group has-success ">
-                                                <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Form ID</label>
+                                                <br><label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Form ID</label>
                                                 <div class="col-lg-10">
                                                     <input type="text" style="width: 50%;" class="form-control" id="inputSuccess" disabled placeholder="<%= m.getMtn_id()%>">
                                                 </div>

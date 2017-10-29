@@ -6,7 +6,7 @@
 package Controller.Mtn;
 
 import Model.Maintanance;
-import Model.notifyUser;
+import Model.MtnChat;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Joe's
  */
-public class updateAction extends HttpServlet {
+public class printMTN extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,33 +34,22 @@ public class updateAction extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
+        Maintanance mtn = null;
         String id = request.getParameter("id");
-        String result = request.getParameter("result");
-        String cost = request.getParameter("cost");
-        String material = request.getParameter("material");
-        String room = request.getParameter("room");
-        Maintanance m = null;
-        double dcost;
-        String message = null;
-        if (id != null) {
-            try {
-                dcost = Double.parseDouble(cost);
-                try {
-                    m = new Maintanance();
-                    m.setMtn_result(result);
-                    m.setMtn_material(material);
-                    m.setMtn_cost(dcost);
-                    m.updateAction(Integer.parseInt(id));
-                    notifyUser.createNotiMtn("mtnProgress?mtnId="+id,"Action Taken: "+result,Integer.parseInt(room));
-                } catch (Exception e) {
-                    System.err.println("updateAction " + e);
-                }
-            } catch (Exception e) {
-                message = "Please enter number";
+        if(id != null){
+        try{
+            int mtnId = Integer.parseInt(id);
+            mtn = Maintanance.findBymtnId(mtnId);
+            if(mtn != null){
+                request.setAttribute("mtn", mtn);
             }
+        }catch(Exception e){
+            System.err.println(e);
         }
-        request.setAttribute("messageAction", message);
-        getServletContext().getRequestDispatcher("/SearchMtnReq?id=" + id).forward(request, response);
+    }else{
+            System.err.println("ID NULL, PrintMTN SERVLET");
+        }
+        getServletContext().getRequestDispatcher("/printMtn.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
