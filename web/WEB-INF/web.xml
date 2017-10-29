@@ -372,6 +372,10 @@
         <servlet-name>printMTN</servlet-name>
         <servlet-class>Controller.Mtn.printMTN</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>createAccount</servlet-name>
+        <servlet-class>Controller.ADMIN.createAccount</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
         <url-pattern>/MTNSearchRoom</url-pattern>
@@ -743,6 +747,10 @@
     <servlet-mapping>
         <servlet-name>printMTN</servlet-name>
         <url-pattern>/printMTN</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>createAccount</servlet-name>
+        <url-pattern>/createAccount</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

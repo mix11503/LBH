@@ -118,6 +118,16 @@ MAIN SIDEBAR MENU
                     <li><a  href="getStaff">ADD / MANAGE</a></li>
                 </ul>
             </li>
+            <li class="sub-menu">
+                <a href="javascript:;" >
+                    <i class="fa fa-cog"></i>
+                    <span>User Management</span>  
+                </a>
+                <ul class="sub">
+                    <li><a href="createAccount.jsp">Create Account</a></li>
+                    <li><a href="">User Management</a></li>
+                </ul>
+            </li>
             <!-- sidebar menu end-->
     </div>
 </aside>
