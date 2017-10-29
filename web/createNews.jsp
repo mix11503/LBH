@@ -79,24 +79,56 @@ tinymce.init({
   toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
  
  // without images_upload_url set, Upload tab won't show up
-  images_upload_url: 'imgUpload',
+  images_upload_url: 'http://uploads.im/api?upload',
   
-  // we override default upload handler to simulate successful upload
+  // Override default upload handler when failed
   images_upload_handler: function (blobInfo, success, failure) {
-    setTimeout(function() {
-      // Upload Handler
-      //url 'https://www.mx7.com/i/0b3/HEe6eV.jpg'
-      //$.ajax({type: "POST", url: "imgUpload", async: false}).responseText
-      success($.ajax({type: "POST", url: "imgUpload", async: false}).responseText);
-    }, 2000);
-  },    
+        /* Choice 1
+        setTimeout(function() {
+        //url 'https://www.mx7.com/i/0b3/HEe6eV.jpg'
+        //$.ajax({type: "POST", url: "imgUpload", async: false}).responseText
+        success($.ajax({type: "POST", url: "imgUpload", async: false}).responseText);
+        }, 2000);
+        */
+       var xhr, formData;
+       xhr = new XMLHttpRequest();
+       xhr.withCredentials = false;
+       xhr.open('POST', 'http://uploads.im/api?upload');
+      xhr.onload = function() {
+      var json;
+
+      if (xhr.status != 200) {
+        failure('HTTP Error: ' + xhr.status);
+        return;
+      }
+      
+      json = JSON.parse(xhr.responseText);
+      
+      if (!json || typeof json.data.img_url != 'string') {
+        failure('Invalid JSON: ' + xhr.responseText);
+        console.log(xhr.responseText);
+        return;
+      }
+      
+      success(json.data.img_url);
+      
+    };
+    formData = new FormData();
+    formData.append('file', blobInfo.blob(), blobInfo.filename());
+    xhr.send(formData);  
+    },  
         content_css: [
     '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
     '//www.tinymce.com/css/codepen.min.css']
 
 });
-
-       
+    function imgApi(){
+      $.getJSON('http://uploads.im/api?upload=http://www.google.com/images/srpr/nav_logo66.png', function(data){
+          var obj = new Object();
+          obj.location = data.data.img_url;
+          var js = JSON.stringify(obj);
+      });
+    }
     </script>
     
     <title>Create News</title>

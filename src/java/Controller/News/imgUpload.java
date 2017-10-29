@@ -42,8 +42,9 @@ public class imgUpload extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         
         String imgPath = "assets/img/imgError.jpg";
-        
+        /*
         try {
+            
         FileItemFactory factory = new DiskFileItemFactory();
         ServletFileUpload upload = new ServletFileUpload(factory);
         FileItem item = (FileItem) upload.parseRequest(request);
@@ -56,11 +57,11 @@ public class imgUpload extends HttpServlet {
         imgPath = "pic/" + fileName;
 
         } catch (FileUploadException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
             } catch (Exception e) {
-                e.printStackTrace();
+                //e.printStackTrace();
             }
-        
+        */
         try (PrintWriter out = response.getWriter()) {
             out.print(imgPath);
         }
