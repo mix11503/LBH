@@ -1,5 +1,8 @@
 package Model;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -262,9 +265,26 @@ public int getId() {
         return x > 0;
     }
     
+    public static String MD5Encrypt(String pw){
+        String original = pw;
+        StringBuffer sb = null;
+        try{
+		MessageDigest md = MessageDigest.getInstance("MD5");
+		md.update(original.getBytes());
+		byte[] digest = md.digest();
+		sb = new StringBuffer();
+		for (byte b : digest) {
+			sb.append(String.format("%02x", b & 0xff));
+		}
+        }catch(Exception e){       
+            System.out.println("MD5Encrypt: "+e);
+        }
+        return sb.toString();
+    }
+    
 // ============== TESTING ZONE =============
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
        // Resident r1 = Resident.findById(10001);
       //  System.out.println(r1.toString());
       //  List<Resident> r2 = Resident.findByRoomId(201);
@@ -308,6 +328,7 @@ public int getId() {
         //Resident r = Resident.findByEmail("aaron@mail.com");
         //System.out.println(r);
         //System.out.println(resetPw(10005,"test"));
+        //System.out.println(MD5Encrypt("joe"));
     }
 // ==========END OF TESTING ZONE ============
 
