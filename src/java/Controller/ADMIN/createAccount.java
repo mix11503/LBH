@@ -5,6 +5,7 @@
  */
 package Controller.ADMIN;
 
+import Model.Resident;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -29,19 +30,45 @@ public class createAccount extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet createAccount</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet createAccount at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        String name = request.getParameter("name");
+        String surname = request.getParameter("surname");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("number");
+        String status = request.getParameter("status");
+        String room = request.getParameter("room");
+        String start = request.getParameter("start");
+        String end = request.getParameter("end");
+        String message = null;
+        String messageError = null;
+        
+        if(Integer.parseInt(room)<=200 || Integer.parseInt(room)>832){
+            messageError = "Invalid RoomNumber";
+        }else if(((Integer.parseInt(room)/10)%10)>3){
+            messageError = "Invalid RoomNumber";
+        }else if(((Integer.parseInt(room)/10)%10)==3 && (Integer.parseInt(room)%10)>2){
+            messageError = "Invalid RoomNumber";    
+        }else{
+            try{
+            Resident r = new Resident();
+            r.setName(name);
+            r.setLastname(surname);
+            r.setEmail(email);
+            r.setPhone(Long.parseLong(phone));
+            r.setIsOwner(status.equalsIgnoreCase("owner"));
+            r.setRent_start(start);
+            r.setRent_end(end);
+            r.createAccount(Integer.parseInt(room));
+            message = "Create Account Successfully!";
+        }catch(Exception e){
+            System.err.println("create acc servlet: "+e);
         }
+        }
+        request.setAttribute("message", message);
+        request.setAttribute("messageError", messageError);
+        getServletContext().getRequestDispatcher("/createAccount.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

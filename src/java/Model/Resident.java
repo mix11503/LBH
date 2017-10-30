@@ -212,6 +212,27 @@ public int getId() {
        r.createAccount(201);
         System.out.println("success!!");
        */
+       
+       /*//validate roomNo
+       String room = null;
+       int x = 2;
+       java.util.Scanner sc = new java.util.Scanner(System.in);
+       while(x!=1){
+       System.out.print("Enter: ");
+       room = sc.next();
+       String messageError = null;
+       if(Integer.parseInt(room)<=200 || Integer.parseInt(room)>832){
+            messageError = "Invalid RoomNumber";
+        }else if(((Integer.parseInt(room)/10)%10)>3){
+            messageError = "Invalid RoomNumber";
+        }else if(((Integer.parseInt(room)/10)%10)==3 && (Integer.parseInt(room)%10)>2){
+            messageError = "Invalid RoomNumber";             
+        }else{
+            messageError = "Valid";
+        }
+        System.out.println(messageError);
+       }
+        //End Validate Code*/
     }
 // ==========END OF TESTING ZONE ============
 

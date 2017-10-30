@@ -26,7 +26,7 @@
           changeMonth: true,
           numberOfMonths: 2,
           dateFormat: "yy-mm-dd",
-          minDate: 0
+          //minDate: 0
         })
         .on( "change", function() {
           to.datepicker( "option", "minDate", from.datepicker( "getDate" ));
@@ -57,6 +57,21 @@
     var currentDate = new Date();  
       //$("#inputStart").datepicker("setDate",currentDate);
     });
+    
+        $(document).ready(function () {
+            $("#status").change(function(){
+                var status = $(this).val();
+                if(status=='owner'){
+                    $("#inputEnd").val("2099-12-31");
+                    $("#inputStart").attr("placeholder", "Living Since");
+                }else{
+                    $("#inputEnd").val("");
+                    $("#inputStart").attr("placeholder", "Rent Start");
+                    $("#inputEnd").attr("placeholder", "Rent End");
+                }  
+            });
+            
+        });
     </script>
     
     <title>Create Account</title>
@@ -101,7 +116,7 @@
           		<div class="col-lg-12">
           			<div class="form-panel">
                   	  <h4 class="mb"><i class="fa fa-angle-right"></i>Complete the form to create user account</h4>
-                          <form class="form-horizontal tasi-form" action="" method="post">
+                          <form class="form-horizontal tasi-form" action="createAccount" method="post">
                               
                             <div class="form-group">
                                 <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Name</label>
@@ -122,13 +137,13 @@
                                 </div>
                                 <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Status</label>
                                 <div class="col-lg-10">
-                                    <select class="form-control">   <option>Renter</option>   <option>Owner</option>   </select><br>
+                                    <select class="form-control" id="status" name="status" required><option value="renter" selected="selected">Renter</option> <option value="owner">Owner</option>   </select><br>
                                 </div>
                                 <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Room Number</label>
                                 <div class="col-lg-10">
-                                    <input type="number" class="form-control" name="number" required><br>
+                                    <input type="number" class="form-control" id="room" name="room" required><br>
                                 </div>
-                                <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Rental Period</label>
+                                <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Living Period</label>
                                 <div class="col-lg-10">
                                 <input type="text" class="form-control" id="inputStart" name="start" style="width: 48%; float: left;" placeholder="Rent Start" required>
                                 <input type="text" class="form-control" id="inputEnd" name="end" style="width: 48%; float: right;" placeholder="Rent Expired" required>    
@@ -138,6 +153,8 @@
 
                               <input type="submit" style="margin-left: 500px; width: 120px; height: 40px;" class="btn btn-success" value="Create Account"/>
                           </form>
+                          <h4 class="mb" style="color:blue">${message}</h4>
+                          <h4 class="mb" style="color:red">${messageError}</h4>
           			</div><!-- /form-panel -->
           		</div><!-- /col-lg-12 -->
           	</div><!-- /row -->

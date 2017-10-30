@@ -23,14 +23,14 @@
             <div class="container">
 
                 <form class="form-login" action="adminIndex" method="post">
-                    <h2 class="form-login-heading" style="background:#ffd777"><i class="fa fa-user"></i> ADMIN LOGIN</h2>
+                    <h2 class="form-login-heading" style="background:#ffd777"><i class="fa fa-user"></i> STAFF LOGIN</h2>
                     <div class="login-wrap">
                         <input type="text" class="form-control" name="id" placeholder="User ID" autofocus required>
                         <br>
                         <input type="password" class="form-control" name="password" placeholder="Password" required>
                         <label class="checkbox">
                             <span class="pull-right">
-                                <a data-toggle="modal" href="login.html#myModal"> Forgot Password?</a>
+                                <a data-toggle="modal" href="loginAdmin.jsp#myModal"> Forgot Password?</a>
 
                             </span>
                         </label>
@@ -40,9 +40,9 @@
                         <hr>
 
                         <div class="registration">
-                            Don't have an account yet?<br/>
-                            <a class="" href="">
-                                Create an account
+                            Any Problem in using this system?<br/>
+                            <a class="" href="mailto:admin@lbh.com?Subject=Hello, Admin">
+                                Contact ADMIN
                             </a>
                         </div>
 
@@ -52,18 +52,17 @@
                     <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <div class="modal-header">
+                                <div class="modal-header" style="background:#ffd777">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     <h4 class="modal-title">Forgot Password ?</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Enter your e-mail address below to reset your password.</p>
-                                    <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+                                    <p>Email or Call System Administrator to reset your password.</p>
+                                    <input type="text" name="email" placeholder="ADMIN@LBH.COM, Call 02-123-4567" disabled class="form-control placeholder-no-fix">
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
-                                    <button class="btn btn-theme" type="button" disabled>Submit</button>
+                                    <button data-dismiss="modal" class="btn btn-default" type="button">OK</button>
                                 </div>
                             </div>
                         </div>
