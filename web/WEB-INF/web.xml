@@ -376,6 +376,14 @@
         <servlet-name>createAccount</servlet-name>
         <servlet-class>Controller.ADMIN.createAccount</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>userResetPassword</servlet-name>
+        <servlet-class>Controller.ADMIN.userResetPassword</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>resetAccountPw</servlet-name>
+        <servlet-class>Controller.ADMIN.resetAccountPw</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
         <url-pattern>/MTNSearchRoom</url-pattern>
@@ -751,6 +759,14 @@
     <servlet-mapping>
         <servlet-name>createAccount</servlet-name>
         <url-pattern>/createAccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>userResetPassword</servlet-name>
+        <url-pattern>/userResetPassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>resetAccountPw</servlet-name>
+        <url-pattern>/resetAccountPw</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

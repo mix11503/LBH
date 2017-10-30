@@ -28,6 +28,7 @@
                         <input type="text" class="form-control" name="id" placeholder="User ID" autofocus required>
                         <br>
                         <input type="password" class="form-control" name="password" placeholder="Password" required>
+                        
                         <label class="checkbox">
                             <span class="pull-right">
                                 <a data-toggle="modal" href="login.html#myModal"> Forgot Password?</a>
@@ -41,36 +42,40 @@
 
                         <div class="registration">
                             Don't have an account yet?<br/>
-                            <a class="" href="">
-                                Create an account
-                            </a>
+                            <b style='color:#269abc'>
+                                Contact Condo's Office to Create Account
+                            </b>
+                            <h4 style="color: red;">${messagePw}</h4>
                         </div>
-
+                        
                     </div>
-
+                </form>
                     <!-- Modal -->
                     <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+                        
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     <h4 class="modal-title">Forgot Password ?</h4>
                                 </div>
+                                <form action='userResetPassword' method='get'>
                                 <div class="modal-body">
                                     <p>Enter your e-mail address below to reset your password.</p>
+                                    
                                     <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
-
                                 </div>
                                 <div class="modal-footer">
                                     <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
-                                    <button class="btn btn-theme" type="button" disabled>Submit</button>
+                                    <input class="btn btn-theme" type="submit"/>
                                 </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                     <!-- modal -->
 
-                </form>	  	
+                 	
 
             </div>
         </div>

@@ -170,6 +170,26 @@ public int getId() {
             }
             return res;
     }
+    
+    public static Resident findByEmail(String email){
+        Resident res = null;
+            try{
+                Connection conn = ConnectionBuilder.getConnection();
+                String sqlCmd = "SELECT * FROM Resident WHERE RESIDENT_EMAIL = ?";
+                PreparedStatement pstm = conn.prepareStatement(sqlCmd);
+                pstm.setString(1, email);
+                ResultSet rs = pstm.executeQuery();
+                if(rs.next()){
+                    res = new Resident();
+                    orm(rs,res);
+                }
+                conn.close();
+            }catch(SQLException ex){
+                System.err.println("Resident,FindByEmail : "+ex);
+            }
+            return res;
+    }
+    
     public static List<Resident> findByRoomId(int room_id){
         List<Resident> resident = new ArrayList<Resident>();
             try{
@@ -190,7 +210,58 @@ public int getId() {
             }
             return resident;
     }
-
+    
+    public static String checkOTP(String email){
+        String otp = "";
+        try{
+                Connection conn = ConnectionBuilder.getConnection();
+                String sqlCmd = "SELECT * FROM Resident r join mailRegister m on r.Resident_ID = m.resident_id WHERE r.Resident_Email = ? and m.otpCheck = false";
+                PreparedStatement pstm = conn.prepareStatement(sqlCmd);
+                pstm.setString(1, email);
+                ResultSet rs = pstm.executeQuery();
+                if(rs.next()){
+                    otp = rs.getString("m.codeOTP");
+                }
+                conn.close();
+            }catch(SQLException ex){
+                System.err.println("Resident,checkOTP : "+ex);
+            }
+        return otp;
+    }
+    public static Resident getInfoByOTP(String OTP){
+        Resident res = null;
+            try{
+                Connection conn = ConnectionBuilder.getConnection();
+                String sqlCmd = "SELECT * FROM Resident r join mailRegister m on r.Resident_ID = m.resident_id WHERE m.codeOTP = ? and otpCheck = false";
+                PreparedStatement pstm = conn.prepareStatement(sqlCmd);
+                pstm.setString(1, OTP);
+                ResultSet rs = pstm.executeQuery();
+                if(rs.next()){
+                    res = new Resident();
+                    orm(rs,res);
+                }
+                conn.close();
+            }catch(SQLException ex){
+                System.err.println("Resident,getInfoByOTP : "+ex);
+            }
+            return res;
+    }
+    
+    public static boolean resetPw(int id, String password) {
+        int x = 0;
+        try {
+            Connection conn = ConnectionBuilder.getConnection();
+            String sqlCmd = "Update Resident r join mailRegister m on r.Resident_ID = m.resident_id set r.password = ? , m.otpCheck = true where r.RESIDENT_ID = " + id;
+            PreparedStatement pstm = conn.prepareStatement(sqlCmd);
+            pstm.setString(1, password);
+            x = pstm.executeUpdate();
+            conn.close();
+        } catch (SQLException ex) {
+            System.err.println("Resident, setPw: " + ex);
+        }
+        return x > 0;
+    }
+    
 // ============== TESTING ZONE =============
 
     public static void main(String[] args) {
@@ -233,6 +304,10 @@ public int getId() {
         System.out.println(messageError);
        }
         //End Validate Code*/
+        //System.out.println(checkOTP("jojoa12345@gmail.com"));
+        //Resident r = Resident.findByEmail("aaron@mail.com");
+        //System.out.println(r);
+        //System.out.println(resetPw(10005,"test"));
     }
 // ==========END OF TESTING ZONE ============
 
