@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller.AdminCalendarAJAX;
+package Controller.MobileAPI;
 
-import Model.WorkCalendarEvent;
+import Model.newsUpdate;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Mix
  */
-public class LoadEventCurrentMonth extends HttpServlet {
+public class API extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,16 +35,10 @@ public class LoadEventCurrentMonth extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
-        String start =  request.getParameter("start");
-        int month = Integer.parseInt(start.substring(5,7));
-        int year = Integer.parseInt(start.substring(0,4));
-        //month += 1;
-        System.out.println("MONTH :"+month);
-        System.out.println("YEAR :"+year);
-        List<WorkCalendarEvent> eventList = WorkCalendarEvent.findEventByMonthAndYear(month, year);
-        Gson gson = new Gson();      
-         try (PrintWriter out = response.getWriter()) {
-             out.println(gson.toJson(eventList));
+        List<newsUpdate> news = newsUpdate.getCurrentNews();
+        Gson gson = new Gson();
+        try (PrintWriter out = response.getWriter()) {
+             out.println(gson.toJson(news));
         }
     }
 
