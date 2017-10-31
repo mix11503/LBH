@@ -396,6 +396,10 @@
         <servlet-name>suspendAccount</servlet-name>
         <servlet-class>Controller.ADMIN.suspendAccount</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>API</servlet-name>
+        <servlet-class>Controller.MobileAPI.API</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
         <url-pattern>/MTNSearchRoom</url-pattern>
@@ -791,6 +795,10 @@
     <servlet-mapping>
         <servlet-name>suspendAccount</servlet-name>
         <url-pattern>/suspendAccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>API</servlet-name>
+        <url-pattern>/API</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
