@@ -25,7 +25,7 @@
                 <form class="form-login" action="userIndex" method="post">
                     <h2 class="form-login-heading">Resident login</h2>
                     <div class="login-wrap">
-                        <input type="text" class="form-control" name="id" placeholder="User ID" autofocus required>
+                        <input type="text" class="form-control" name="id" placeholder="Email" autofocus required>
                         <br>
                         <input type="password" class="form-control" name="password" placeholder="Password" required>
                         

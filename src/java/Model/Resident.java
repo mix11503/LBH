@@ -214,6 +214,26 @@ public int getId() {
             return resident;
     }
     
+    public static List<Resident> findAll(){
+        List<Resident> resident = new ArrayList<Resident>();
+            try{
+                Connection conn = ConnectionBuilder.getConnection();
+                Resident res = null;
+                String sqlCmd = "SELECT * FROM Resident";
+                PreparedStatement pstm = conn.prepareStatement(sqlCmd);
+                ResultSet rs = pstm.executeQuery();
+                while(rs.next()){
+                    res = new Resident();
+                    orm(rs, res);
+                    resident.add(res);
+                }
+                conn.close();
+            }catch(SQLException ex){
+                System.err.println("Resident,findAll : "+ex);
+            }
+            return resident;
+    }
+    
     public static String checkOTP(String email){
         String otp = "";
         try{
@@ -280,6 +300,21 @@ public int getId() {
             System.out.println("MD5Encrypt: "+e);
         }
         return sb.toString();
+    }
+    
+    public static boolean suspendAccount(int id, Boolean status) {
+        int x = 0;
+        try {
+            Connection conn = ConnectionBuilder.getConnection();
+            String sqlCmd = "Update Resident set suspend = ? where RESIDENT_ID = " + id;
+            PreparedStatement pstm = conn.prepareStatement(sqlCmd);
+            pstm.setBoolean(1, status);
+            x = pstm.executeUpdate();
+            conn.close();
+        } catch (SQLException ex) {
+            System.err.println("Resident, suspendAcc: " + ex);
+        }
+        return x > 0;
     }
     
 // ============== TESTING ZONE =============

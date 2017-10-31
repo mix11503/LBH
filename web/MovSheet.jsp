@@ -15,7 +15,7 @@
     <div class="dontprint"><button onclick="printout()">Print this page</button></div>
     <br>
     <center><img src='gen.jpg' style="width: 150px"/>
-        <h3>นิติบุคคลอาคารชุด Library Houze Condo</h3>
+        <h3>นิติบุคคลอาคารชุด Condominium</h3>
     <h3>คำขอขนย้ายสำภาระเข้า-ออก</h3>
     </center>
     <body>

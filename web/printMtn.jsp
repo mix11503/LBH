@@ -12,7 +12,7 @@
     <div class="dontprint"><button onclick="printout()">Print this page</button></div>
     <br>
     <center><img src='gen.jpg' style="width: 150px"/>
-        <h3>นิติบุคคลอาคารชุด LBH</h3>
+        <h3>นิติบุคคลอาคารชุด Condominium</h3>
     <h3>ใบแจ้งซ่อมแซม/บำรุงรักษาห้องชุด</h3>
     </center>
     <body>

@@ -125,7 +125,7 @@ MAIN SIDEBAR MENU
                 </a>
                 <ul class="sub">
                     <li><a href="createAccount.jsp">Create Account</a></li>
-                    <li><a href="">User Management</a></li>
+                    <li><a href="findAllResident">User Management</a></li>
                 </ul>
             </li>
             <!-- sidebar menu end-->

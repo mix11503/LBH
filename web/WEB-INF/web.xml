@@ -388,6 +388,14 @@
         <servlet-name>confirmUpdatePW</servlet-name>
         <servlet-class>Controller.ADMIN.confirmUpdatePW</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>findAllResident</servlet-name>
+        <servlet-class>Controller.ADMIN.findAllResident</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>suspendAccount</servlet-name>
+        <servlet-class>Controller.ADMIN.suspendAccount</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
         <url-pattern>/MTNSearchRoom</url-pattern>
@@ -775,6 +783,14 @@
     <servlet-mapping>
         <servlet-name>confirmUpdatePW</servlet-name>
         <url-pattern>/confirmUpdatePW</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>findAllResident</servlet-name>
+        <url-pattern>/findAllResident</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>suspendAccount</servlet-name>
+        <url-pattern>/suspendAccount</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

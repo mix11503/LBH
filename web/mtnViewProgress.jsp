@@ -60,7 +60,7 @@
                     <div>
                         <h2>Maintenance Progress Tracking</h2>               
                         <div class="row mt">
-                            <%
+                            <%  if(request.getAttribute("mtn")!=null){
                                 Maintanance m = (Maintanance) request.getAttribute("mtn");
                                 if (m != null) {
                             %>
@@ -311,7 +311,7 @@
           			</div><!-- panel-->
           		</div><!-- /col-lg-12 -->
           	</div><!-- /row -->
-                        <%}%>   
+                        <%}}%>   
                <center> <% if (request.getAttribute("message") != null) {%>
         <h3><%=request.getAttribute("message")%><h3>
                                     <%}%> </center>
