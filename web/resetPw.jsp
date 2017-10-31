@@ -27,10 +27,11 @@
                 <form class="form-login" action="confirmUpdatePW" method="post">
                     <h2 class="form-login-heading">Reset Password</h2>
                     <div class="login-wrap">
+                        <p>Enter new password for your account.</p>
                         <br>
-                        <input type="password" class="form-control" name="password" placeholder="Password" autofocus required>
+                        <input type="password" class="form-control" name="password" placeholder="Password" autocomplete="off" autofocus required>
                         <br><br>
-                        <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password" required>
+                        <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password" autocomplete="off" required>
                         <br><br>
                         <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i> RESET PASSWORD</button>
                     </div>

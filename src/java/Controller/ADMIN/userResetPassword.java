@@ -39,8 +39,9 @@ public class userResetPassword extends HttpServlet {
         try{
             Resident r = Resident.findByEmail(email);
             if(r!=null){
+                mailRegister.invalidateOldOTP(email);
                 mailRegister.sendSetPw(r.getEmail());
-                message = "We have been sent a link to reset password to your email address";
+                message = "We have sent a link to reset password to your email address";
             }else{
                 message = "Invalid Email Address!";
             }

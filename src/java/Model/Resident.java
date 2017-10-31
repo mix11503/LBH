@@ -324,7 +324,7 @@ public int getId() {
         System.out.println(messageError);
        }
         //End Validate Code*/
-        //System.out.println(checkOTP("jojoa12345@gmail.com"));
+        //System.out.println(checkOTP("jojoa55555@gmail.com"));
         //Resident r = Resident.findByEmail("aaron@mail.com");
         //System.out.println(r);
         //System.out.println(resetPw(10005,"test"));

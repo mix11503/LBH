@@ -43,6 +43,7 @@ public class mailRegister {
     
     public static boolean sendSetPw(String email){
         String codeGen = genCode();
+        String bodyMsg = "http://localhost:8080/LBH/resetAccountPw?token="+codeGen+"\nClick on a link above to reset your password";
         Properties props = new Properties();
         props.put("mail.smtp.host", SMTP_HOST_NAME);
         props.put("mail.smtp.port", SMTP_PORT);
@@ -66,7 +67,7 @@ public class mailRegister {
             message.setSubject(SUBJECT);
 
             MimeBodyPart mbp = new MimeBodyPart();
-            mbp.setText(codeGen, "UTF-8");
+            mbp.setText(bodyMsg, "UTF-8");
             mbp.setHeader("Content-Type", "text/plain; charset=\"utf-8\"");
             Multipart content = new MimeMultipart();
             content.addBodyPart(mbp);
@@ -112,12 +113,29 @@ public class mailRegister {
         return x > 0;
     }
     
+    public static boolean invalidateOldOTP(String email){
+        int x = 0;
+        try {
+            Connection conn = ConnectionBuilder.getConnection();
+            String sqlCmd = null;
+            sqlCmd = "UPDATE mailRegister SET otpCheck = true where email = ?";
+            PreparedStatement pstm = conn.prepareStatement(sqlCmd);
+            pstm.setString(1, email);
+            x = pstm.executeUpdate();
+            conn.close();
+        } catch (SQLException ex) {
+            System.err.println("mailRegister, invalidateOTP: " + ex);
+        }
+        return x > 0;
+    }
+    
     public static void main(String[] args) {
         //System.out.println(genCode());
         //sendSetPw("");
         //createOTP("jojoa12345@gmail.com","duoA7gww52tuZ9Wk27IniE2BJCuJmb8pIECw2npzdYg7OHi0Jy",10005);
         //int id = Resident.findByEmail("jojoa12345@gmail.com").getId();
         //System.out.println(id);
+        //System.out.println(invalidateOldOTP("jojoa@gmail.com"));
     }
     
 }

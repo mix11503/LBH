@@ -6,6 +6,7 @@
 package Controller.ADMIN;
 
 import Model.Resident;
+import Model.mailRegister;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -61,6 +62,9 @@ public class createAccount extends HttpServlet {
             r.setRent_start(start);
             r.setRent_end(end);
             r.createAccount(Integer.parseInt(room));
+            
+            mailRegister.sendSetPw(email);
+            
             message = "Create Account Successfully!";
         }catch(Exception e){
             System.err.println("create acc servlet: "+e);
