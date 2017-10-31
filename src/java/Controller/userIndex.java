@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Model.Resident;
 import Model.newsUpdate;
 import Model.parcel;
 import java.io.IOException;
@@ -34,18 +35,27 @@ public class userIndex extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String roomid = request.getParameter("id");
+        String email = request.getParameter("id");
         String password = request.getParameter("password");
         String message = null;
         String target = "/login.jsp";
         
-        if(roomid.length()==3 && password.equals(roomid+roomid+roomid)){
-            //success
-        List<newsUpdate> news = newsUpdate.getCurrentNews();
-        if(news!=null){request.getSession().setAttribute("newsUser", news);}
-        request.getSession().setAttribute("roomId", Integer.parseInt(roomid));
-        target = "/user_panel.jsp";
-        
+        Resident r = Resident.findByEmail(email);
+        if(r!=null){
+            if(r.isSuspend()==false){
+                if(r.getPassword().equals(Resident.MD5Encrypt(password))){
+                    //success
+                    List<newsUpdate> news = newsUpdate.getCurrentNews();
+                    if(news!=null){request.getSession().setAttribute("newsUser", news);}
+                    request.getSession().setAttribute("roomId", r.getRoom_ID());
+                    request.getSession().setAttribute("Resident", r);
+                    target = "/user_panel.jsp";
+                }else{
+                message = "Wrong Password!";    
+                }
+            }else{
+                message = "Account Suspend!";
+            }
         }else{
             message = "Please check your ID or Password";
         }

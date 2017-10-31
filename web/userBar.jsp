@@ -20,7 +20,7 @@
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
     </div>
     <!--logo start-->
-    <a href="user_panel.jsp" class="logo"><b style="color: black;">Welcome {USERNAME}</b></a>
+    <a href="user_panel.jsp" class="logo"><b style="color: black;">Welcome, ${Resident.name}</b></a>
     <!--logo end-->
     <%
     int roomId = (Integer) request.getSession().getAttribute("roomId");    
@@ -154,7 +154,7 @@ MAIN SIDEBAR MENU
         <ul class="sidebar-menu" id="nav-accordion">
 
             <p class="centered"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-            <h5 class="centered">{Username}</h5>
+            <h5 class="centered">${Resident.name} ${Resident.lastname}</h5>
 
             <li class="mt">
                 <a href="user_panel.jsp">
@@ -244,6 +244,15 @@ MAIN SIDEBAR MENU
                 </a>
                 <ul class="sub">
                     <li><a  href="userViewStaff">Open Phonebook</a></li>
+                </ul>
+            </li>
+            <li class="sub-menu">
+                <a href="javascript:;" >
+                    <i class="fa fa-cogs"></i>
+                    <span>My Profile</span>  
+                </a>
+                <ul class="sub">
+                    <li><a href="">Edit my Profile</a></li>
                 </ul>
             </li>
             <!-- sidebar menu end-->
