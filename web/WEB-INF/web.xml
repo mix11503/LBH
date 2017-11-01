@@ -400,6 +400,10 @@
         <servlet-name>API</servlet-name>
         <servlet-class>Controller.MobileAPI.API</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>resUpdateProf</servlet-name>
+        <servlet-class>Controller.ADMIN.resUpdateProf</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
         <url-pattern>/MTNSearchRoom</url-pattern>
@@ -799,6 +803,10 @@
     <servlet-mapping>
         <servlet-name>API</servlet-name>
         <url-pattern>/API</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>resUpdateProf</servlet-name>
+        <url-pattern>/resUpdateProf</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

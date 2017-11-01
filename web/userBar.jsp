@@ -252,7 +252,7 @@ MAIN SIDEBAR MENU
                     <span>My Profile</span>  
                 </a>
                 <ul class="sub">
-                    <li><a href="">Edit my Profile</a></li>
+                    <li><a href="userProfile.jsp">My Profile</a></li>
                 </ul>
             </li>
             <!-- sidebar menu end-->

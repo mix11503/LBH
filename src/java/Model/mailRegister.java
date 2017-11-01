@@ -43,7 +43,7 @@ public class mailRegister {
     
     public static boolean sendSetPw(String email){
         String codeGen = genCode();
-        String bodyMsg = "http://localhost:8080/LBH/resetAccountPw?token="+codeGen+"\nClick on a link above to reset your password";
+        String bodyMsg = "http://52.220.19.105:8080/LBH/resetAccountPw?token="+codeGen+"\nClick on a link above to reset your password";
         Properties props = new Properties();
         props.put("mail.smtp.host", SMTP_HOST_NAME);
         props.put("mail.smtp.port", SMTP_PORT);

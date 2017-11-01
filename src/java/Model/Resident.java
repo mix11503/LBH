@@ -317,6 +317,26 @@ public int getId() {
         return x > 0;
     }
     
+    public boolean updateAccount(int id) {
+        int x = 0;
+        try {
+            Connection conn = ConnectionBuilder.getConnection();
+            String sqlCmd = null;
+            sqlCmd = "Update Resident set RESIDENT_NAME = ?, RESIDENT_LASTNAME = ?, RESIDENT_EMAIL = ?, RESIDENT_TEL = ? where RESIDENT_ID = " + id;
+            PreparedStatement pstm = conn.prepareStatement(sqlCmd);
+            pstm.setString(1, this.name);
+            pstm.setString(2, this.lastname);
+            pstm.setString(3, this.email);
+            pstm.setLong(4, this.phone);
+            x = pstm.executeUpdate();
+            conn.close();
+        } catch (SQLException ex) {
+            System.err.println("Resident, updateAccount: " + ex);
+        }
+        return x > 0;
+    }
+    
+    
 // ============== TESTING ZONE =============
 
     public static void main(String[] args){
