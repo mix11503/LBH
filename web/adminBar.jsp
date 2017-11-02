@@ -1,6 +1,8 @@
+<%@page import="Model.Admin"%>
 <%
                 Boolean status = (Boolean) request.getSession().getAttribute("adminAuthen");
                 if(status==true){
+                    Admin a = (Admin) request.getSession().getAttribute("admin");
             %>
 <!-- **********************************************************************************************************************************************************
       TOP BAR CONTENT & NOTIFICATIONS
@@ -11,7 +13,7 @@
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
     </div>
     <!--logo start-->
-    <a href="admin_panel.jsp" class="logo"><b>Welcome Admin</b></a>
+    <a href="admin_panel.jsp" class="logo"><b>Welcome, ${admin.name}</b></a>
     <!--logo end-->
     <div class="top-menu">
             	<ul class="nav pull-right top-menu">
@@ -31,7 +33,7 @@ MAIN SIDEBAR MENU
         <ul class="sidebar-menu" id="nav-accordion">
 
             <p class="centered"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-            <h5 class="centered">Mr. Scofield</h5>
+            <h5 class="centered">Admin ${admin.name}</h5>
                 <!-- Add class="active" at a href to blue hilight-->
             <li class="mt">
                 <a href="admin_panel.jsp">
@@ -128,6 +130,17 @@ MAIN SIDEBAR MENU
                     <li><a href="findAllResident">User Management</a></li>
                 </ul>
             </li>
+            <%if(a.isRole()){%>
+            <li class="sub-menu">
+                <a href="javascript:;" >
+                    <i style="color:#ffd777" class="fa fa-star"></i>
+                    <span><b  style="color:#ffd777">Admin Management</b></span>  
+                </a>
+                <ul class="sub">
+                    <li><a href="manageAdmAcc">Manage Account</a></li>
+                </ul>
+            </li>
+            <%}%>
             <!-- sidebar menu end-->
     </div>
 </aside>
