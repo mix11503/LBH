@@ -35,11 +35,19 @@ public class API extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
-        List<newsUpdate> news = newsUpdate.getCurrentNews();
-        Gson gson = new Gson();
-        try (PrintWriter out = response.getWriter()) {
-             out.println(gson.toJson(news));
+        String pathInfo = request.getPathInfo();
+        String[] pathParts = pathInfo.split("/");
+        String part1 = pathParts[1];
+        switch(part1){
+            case "News" : 
+                List<newsUpdate> news = newsUpdate.getCurrentNews();
+                Gson gson = new Gson();
+                try (PrintWriter out = response.getWriter()) {
+                    out.println(gson.toJson(news));
+                }
+                break;
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
