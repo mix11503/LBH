@@ -5,6 +5,8 @@
  */
 package Controller.MobileAPI;
 
+import Model.Maintanance;
+import Model.Problem;
 import Model.newsUpdate;
 import com.google.gson.Gson;
 import java.io.IOException;
@@ -14,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONObject;
 
 /**
  *
@@ -38,16 +41,49 @@ public class API extends HttpServlet {
         String pathInfo = request.getPathInfo();
         String[] pathParts = pathInfo.split("/");
         String part1 = pathParts[1];
+        Gson gson = new Gson();
+        
         switch(part1){
             case "News" : 
                 List<newsUpdate> news = newsUpdate.getCurrentNews();
-                Gson gson = new Gson();
                 try (PrintWriter out = response.getWriter()) {
                     out.println(gson.toJson(news));
                 }
                 break;
+                
+            case "MTN" :
+                List<Maintanance> mtn = null;
+                String message = null;
+                //String jsonData = request.getParameter("jsondata");
+                //JSONObject jsonObject = new JSONObject(jsonData);
+                //String id = jsonObject.getString("roomId");
+                String id = request.getParameter("roomId");
+                if(id != null){
+                    try{
+                        int roomId = Integer.parseInt(id);
+                        mtn = Maintanance.findByRoomId(roomId);
+                        if(mtn == null || mtn.isEmpty() == true){
+                        message = "Room not found!";
+                        }else{
+                            request.setAttribute("record", mtn);
+                        }
+                    }catch(Exception e){
+                        message = "please enter number!";
+                    }
+                    try (PrintWriter out = response.getWriter()) {
+                        out.println(gson.toJson(mtn));
+                    }
+                }
+                break;
+            
+            case "Problem" :
+                String roomId = request.getParameter("roomId");
+                List<Problem> pbm = Problem.getRequestByRoomNo(Integer.parseInt(roomId));
+                try (PrintWriter out = response.getWriter()) {
+                    out.println(gson.toJson(pbm));
+                }
+                break;
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
