@@ -170,4 +170,20 @@ public class Admin {
         }
         return x > 0;
     }
+    public boolean createAccount() {
+        int x = 0;
+        try {
+            Connection conn = ConnectionBuilder.getConnection();
+            String sqlCmd = null;
+            sqlCmd = "INSERT INTO admin(name, email) VALUES (?,?)";
+            PreparedStatement pstm = conn.prepareStatement(sqlCmd);
+            pstm.setString(1, this.name);
+            pstm.setString(2, this.email);
+            x = pstm.executeUpdate();
+            conn.close();
+        } catch (SQLException ex) {
+            System.err.println("admin, createAccount: " + ex);
+        }
+        return x > 0;
+    }
 }

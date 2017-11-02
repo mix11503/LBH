@@ -67,7 +67,7 @@
                 if(aaa.isRole()){
             %>
             <!--main content start-->
-            ...............
+            ...............                      
             <section id="main-content">
                 <section class="wrapper site-min-height">
                     <div class="row mt">
@@ -100,7 +100,7 @@
                 <td><%=a.getEmail()%></td>
                 <td><%=a.isRole()?"MANAGER":"Admin"%></td>
                 <td><%=a.isSuspend()?"<b style='color:red;'>Suspend</b>":"<b style='color:green;'>Active</b>"%></td>
-                <td><form action="" method="post" onclick="return confirm('<%=a.isSuspend()?"Make account Active?":"Suspend Account?"%>')">
+                <td><form action="admSuspend" method="post" onclick="return confirm('<%=a.isSuspend()?"Make account Active?":"Suspend Account?"%>')">
                         <input type="text" value="<%=a.getId()%>" name="id" hidden>
                         <input type="text" value="<%=a.isSuspend()?"false":"true"%>" name="suspend" hidden>
                         <input type="submit" value="<%=a.isSuspend()?"Undo":"Suspend"%>" class='<%=a.isSuspend()?"btn btn-success":"btn btn-warning"%>' <%=a.isRole()?"disabled":""%>/>
@@ -111,6 +111,29 @@
             </tbody>
             </table>
                         </div><!-- /row -->
+                        <!-- CREATE ADMIN ACCOUNT -->
+                        <div class="row mt">
+          		<div class="col-lg-12">
+          			<div class="form-panel">
+                  	  <h3 class="mb"><i class="fa fa-star"></i> Create Admin Account</h3>
+                          <form class="form-horizontal tasi-form" action="createAdmAcc" method="post">  
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Name</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" name="name" required><br>
+                                </div>
+                                <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Email</label>
+                                <div class="col-lg-10">
+                                    <input type="email" class="form-control" name="email" required><br>
+                                </div> 
+                            </div>
+                              <input type="submit" style="margin-left: 500px; width: 120px; height: 40px;" class="btn btn-success" value="Create Account"/>
+                          </form>
+                          <h4 class="mb" style="color:blue">${message}</h4>
+                          <h4 class="mb" style="color:red">${messageError}</h4>
+          			</div><!-- /form-panel -->
+          		</div><!-- /col-lg-12 -->
+          	</div><!-- /row -->
                 </section><! --/wrapper -->
             </section><!-- /MAIN CONTENT -->
             <!--main content end-->

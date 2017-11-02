@@ -112,13 +112,13 @@
                     <span class="badge bg-theme"><%=keyAmt==0?"":keyAmt%></span>
                 </a>
             </li>
-            <!-- BLUETOOTH -->
+            <!-- BLUETOOTH 
             <li id="header_inbox_bar" class="dropdown">
                 <a class="dropdown-toggle">
                     <i class="fa fa-car"></i>
-                <!--    <span class="badge bg-theme">1</span> -->
                 </a>          
             </li>
+            -->
             <!-- DECORATE -->
             <li id="header_inbox_bar" class="dropdown">
                 <a class="dropdown-toggle" <%=decAmt==0?"":"href='userViewHistory?roomNo="%>${roomId}'>
@@ -195,7 +195,7 @@ MAIN SIDEBAR MENU
                     <li><a  href="SearchKeycardByRoom">Request Keycard</a></li>                                
                 </ul>
             </li>
-            
+            <!--
             <li class="sub-menu">
                 <a href="javascript:;" >
                     <i class="fa fa-car"></i>
@@ -205,7 +205,7 @@ MAIN SIDEBAR MENU
                     <li><a  href="ListApprovedBluetoothReqByRoom">Bluetooth Request</a></li>                                
                 </ul>
             </li>
-
+            -->
             <!-- เเว้นนนนนนนนนนนนนนนนน -->
             <li class="sub-menu">
                 <a href="javascript:;" >
