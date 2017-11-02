@@ -3,18 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package Controller.ADMIN;
 
 import Model.Admin;
-import Model.Decoration;
-import Model.Maintanance;
-import Model.Moving;
-import Model.Problem;
-import Model.notifyAdmin;
-import Model.parcel;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Joe's
  */
-public class adminIndex extends HttpServlet {
+public class createAdmAcc extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,30 +30,26 @@ public class adminIndex extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        String id = request.getParameter("id");
-        String password = request.getParameter("password");
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
         String message = null;
-        String target = "/loginAdmin.jsp";
-        
-        Admin a = Admin.findByEmail(id);
-        if(a!=null){    
-            if(a.getPassword().equals(Admin.MD5Encrypt(password))){
-                if(a.isSuspend()){
-                    message = "Account Suspend";
-                }else{
-                request.getSession().setAttribute("adminAuthen", true);
-                request.getSession().setAttribute("admin", a);
-                target = "/admin_panel.jsp";
-                }
-            }else{
-                message = "Wrong password";
-            }
-        }else{
-            message = "Please check your ID or Password";
+        String messageError = null;
+        try{
+            Admin ad = new Admin();
+            ad.setName(name);
+            ad.setEmail(email);
+            ad.createAccount();
+            message = "Create Account Successfully!";
+        }catch(Exception e){
+            System.err.println("create adm acc servlet: "+e);
         }
+        
         request.setAttribute("message", message);
-        getServletContext().getRequestDispatcher(target).forward(request, response);
+        request.setAttribute("messageError", messageError);
+        getServletContext().getRequestDispatcher("/manageAdmAcc").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

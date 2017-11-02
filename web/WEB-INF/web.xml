@@ -400,6 +400,26 @@
         <servlet-name>API</servlet-name>
         <servlet-class>Controller.MobileAPI.API</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>resUpdateProf</servlet-name>
+        <servlet-class>Controller.ADMIN.resUpdateProf</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>manageAdmAcc</servlet-name>
+        <servlet-class>Controller.ADMIN.manageAdmAcc</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>admSuspend</servlet-name>
+        <servlet-class>Controller.ADMIN.admSuspend</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>admResetPw</servlet-name>
+        <servlet-class>Controller.ADMIN.admResetPw</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>createAdmAcc</servlet-name>
+        <servlet-class>Controller.ADMIN.createAdmAcc</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MTNSearchRoom</servlet-name>
         <url-pattern>/MTNSearchRoom</url-pattern>
@@ -799,6 +819,26 @@
     <servlet-mapping>
         <servlet-name>API</servlet-name>
         <url-pattern>/API</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>resUpdateProf</servlet-name>
+        <url-pattern>/resUpdateProf</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>manageAdmAcc</servlet-name>
+        <url-pattern>/manageAdmAcc</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>admSuspend</servlet-name>
+        <url-pattern>/admSuspend</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>admResetPw</servlet-name>
+        <url-pattern>/admResetPw</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>createAdmAcc</servlet-name>
+        <url-pattern>/createAdmAcc</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

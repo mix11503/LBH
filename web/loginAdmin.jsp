@@ -45,31 +45,35 @@
                                 Contact ADMIN
                             </a>
                         </div>
-
+                            <h4 style="color: red;">${messagePw}</h4>
                     </div>
-
+                    </form>
                     <!-- Modal -->
                     <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+                        
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header" style="background:#ffd777">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     <h4 class="modal-title">Forgot Password ?</h4>
                                 </div>
+                                <form action='admResetPw' method='get'>
                                 <div class="modal-body">
-                                    <p>Email or Call System Administrator to reset your password.</p>
-                                    <input type="text" name="email" placeholder="ADMIN@LBH.COM, Call 02-123-4567" disabled class="form-control placeholder-no-fix">
-
+                                    <p>Enter your e-mail address below to reset your password.</p>
+                                    
+                                    <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
                                 </div>
                                 <div class="modal-footer">
-                                    <button data-dismiss="modal" class="btn btn-default" type="button">OK</button>
+                                    <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+                                    <input class="btn btn-warning" type="submit"/>
                                 </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                     <!-- modal -->
 
-                </form>	  	
+                	  	
 
             </div>
         </div>
