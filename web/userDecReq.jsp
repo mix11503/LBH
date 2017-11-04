@@ -104,7 +104,7 @@
                   	  <h4 class="mb"><i class="fa fa-angle-right"></i>Complete the form to request the service</h4>
                           <form class="form-horizontal tasi-form" action="createRequest" method="post">
                               <input type="text" name="roomId" value="<%=roomId%>" hidden/>
-                              
+                              <input type="text" name="usName" value="${Resident.name}" hidden/>
                               <div class="form-group has-success">
                                   <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Description</label>
                                   <div class="col-lg-10">

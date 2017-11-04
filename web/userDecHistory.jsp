@@ -85,7 +85,7 @@
                               <tr>
                                   
                                   <td><h5><%=d.getId()%></h5></td>
-                                  <td><h5>{Username}</h5></td>
+                                  <td><h5><%=d.getUsName()%></h5></td>
                                   <td><h5><%if(d.getStatus()==true){%><div style="color: green"><i class="fa fa-check"></i> APPROVED</div>
                                           <%}else{%><div style="color: #F1C500"><i class="fa fa-spinner"></i> IN PROCESS</div><%}%></h5></td>
                                   <td><h5></h5><%=d.getReqDate()%></td>

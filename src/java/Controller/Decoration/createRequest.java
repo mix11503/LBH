@@ -40,6 +40,7 @@ public class createRequest extends HttpServlet {
         String start = request.getParameter("start");
         String end = request.getParameter("end");
         String roomId = request.getParameter("roomId");
+        String usName = request.getParameter("usName");
         String message = null;
         String target = "/userDecReq.jsp";
         try{
@@ -47,12 +48,13 @@ public class createRequest extends HttpServlet {
             d.setDesc(desc);
             d.setStart(start);
             d.setEnd(end);
+            d.setUsName(usName);
             d.createRequest(Integer.parseInt(roomId));
             
             //Create Noti
             String app = null;
             if(desc.length()>10){ app = desc.substring(0,10)+"...";}else{ app = desc;};
-            createNoti("Resident","Decorate Request","request "+app,"SearchFilter?filter=New", Integer.parseInt(roomId));
+            createNoti(usName,"Decorate Request","request "+app,"SearchFilter?filter=New", Integer.parseInt(roomId));
             
             target = "/userViewHistory?roomNo="+roomId;
         }catch(Exception e){

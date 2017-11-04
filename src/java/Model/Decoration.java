@@ -16,6 +16,7 @@ public class Decoration {
     private Boolean status;
     private int roomId;
     private Date reqDate;
+    private String usName;
 
     public int getId() {
         return id;
@@ -78,6 +79,7 @@ public class Decoration {
         d.setStatus(rs.getBoolean("DEC_status"));
         d.setRoomId(rs.getInt("Room_ID"));
         d.setReqDate(rs.getDate("DEC_ReqDate"));
+        d.setUsName(rs.getString("usName"));
     }
     
     public boolean createRequest(int roomId) {
@@ -85,14 +87,15 @@ public class Decoration {
         try {
             Connection conn = ConnectionBuilder.getConnection();
             String sqlCmd = null;
-            sqlCmd = "INSERT INTO DecorateRequest(DEC_Desc, DEC_Start, DEC_End, DEC_Status, Room_ID, DEC_ReqDate) VALUES (?,?,?,?,?,?)";
+            sqlCmd = "INSERT INTO DecorateRequest(DEC_Desc, DEC_Start, DEC_End, DEC_Status, usName, Room_ID, DEC_ReqDate) VALUES (?,?,?,?,?,?,?)";
             PreparedStatement pstm = conn.prepareStatement(sqlCmd);
             pstm.setString(1, this.desc);
             pstm.setString(2, this.start);
             pstm.setString(3, this.end);
             pstm.setBoolean(4, false);
-            pstm.setInt(5, roomId);
-            pstm.setDate(6, new java.sql.Date(new Date().getTime()));
+            pstm.setString(5, this.usName);
+            pstm.setInt(6, roomId);
+            pstm.setDate(7, new java.sql.Date(new Date().getTime()));
             x = pstm.executeUpdate();
             conn.close();
         } catch (SQLException ex) {
@@ -288,6 +291,14 @@ public class Decoration {
 
     public void setReqDate(Date reqDate) {
         this.reqDate = reqDate;
+    }
+
+    public String getUsName() {
+        return usName;
+    }
+
+    public void setUsName(String usName) {
+        this.usName = usName;
     }
 
           

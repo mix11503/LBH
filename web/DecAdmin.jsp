@@ -127,7 +127,7 @@
                 for(Decoration dec : d){
             %>
             <tr>
-                <td>{Resident Name}</td>
+                <td><%=dec.getUsName()%></td>
                 <td><%=dec.getReqDate()%></td>
                 <td><%if(dec.getDesc().length()>30){%><%=dec.getDesc().substring(0, 30)%>...<%}else{%><%=dec.getDesc()%><%}%></td>
                 <td><%=dec.getStart()%></td>
