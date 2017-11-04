@@ -43,12 +43,14 @@ public class createMoveReq extends HttpServlet {
         String st = request.getParameter("stuff");
         String stAmt = request.getParameter("stuffAmt");
         String type = request.getParameter("type");
+        String usName = request.getParameter("usName");
         
         try{
             Moving m = new Moving();
             m.setDateMove(date+" "+time);
             m.setInOrOut(Boolean.parseBoolean(type));
             m.setRemark(desc);
+            m.setUsName(usName);
             m.createRequest(Integer.parseInt(roomId));
             //add stuff
             stuff.addStuff(st, Integer.parseInt(stAmt), m.getId());
@@ -61,7 +63,7 @@ public class createMoveReq extends HttpServlet {
         //Create Noti
             String app = null;
             if(desc.length()>10){ app = desc.substring(0,10)+"...";}else{ app = desc;};
-            createNoti("Resident","Moving Request","request "+app,"admMgnReq", Integer.parseInt(roomId));
+            createNoti(usName,"Moving Request","request "+app,"admMgnReq", Integer.parseInt(roomId));
         }catch(Exception e){
             System.err.println(e);
         }

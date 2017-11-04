@@ -127,7 +127,7 @@
                 for(Moving m : mv){
             %>
             <tr>
-                <td>{Resident Name}</td>
+                <td><%=m.getUsName()%></td>
                 <td><%=m.getReqDate()%></td>
                 <td><%=m.getRemark()%></td>
                 <td><%if(m.isInOrOut()==true){%>Move In<%}else{%>Move Out<%}%></td>

@@ -17,6 +17,7 @@ public class Moving {
     private String dateMove;
     private boolean status;
     private int roomId;
+    private String usName;
 
     public int getId() {
         return id;
@@ -86,20 +87,22 @@ public class Moving {
         m.setReqDate(rs.getDate("MV_DateRequest"));
         m.setRoomId(rs.getInt("Room_ID"));
         m.setStatus(rs.getBoolean("MV_Status"));
+        m.setUsName(rs.getString("usName"));
     }
     public boolean createRequest(int roomId) {
         int x = 0;
         try {
             Connection conn = ConnectionBuilder.getConnection();
             String sqlCmd = null;
-            sqlCmd = "INSERT INTO StuffMoving_Request(MV_DateMove, MV_InOrOut, MV_Remark, MV_DateRequest, MV_Status, Room_ID) VALUES (?,?,?,?,?,?)";
+            sqlCmd = "INSERT INTO StuffMoving_Request(MV_DateMove, MV_InOrOut, MV_Remark, MV_DateRequest, MV_Status, usName, Room_ID) VALUES (?,?,?,?,?,?,?)";
             PreparedStatement pstm = conn.prepareStatement(sqlCmd, Statement.RETURN_GENERATED_KEYS);
             pstm.setString(1, this.dateMove);
             pstm.setBoolean(2, this.inOrOut);
             pstm.setString(3, this.remark);
             pstm.setDate(4, new java.sql.Date(new Date().getTime()));
             pstm.setBoolean(5, false);
-            pstm.setInt(6, roomId);
+            pstm.setString(6, this.usName);
+            pstm.setInt(7, roomId);
             x = pstm.executeUpdate();
             ResultSet rs = pstm.getGeneratedKeys();
             if(rs.next()){
@@ -296,5 +299,13 @@ public class Moving {
 */
        //System.out.println(Moving.findById(2).toString());
         //System.out.println(getAmountReqNoti(202));
+    }
+
+    public String getUsName() {
+        return usName;
+    }
+
+    public void setUsName(String usName) {
+        this.usName = usName;
     }
 }
