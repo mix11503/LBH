@@ -15,6 +15,7 @@ public class Problem {
     private String desc;
     private boolean status;
     private int roomId;
+    private String usName;
 
     public int getId() {
         return id;
@@ -63,6 +64,7 @@ public class Problem {
     public void setRoomId(int roomId) {
         this.roomId = roomId;
     }
+    
 
     @Override
     public String toString() {
@@ -75,6 +77,7 @@ public class Problem {
         p.setDesc(rs.getString("PBM_Desc"));
         p.setStatus(rs.getBoolean("PBM_Status"));
         p.setRoomId(rs.getInt("Room_ID"));
+        p.setUsName(rs.getString("usName"));
     }
     
     public boolean createRequest(int roomId) {
@@ -82,13 +85,14 @@ public class Problem {
         try {
             Connection conn = ConnectionBuilder.getConnection();
             String sqlCmd = null;
-            sqlCmd = "INSERT INTO Problem_Report(PBM_Date, PBM_Name, PBM_Desc, PBM_Status, Room_ID) VALUES (?,?,?,?,?)";
+            sqlCmd = "INSERT INTO Problem_Report(PBM_Date, PBM_Name, PBM_Desc, PBM_Status, usName, Room_ID) VALUES (?,?,?,?,?,?)";
             PreparedStatement pstm = conn.prepareStatement(sqlCmd);
             pstm.setDate(1, new java.sql.Date(new Date().getTime()));
             pstm.setString(2, this.topic);
             pstm.setString(3, this.desc);
             pstm.setBoolean(4, false);
-            pstm.setInt(5, roomId);
+            pstm.setString(5, this.usName);
+            pstm.setInt(6, roomId);
             x = pstm.executeUpdate();
             conn.close();
         } catch (SQLException ex) {
@@ -252,5 +256,13 @@ public class Problem {
         p.setDesc("testtest");
         p.editRequest(6);
 */
+    }
+
+    public String getUsName() {
+        return usName;
+    }
+
+    public void setUsName(String usName) {
+        this.usName = usName;
     }
 }

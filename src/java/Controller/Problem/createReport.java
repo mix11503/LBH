@@ -38,16 +38,18 @@ public class createReport extends HttpServlet {
         String topic = request.getParameter("topic");
         String desc = request.getParameter("desc");
         String roomId = request.getParameter("roomId");
+        String usName = request.getParameter("usName");
         String message = null;
         String target = "/problemReportForm.jsp";
         try{
             Problem p = new Problem();
             p.setTopic(topic);
             p.setDesc(desc);
+            p.setUsName(usName);
             p.createRequest(Integer.parseInt(roomId));
             
             //Create Noti
-            createNoti("Resident","Problem Report","report "+topic,"getCurrentReport", Integer.parseInt(roomId));
+            createNoti(usName,"Problem Report","report "+topic,"getCurrentReport", Integer.parseInt(roomId));
             
             target = "/reportHistory?roomNo="+roomId;
         }catch(Exception e){

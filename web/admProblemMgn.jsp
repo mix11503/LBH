@@ -123,7 +123,7 @@
                 for(Problem p : pbm){
             %>
             <tr>
-                <td>{Resident Name}</td>
+                <td><%=p.getUsName()%></td>
                 <td><%=p.getReqDate()%></td>
                 <td><%=p.getTopic()%></td>
                 <td><%if(p.getDesc().length()>30){%><%=p.getDesc().substring(0, 30)%>...<%}else{%><%=p.getDesc()%><%}%></td>

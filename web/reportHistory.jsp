@@ -77,7 +77,7 @@
                               <tr>
                                   
                                   <td><h5><%=p.getId()%></h5></td>
-                                  <td><h5>{Username}</h5></td>
+                                  <td><h5><%=p.getUsName()%></h5></td>
                                   <td><h5><%if(p.isStatus()==true){%><div style="color: green"><i class="fa fa-check"></i> ACKNOWLEDGE</div><%}else{%>
                                           <div style="color: red"><i class="fa fa-spinner"></i> IN PROCESS</div><%}%></h5></td>
                                   <td><h5></h5><%=p.getReqDate()%></td>
