@@ -171,6 +171,7 @@ tinymce.init({
                 <div class="form-panel">
                       <h4 class="mb"><i class="fa fa-angle-right"></i> Create News Announcement</h4>
                           <form action="createNews" class="form-horizontal tasi-form" method="get" >
+                              <input type="text" name="adName" value="${admin.name}" hidden/>
                               <div class="form-group has-success">
                                   <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Topic </label>
                                   <div class="col-lg-5">

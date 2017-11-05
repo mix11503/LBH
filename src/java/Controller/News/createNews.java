@@ -40,6 +40,8 @@ public class createNews extends HttpServlet {
         String start = request.getParameter("startdate");
         String end = request.getParameter("enddate");
         String cate = request.getParameter("category");
+        String adName = request.getParameter("adName");
+        String att = "<h6 style=\"text-align: right;\"><em>By Admin: "+adName+"</em></h6>";
         newsUpdate nu = null;
         String message = null;
         
@@ -55,7 +57,7 @@ public class createNews extends HttpServlet {
         try{
             nu = new newsUpdate();
             nu.setNews_topic(topic);
-            nu.setNews_desc(desc);
+            nu.setNews_desc(desc+" "+att);
             nu.setCate(cate);
             nu.createNews(start, end);
             
