@@ -133,13 +133,14 @@
                 <td><%if(m.isInOrOut()==true){%>Move In<%}else{%>Move Out<%}%></td>
                 <td><%=m.getDateMove().substring(0,m.getDateMove().length()-5)%></td>
                 <td><%=m.getRoomId()%></td>
-                <td><%if(m.isStatus()==true){%><div style="color: green"><i class="fa fa-check"></i> APPROVED</div>
-                    <%}else{%><form action="ApproveMove" method="get" onclick="return confirm('Approve Moving Request?')">
+                <td><%if(m.isStatus()==true){%><div style="color: green"><i class="fa fa-check"></i> APPROVED</div> By <%=m.getAppBy()%>
+                    <%}else{%><form action="ApproveMove" method="post" onclick="return confirm('Approve Moving Request?')">
                         <input type="text" value="<%=m.getId()%>" name="id" hidden>
                         <input type="text" value="<%=m.getRemark()%>" name="desc" hidden>
                         <input type="text" value="<%=m.getRoomId()%>" name="roomId" hidden>
                         <input type="text" value="<%=m.getDateMove().substring(0,m.getDateMove().length()-5)%>" name="start" hidden>
                         <input type="date" name="end" hidden>
+                        <input type="text" value="${admin.name}" name="appBy" hidden>
                         <input type="submit" value="Approve" class="btn btn-warning" <%if(m.isStatus()==true){%>disabled<%}%>/>
                     </form><%}%></td>
                 <td><form action="movSheet" method="post"  target="_blank">

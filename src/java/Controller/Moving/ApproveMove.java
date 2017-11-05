@@ -39,6 +39,7 @@ public class ApproveMove extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         String id = request.getParameter("id");
         String detail = request.getParameter("desc");
+        String appBy = request.getParameter("appBy");
         String url = "movSheet?id="+id;
         String color = "green";
         String type = "MovingStuff";
@@ -50,7 +51,7 @@ public class ApproveMove extends HttpServlet {
         Date startDate = null;
         Date endDate  = null;
         try{
-            Moving.Approved(Integer.parseInt(id));
+            Moving.Approved(Integer.parseInt(id), appBy);
             java.util.Date utilDate = sdf.parse(textStartDate);
             startDate = new java.sql.Date(utilDate.getTime());
             utilDate = sdf.parse(textEndDate);

@@ -17,6 +17,7 @@ public class Decoration {
     private int roomId;
     private Date reqDate;
     private String usName;
+    private String app_by;
 
     public int getId() {
         return id;
@@ -80,6 +81,7 @@ public class Decoration {
         d.setRoomId(rs.getInt("Room_ID"));
         d.setReqDate(rs.getDate("DEC_ReqDate"));
         d.setUsName(rs.getString("usName"));
+        d.setApp_by(rs.getString("app_by"));
     }
     
     public boolean createRequest(int roomId) {
@@ -134,13 +136,14 @@ public class Decoration {
         }
         return x > 0;
     }
-    public static boolean Approved(int id) {
+    public static boolean Approved(int id, String by) {
         int x = 0;
         try {
             Connection conn = ConnectionBuilder.getConnection();
-            String sqlCmd = "Update DecorateRequest set DEC_Status = ? where DEC_ID = " + id;
+            String sqlCmd = "Update DecorateRequest set DEC_Status = ?, app_by = ? where DEC_ID = " + id;
             PreparedStatement pstm = conn.prepareStatement(sqlCmd);
             pstm.setBoolean(1, true);
+            pstm.setString(2, by);
             x = pstm.executeUpdate();
             conn.close();
         } catch (SQLException ex) {
@@ -299,6 +302,14 @@ public class Decoration {
 
     public void setUsName(String usName) {
         this.usName = usName;
+    }
+
+    public String getApp_by() {
+        return app_by;
+    }
+
+    public void setApp_by(String app_by) {
+        this.app_by = app_by;
     }
 
           

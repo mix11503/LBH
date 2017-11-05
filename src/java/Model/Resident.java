@@ -23,6 +23,7 @@ private boolean suspend;
 private boolean isOwner;
 private String password;
 private int Room_ID;
+private String appBy;
     
 public int getId() {
         return id;
@@ -130,6 +131,7 @@ public int getId() {
         Res.setIsOwner(rs.getBoolean("isOwner"));
         Res.setPassword(rs.getString("password"));
         Res.setRoom_ID(rs.getInt("Room_ID"));
+        Res.setAppBy(rs.getString("appBy"));
     }
     
     public boolean createAccount(int roomId) {
@@ -137,7 +139,7 @@ public int getId() {
         try {
             Connection conn = ConnectionBuilder.getConnection();
             String sqlCmd = null;
-            sqlCmd = "INSERT INTO Resident(RESIDENT_NAME, RESIDENT_LASTNAME, RESIDENT_EMAIL, RENT_START, RENT_END, isOwner, Room_ID, RESIDENT_TEL) VALUES (?,?,?,?,?,?,?,?)";
+            sqlCmd = "INSERT INTO Resident(RESIDENT_NAME, RESIDENT_LASTNAME, RESIDENT_EMAIL, RENT_START, RENT_END, isOwner, Room_ID, RESIDENT_TEL, appBy) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement pstm = conn.prepareStatement(sqlCmd);
             pstm.setString(1, this.name);
             pstm.setString(2, this.lastname);
@@ -147,6 +149,7 @@ public int getId() {
             pstm.setBoolean(6, this.isOwner);
             pstm.setInt(7,roomId);
             pstm.setLong(8, this.phone);
+            pstm.setString(9, this.appBy);
             x = pstm.executeUpdate();
             conn.close();
         } catch (SQLException ex) {
@@ -302,13 +305,14 @@ public int getId() {
         return sb.toString();
     }
     
-    public static boolean suspendAccount(int id, Boolean status) {
+    public static boolean suspendAccount(int id, Boolean status, String by) {
         int x = 0;
         try {
             Connection conn = ConnectionBuilder.getConnection();
-            String sqlCmd = "Update Resident set suspend = ? where RESIDENT_ID = " + id;
+            String sqlCmd = "Update Resident set suspend = ?, appBy = ? where RESIDENT_ID = " + id;
             PreparedStatement pstm = conn.prepareStatement(sqlCmd);
             pstm.setBoolean(1, status);
+            pstm.setString(2, by);
             x = pstm.executeUpdate();
             conn.close();
         } catch (SQLException ex) {
@@ -386,6 +390,14 @@ public int getId() {
         //System.out.println(MD5Encrypt("joe"));
     }
 // ==========END OF TESTING ZONE ============
+
+    public String getAppBy() {
+        return appBy;
+    }
+
+    public void setAppBy(String appBy) {
+        this.appBy = appBy;
+    }
 
 
     

@@ -150,7 +150,7 @@
                                 </div>
                                 
                             </div>
-
+                              <input type="text" value="${admin.name}" name="appBy" hidden/>
                               <input type="submit" style="margin-left: 500px; width: 120px; height: 40px;" class="btn btn-success" value="Create Account"/>
                           </form>
                           <h4 class="mb" style="color:blue">${message}</h4>

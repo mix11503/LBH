@@ -42,6 +42,7 @@ public class createAccount extends HttpServlet {
         String room = request.getParameter("room");
         String start = request.getParameter("start");
         String end = request.getParameter("end");
+        String appBy = request.getParameter("appBy");
         String message = null;
         String messageError = null;
         
@@ -61,6 +62,7 @@ public class createAccount extends HttpServlet {
             r.setIsOwner(status.equalsIgnoreCase("owner"));
             r.setRent_start(start);
             r.setRent_end(end);
+            r.setAppBy(appBy);
             r.createAccount(Integer.parseInt(room));
             
             mailRegister.sendSetPw(email);

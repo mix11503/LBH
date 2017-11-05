@@ -73,7 +73,6 @@
                         <table id="example" class="display" cellspacing="0" width="95%">
             <thead><tr>
                 <th>Name</th>
-                <th>Lastname</th>
                 <th>Phone Number</th>
                 <th>Email</th>
                 <th>Status</th>
@@ -85,7 +84,6 @@
             </tr></thead>
             <tfoot><tr>
                 <th>Name</th>
-                <th>Lastname</th>
                 <th>Phone</th>
                 <th>Email</th>
                 <td></td>
@@ -103,17 +101,17 @@
                 for(Resident r : rr){
             %>
             <tr>
-                <td><%=r.getName()%></td>
-                <td><%=r.getLastname()%></td>
+                <td><%=r.getName()%> <%=r.getLastname()%></td>
                 <td>0<%=r.getPhone()%></td>
                 <td><%=r.getEmail()%></td>
                 <td><%=r.isIsOwner()?"Owner":"Renter"%></td>
                 <td><%=r.isIsOwner()?"-":r.getRent_start()%></td>
                 <td><%=r.isIsOwner()?"-":r.getRent_end()%></td>
-                <td><%=r.isSuspend()?"<b style='color:red;'>Suspend</b>":"<b style='color:green;'>Active</b>"%></td>
+                <td><%=r.isSuspend()?"<b style='color:red;'>Suspend</b> by "+r.getAppBy():"<b style='color:green;'>Active</b> by "+r.getAppBy()%></td>
                 <td><form action="suspendAccount" method="post" onclick="return confirm('<%=r.isSuspend()?"Make account Active?":"Suspend Account?"%>')">
                         <input type="text" value="<%=r.getId()%>" name="id" hidden>
                         <input type="text" value="<%=r.isSuspend()?"false":"true"%>" name="suspend" hidden>
+                        <input type="text" value="${admin.name}" name="appBy" hidden/>
                         <input type="submit" value="<%=r.isSuspend()?"Undo":"Suspend"%>" class='<%=r.isSuspend()?"btn btn-success":"btn btn-warning"%>'/>
                     </form></td>
                 <td><%=r.getRoom_ID()%></td>

@@ -39,6 +39,7 @@ public class ApproveDec extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         String id = request.getParameter("id");
         String detail = request.getParameter("desc");
+        String appBy = request.getParameter("appBy");
         String url = "printDecSheet?id="+id;
         String color = "orange";
         String type = "Decorate";
@@ -51,7 +52,7 @@ public class ApproveDec extends HttpServlet {
         Date startDate = null;
         Date endDate  = null;
         try{
-            Decoration.Approved(Integer.parseInt(id));
+            Decoration.Approved(Integer.parseInt(id), appBy);
             java.util.Date utilDate = sdf.parse(textStartDate);
             startDate = new java.sql.Date(utilDate.getTime());
             utilDate = sdf.parse(textEndDate);

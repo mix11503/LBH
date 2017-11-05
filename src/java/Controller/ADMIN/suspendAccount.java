@@ -33,8 +33,9 @@ public class suspendAccount extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String id = request.getParameter("id");
         String suspend = request.getParameter("suspend");
+        String appBy = request.getParameter("appBy");
         try{
-            Resident.suspendAccount(Integer.parseInt(id), Boolean.parseBoolean(suspend));
+            Resident.suspendAccount(Integer.parseInt(id), Boolean.parseBoolean(suspend), appBy);
         }catch(Exception e){
             System.err.println("suspend acc:"+e);
         }

@@ -18,6 +18,7 @@ public class Moving {
     private boolean status;
     private int roomId;
     private String usName;
+    private String appBy;
 
     public int getId() {
         return id;
@@ -88,6 +89,7 @@ public class Moving {
         m.setRoomId(rs.getInt("Room_ID"));
         m.setStatus(rs.getBoolean("MV_Status"));
         m.setUsName(rs.getString("usName"));
+        m.setAppBy(rs.getString("app_by"));
     }
     public boolean createRequest(int roomId) {
         int x = 0;
@@ -150,13 +152,14 @@ public class Moving {
         }
         return x > 0;
     }
-    public static boolean Approved(int id) {
+    public static boolean Approved(int id, String by) {
         int x = 0;
         try {
             Connection conn = ConnectionBuilder.getConnection();
-            String sqlCmd = "Update StuffMoving_Request set MV_Status = ? where MV_ID = " + id;
+            String sqlCmd = "Update StuffMoving_Request set MV_Status = ?, app_by = ? where MV_ID = " + id;
             PreparedStatement pstm = conn.prepareStatement(sqlCmd);
             pstm.setBoolean(1, true);
+            pstm.setString(2, by);
             x = pstm.executeUpdate();
             conn.close();
         } catch (SQLException ex) {
@@ -307,5 +310,13 @@ public class Moving {
 
     public void setUsName(String usName) {
         this.usName = usName;
+    }
+
+    public String getAppBy() {
+        return appBy;
+    }
+
+    public void setAppBy(String appBy) {
+        this.appBy = appBy;
     }
 }
