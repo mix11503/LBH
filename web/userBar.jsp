@@ -54,16 +54,16 @@
                                  else if(nn.getNews_cate().equals("ads")){pic = "ads.jpg";}
                                  else{pic = "gen.jpg";}
                             %>
-                            <li>
-                                <a data-toggle="modal" data-target="#myModal<%=nn.getNews_id()%>"> 
-                                    <span class="photo"><img alt="avatar" src="<%=pic%>"></span>
-                                    <span class="subject">
-                                    <span class="from">ATTENTION!</span>
-                                    <span class="time"><%=nn.getNews_datetime().substring(0,16)%></span>
-                                    </span>
-                                    <span class="message"><%=nn.getNews_topic()%></span>
-                                </a>
-                            </li>
+                    <li>
+                        <a data-toggle="modal" data-target="#myModal<%=nn.getNews_id()%>"> 
+                            <span class="photo"><img alt="avatar" src="<%=pic%>"></span>
+                            <span class="subject">
+                            <span class="from">ATTENTION!</span>
+                            <span class="time"><%=nn.getNews_datetime().substring(0,16)%></span>
+                            </span>
+                            <span class="message"><%=nn.getNews_topic().length()>36?nn.getNews_topic().substring(0,35)+"..":nn.getNews_topic()%></span>
+                        </a>
+                    </li>
                             <%}}%>
                         </ul>    
             </li>
@@ -98,7 +98,7 @@
                                     <span class="time"><%=nu.getDatetime().substring(0,16)%></span>
                                     </span>
                                     <span class="message">
-                                        <%=nu.getMessage()%>
+                                        <%=nu.getMessage().length()>32?nu.getMessage().substring(0,30)+"..":nu.getMessage()%>
                                     </span>
                                 </a>
                             </li>
