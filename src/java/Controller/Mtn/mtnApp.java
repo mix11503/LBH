@@ -35,7 +35,9 @@ public class mtnApp extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String date1 = request.getParameter("dateAppoint1");
         String time1 = request.getParameter("timeStart1");
         String timeend1 = request.getParameter("timeEnd1");

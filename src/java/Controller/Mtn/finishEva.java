@@ -33,7 +33,9 @@ public class finishEva extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String eva = request.getParameter("eva");
         String remark = request.getParameter("remark");
         String id = request.getParameter("id");
