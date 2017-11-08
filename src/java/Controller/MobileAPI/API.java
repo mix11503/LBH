@@ -8,6 +8,7 @@ package Controller.MobileAPI;
 import Model.Maintanance;
 import Model.Problem;
 import Model.newsUpdate;
+import Model.parcel;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -77,10 +78,18 @@ public class API extends HttpServlet {
                 break;
             
             case "Problem" :
-                String roomId = request.getParameter("roomId");
-                List<Problem> pbm = Problem.getRequestByRoomNo(Integer.parseInt(roomId));
+                String pbmRoomId = request.getParameter("roomId");
+                List<Problem> pbm = Problem.getRequestByRoomNo(Integer.parseInt(pbmRoomId));
                 try (PrintWriter out = response.getWriter()) {
                     out.println(gson.toJson(pbm));
+                }
+                break;
+                
+            case "Parcel" :
+                String pclRoomId = request.getParameter("roomId");
+                List<parcel> par = parcel.getParcelByRoomId(Integer.parseInt(pclRoomId));
+                try (PrintWriter out = response.getWriter()) {
+                    out.println(gson.toJson(par));
                 }
                 break;
         }
