@@ -84,7 +84,7 @@ public class ApproveDec extends HttpServlet {
             String strJsonBody = "{"
                     + "\"app_id\": \"ad05f2e7-20a3-4e8d-b8fc-006362a35cfc\","
                     + "\"filters\": [{\"field\": \"tag\", \"key\": \"room\", \"relation\": \"=\", \"value\": \""+roomId+"\"}],"
-                    + "\"contents\": {\"en\": \"Your decoration request approved.\nDesction :"+detail+"\"}"
+                    + "\"contents\": {\"en\": \"Your decoration request approved.\nDescription :"+detail+"\"}"
                     + "}";
 
             System.out.println("strJsonBody:\n" + strJsonBody);
