@@ -5,8 +5,11 @@
  */
 package Controller.MobileAPI;
 
+import Model.Decoration;
 import Model.Maintanance;
+import Model.Moving;
 import Model.Problem;
+import Model.Staff;
 import Model.newsUpdate;
 import Model.parcel;
 import com.google.gson.Gson;
@@ -92,6 +95,29 @@ public class API extends HttpServlet {
                     out.println(gson.toJson(par));
                 }
                 break;
+            
+            case "Decoration" :
+                String decRoomId = request.getParameter("roomId");
+                List<Decoration> dec = Decoration.getRequestByRoomNo(Integer.parseInt(decRoomId));
+                try (PrintWriter out = response.getWriter()) {
+                    out.println(gson.toJson(dec));
+                }
+                break;
+                
+            case "MovingStuff" :
+                String movRoomId = request.getParameter("roomId");
+                List<Moving> mov = Moving.getRequestByRoomNo(Integer.parseInt(movRoomId));
+                try (PrintWriter out = response.getWriter()) {
+                    out.println(gson.toJson(mov));
+                }
+                break;
+                
+            case "Staff" :
+                List<Staff> st = Staff.getAll();
+                try (PrintWriter out = response.getWriter()) {
+                    out.println(gson.toJson(st));
+                }
+                break;               
         }
     }
 
