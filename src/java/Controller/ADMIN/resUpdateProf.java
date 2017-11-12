@@ -50,7 +50,7 @@ public class resUpdateProf extends HttpServlet {
                 r.setEmail(email);
                 r.setPhone(Long.parseLong(phone));
                 r.updateAccount(Integer.parseInt(id));
-                message = "Update Profile Success!";
+                message = "Update Profile Success!, Please log in again to see change!";
             }else{
              messageError = "Wrong Password!";   
             }
