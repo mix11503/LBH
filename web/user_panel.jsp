@@ -87,8 +87,13 @@
             <br>
 
                       <div class="row mt">
-                     <%
-                         List<newsUpdate> news = (List) request.getSession().getAttribute("newsUser");
+                     <%  
+                         List<newsUpdate> news = null;
+                         if(request.getAttribute("newsUser")!=null){
+                            news = (List) request.getAttribute("newsUser");
+                         }else{
+                            news = newsUpdate.getCurrentNews(); 
+                         }
                          if(news!=null){
                              int i = 1;
                              String headline = null;

@@ -39,7 +39,7 @@ public class getCurrentNewsByKw extends HttpServlet {
         String message = null;
         if (keyword!=null) {
             news = newsUpdate.getCurrentNewsByKeyword(keyword);
-            request.getSession().setAttribute("newsUser", news);
+            request.setAttribute("newsUser", news);
         } 
         request.setAttribute("message", message);
         getServletContext().getRequestDispatcher("/user_panel.jsp").forward(request, response);

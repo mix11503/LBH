@@ -45,8 +45,8 @@ public class userIndex extends HttpServlet {
             if(r.isSuspend()==false){
                 if(r.getPassword().equals(Resident.MD5Encrypt(password))){
                     //success
-                    List<newsUpdate> news = newsUpdate.getCurrentNews();
-                    if(news!=null){request.getSession().setAttribute("newsUser", news);}
+                    //List<newsUpdate> news = newsUpdate.getCurrentNews();
+                    //if(news!=null){request.getSession().setAttribute("newsUser", news);}
                     request.getSession().setAttribute("roomId", r.getRoom_ID());
                     request.getSession().setAttribute("Resident", r);
                     target = "/user_panel.jsp";
